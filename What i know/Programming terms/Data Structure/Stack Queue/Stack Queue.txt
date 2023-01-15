@@ -1,0 +1,71 @@
+Data structures are a way of organizing and storing data in a computer program so that it can be accessed and modified efficiently. Different data structures are suited for different types of problems and have different time and space complexities for the operations that can be performed on them.
+
+Stack Queue:
+
+A stack is a data structure that follows the Last In First Out (LIFO) principle. It is a collection of elements, with two main operations: push and pop. The push operation adds an element to the top of the stack, and the pop operation removes the top element from the stack. The element that is removed is the one that was added last.
+
+A queue is a data structure that follows the First In First Out (FIFO) principle. It is a collection of elements, with two main operations: enqueue and dequeue. The enqueue operation adds an element to the end of the queue, and the dequeue operation removes the first element from the queue. The element that is removed is the one that was added first.
+
+		stack implementation in Python:
+class Stack:
+    def __init__(self):
+        self.items = []
+
+    def push(self, item):
+        self.items.append(item)
+
+    def pop(self):
+        if not self.is_empty():
+            return self.items.pop()
+
+    def peek(self):
+        if not self.is_empty():
+            return self.items[-1]
+
+    def is_empty(self):
+        return len(self.items) == 0
+
+stack = Stack()
+stack.push(1)
+stack.push(2)
+stack.push(3)
+print(stack.pop()) # 3
+print(stack.pop()) # 2
+print(stack.peek()) # 1
+
+
+		basic queue implementation in Python:
+class Queue:
+    def __init__(self):
+        self.items = []
+
+    def enqueue(self, item):
+        self.items.append(item)
+
+    def dequeue(self):
+        if not self.is_empty():
+            return self.items.pop(0)
+
+    def peek(self):
+        if not self.is_empty():
+            return self.items[0]
+
+    def is_empty(self):
+        return len(self.items) == 0
+
+queue = Queue()
+queue.enqueue(1)
+queue.enqueue(2)
+queue.enqueue(3)
+print(queue.dequeue()) # 1
+print(queue.dequeue()) # 2
+print(queue.peek()) # 3
+
+
+It's important to note that, in practice, there are different ways to implement stack and queue, such as using linked list, array and other data structures.
+
+Stacks and queues are often used in algorithms and other data structures, such as parsing expressions, implementing recursion, and simulating real-world situations like call stacks and waiting lines.
+
+
+
+

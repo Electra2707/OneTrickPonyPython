@@ -1,0 +1,20 @@
+Win + q,s
+Open the search
+Win + t
+Move in the task bar
+Win + p
+Open the dual screen manager
+Win + a
+Open the notification manager
+Win + x
+Open the right clic in windows
+Win + b
+Open the second plane task
+Win + home
+Minimize all exept the current window
+Alt + spacebar
+Open the windows menu
+Shift + Del
+Delete the selected item permanently without sending it to the Recycle Bin.
+Shift + F10
+Display the context menu for the selected item.
