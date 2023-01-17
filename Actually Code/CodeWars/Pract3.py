@@ -26,6 +26,15 @@ def persistence(number: int) -> int:
         else:
             digits = [int(d) for d in str(persisten)]
 
+    """The time complexity of the persistence function is O(n), 
+    where n is the number of digits in the input number. 
+    This is because the while loop runs until the number
+    of digits is reduced to 1, and in each iteration, 
+    it performs a constant number of operations (e.g. 
+    conversion to list, product of digits and count 
+    increment) regardless of the number of digits.
+    """
+
 
 print(persistence(39))
 print(persistence(4))
