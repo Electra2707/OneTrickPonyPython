@@ -8,15 +8,21 @@ For example (Input --> Output):
 999 --> 4 (because 9*9*9 = 729, 7*2*9 = 126, 1*2*6 = 12, and finally 1*2 = 2)
 4 --> 0 (because 4 is already a one-digit number)
 """
-import random
-
 def persistence(number: int) -> int:
     number = abs(number)
     if number < 9:
         return 0
     digits = [int(d) for d in str(number)]
-    for i in range(len(digits)):
-    
+    persisten=1
+    result=1
+    while True:
+        result+=1
+        for i in digits:
+            persisten *= i
+        if persisten>=1 and persisten<=9:
+            # digits=digits.clear()
+            return result
+        digits = [int(d) for d in str(persisten)]
     # result = 1
 
         
