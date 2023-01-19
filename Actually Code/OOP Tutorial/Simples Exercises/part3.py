@@ -7,23 +7,21 @@ import os
 
 class Library:
     try:
-        library_path = os.getcwd()
-        validation = False
-        if os.path.exists(os.path.join(library_path, "Books")):
-            library_path = os.path.join(library_path, "Books")
+        library_path = os.path.join(os.getcwd(), "Books")
+        validation = True
+        if os.path.exists(library_path):
+            pass
         else:
-            os.mkdir(os.path.join(library_path, "Books"))
-
-        with open(os.path.join(library_path, "Validation.txt"), "w") as files:
-
-            file = files.read()
-            if file.startswith("New"):
+            os.mkdir(library_path)
+        if not os.path.exists(os.path.join(library_path, "Validation.txt")):
+            os.rmdir(library_path)
+            os.mkdir(library_path)
+            with open(os.path.join(library_path, "Validation.txt"), "w") as files:
+                files.write(
+                    "new_program_open, if you delete me the program will start from 0 and all of the files will going to be deleted")
                 validation = True
-            else:
-                files.writelines(1, "Old")
-                validation = False
-            files.write("F")
-            validation = True
+        else:
+            validation = False
     except PermissionError as P:
         print(P)
         raise SystemExit
