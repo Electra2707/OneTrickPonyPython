@@ -38,34 +38,32 @@ class Library:
         print(F)
         raise SystemExit
 
-    def __init__(self, name: str, day: int, month: str) -> None:
+    def __init__(self, name: str, day: int, month: str, direction:str) -> None:
         self.name = name
         self.day = day
         self.month = month
+        self.direction = direction
         Library.all_books.append(self)
 
     def __repr__(self) -> str:
-        return f"{self.name},{self.day},{self.month}"
+        return f"{self.name},{self.day},{self.month},{self.direction}"
 
-    def func_confirmation(self) -> str:
+    def factory_restart():
         while True:
-            confirmation = input(
+            factory_confirmation = input(
                 "Are you sure? All of the files will going to be deleted. Y/N: ")
-            if confirmation.upper() in ["Y", "N"]:
+            factory_confirmation = factory_confirmation.upper()
+            if factory_confirmation in ["Y", "N"]:
                 break
-        return confirmation
-
-    def factory_restart(self):
-        factory_confirmation = self.func_confirmation()
         if factory_confirmation == "Y":
-            rmtree(self.library_path)
+            rmtree(Library.library_path)
             Library.clear_terminal()
             print("Files deleted, goodbay")
             raise SystemExit
         if factory_confirmation == "N":
             return
 
-    def clear_terminal(self):
+    def clear_terminal():
         os.system("cls" if os.name == "nt" else "clear")
 
     def append_book_file(self):
@@ -83,8 +81,8 @@ class Library:
                 all_books = files.readlines()
                 for book in all_books:
                     book_info = book.strip().split(",")
-                    name, day, month = book_info
-                    Library(name, day, month)
+                    name, day, month, direction = book_info
+                    Library(name, day, month, direction)
 
 
 if Library.clean_start:
@@ -92,20 +90,36 @@ if Library.clean_start:
     print("Welcome the the book managamet system, please add your first book to our system")
     print("Create your book")
     now = datetime.datetime.now()
-    day_month = now.strftime("%d-%m").split("-")
-    bookname = input("Write the book name: ")
-    bookday, bookmonth = day_month
+    bookday = str(now.strftime("%d"))
+    bookmonth = str(now.strftime("%b"))
     while True:
-        print("Wrong input try again")
         bookname = input("Write the book name: ")
         if not bookname.strip():
             continue
         elif isinstance(bookname, str):
             break
-    book1 = Library(bookname, bookday, bookmonth)
+        print("Wrong input try again")
+    print("----------------------------------------------------")
+    print("Add the direction to find your book")
+    print("The direction can be an url or a file directory")
+    print("----------------------------------------------------")
+    while True:
+        bookdirection = input("Add the direction: ")
+        if bookdirection.strip():
+            print("Can't be an empty string")
+        if type(bookdirection) is str:
+            break
+        else:
+            print("Should be a string")
+    book1 = Library(bookname, bookday, bookmonth, bookdirection)
     book1.append_book_file()
 if not Library.clean_start:
-    Library.create_books_from_file()
+    try:
+        Library.create_books_from_file()
+    except ValueError as V:
+        print(f"The program find an error {V}")
+        print("We can fix this issue making a factory restart")
+        Library.factory_restart()
 
 
 while True:
@@ -119,12 +133,30 @@ while True:
     print("Input 4 for delete a book")
     print("Input 5 for a factory reset")
     print("Input 6 for exit the program")
+    print("-----------------------------------------")
     while True:
         try:
-            selection = int(input("Write your selection: "))
+            selection = int(input("Input your selection: "))
             if selection >= 1 and selection <= 6:
                 break
             else:
                 print("Wrong input ouside the range 1-6")
         except ValueError:
             print("Should be an integral number")
+    match selection:
+        case 1:
+            pass
+        case 2:
+            pass
+        case 3:
+            pass
+        case 4:
+            pass
+        case 5:
+            Library.factory_restart()
+        case 6:
+            Library.clear_terminal()
+            print("----------------")
+            print("Se you next time")
+            print("----------------")
+            raise SystemExit
