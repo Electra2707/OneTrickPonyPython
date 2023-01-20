@@ -5,7 +5,7 @@ search for a book by title, and display all books currently in the library.
 import os
 from shutil import rmtree
 import datetime
-
+from time import sleep
 
 class Library:
     all_books = []
@@ -38,7 +38,7 @@ class Library:
         print(F)
         raise SystemExit
 
-    def __init__(self, name: str, day: int, month: str, direction:str) -> None:
+    def __init__(self, name: str, day: int, month: str, direction: str) -> None:
         self.name = name
         self.day = day
         self.month = month
@@ -131,13 +131,14 @@ while True:
     print("Input 2 for displaying all of the books")
     print("Input 3 for searching a book for the title")
     print("Input 4 for delete a book")
-    print("Input 5 for a factory reset")
-    print("Input 6 for exit the program")
+    print("Input 5 for opening a book")
+    print("Input 6 for a factory reset")
+    print("Input 7 for exit the program")
     print("-----------------------------------------")
     while True:
         try:
             selection = int(input("Input your selection: "))
-            if selection >= 1 and selection <= 6:
+            if selection >= 1 and selection <= 7:
                 break
             else:
                 print("Wrong input ouside the range 1-6")
@@ -147,14 +148,22 @@ while True:
         case 1:
             pass
         case 2:
-            pass
+            print(Library.all_books)
+            if Library.books <9:
+                sleep(5)
+            elif Library.books >10 and Library.books <50:
+                sleep(15)
+            else:
+                sleep(20)
         case 3:
             pass
         case 4:
             pass
         case 5:
-            Library.factory_restart()
+            pass
         case 6:
+            Library.factory_restart()
+        case 7:
             Library.clear_terminal()
             print("----------------")
             print("Se you next time")
