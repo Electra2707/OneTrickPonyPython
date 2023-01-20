@@ -51,7 +51,7 @@ class Library:
         while True:
             confirmation = input(
                 "Are you sure? All of the files will going to be deleted. Y/N: ")
-            if confirmation.upper in ["Y", "N"]:
+            if confirmation.upper() in ["Y", "N"]:
                 break
         return confirmation
 
