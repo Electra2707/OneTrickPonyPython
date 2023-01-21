@@ -5,7 +5,6 @@ search for a book by title, and display all books currently in the library.
 import os
 from shutil import rmtree
 import datetime
-from time import sleep
 
 
 class Library:
@@ -81,6 +80,21 @@ class Library:
                     name, day, month, direction = book_info
                     Library(name, day, month, direction)
 
+    def remove_book(book_name: str):
+        for book in Library.all_books:
+            if book.name == book_name:
+                Library.all_books.remove(book)
+                with open(os.path.join(Library.library_path, "Repository of books.txt"), "r") as f:
+                    lines = f.readlines()
+                with open(os.path.join(Library.library_path, "Repository of books.txt"), "w") as f:
+                    for line in lines:
+                        if book_name not in line:
+                            f.write(line)
+                print(f"The book {book_name} has been removed from the library.")
+                break
+        else:
+            print(f"{book_name} not found in the library.")
+
 
 if Library.clean_start:
     Library.clear_terminal()
@@ -130,7 +144,7 @@ while True:
     print("-Input 2 for display all of the books     -")
     print("-Input 3 for search for the name of a book-")
     print("-Input 4 for creating a new book          -")
-    print("-Input 5 for delete a book(Not Integrated)                -")
+    print("-Input 5 for delete a book                -")
     print("-Input 6 for a factory reset              -")
     print("-Input 7 for exit the program             -")
     print("-------------------------------------------")
@@ -217,7 +231,22 @@ while True:
             restart = input("Press any key to continue: ")
             Library.clear_terminal()
         case 5:
-            # Delete the book (Not Integrated)
+            # Delete the book
+            Library.clear_terminal()
+            print("---------------------------------------")
+            for book in Library.all_books:
+                print(book.name)
+            print("---------------------------------------")
+            while True:
+                book_name = input("Enter the name of the book to delete: ")
+                if not type(book_name) is str:
+                    print("The name should be a string")
+                elif not book_name.strip():
+                    print("The name can't be empty")
+                else:
+                    break
+            Library.remove_book(book_name)
+            restart = input("Press any key to continue: ")
             Library.clear_terminal()
         case 6:
             # Delete all of the files
