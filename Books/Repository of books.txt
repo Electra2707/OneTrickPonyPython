@@ -1,3 +1,1 @@
-hello,21,Jan,https://chat.openai.com/chat/db38e502-a4d5-41ee-a25b-a6fe40e45407
-jeckas,21,Jan,no
-Randomfile,21,Jan,C:\Users\aleja\Git\OneTrickPonyPython\What i know\Python\LIbs Doc\os\Path.exists.jpg
+I'm a book,21,Jan,https://github.com/Drago2707

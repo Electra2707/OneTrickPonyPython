@@ -38,10 +38,10 @@ class Library:
             clean_start = False
     except PermissionError as P:
         print(P)
-        raise SystemExit
+        raise SystemExit from P
     except FileNotFoundError as F:
         print(F)
-        raise SystemExit
+        raise SystemExit from F
 
     def __init__(self, name: str, day: int, month: str, direction: str) -> None:
         """
@@ -94,18 +94,18 @@ class Library:
                 repository.write(self.__repr__() + "\n")
         if not Library.clean_start:
             with open(os.path.join(Library.library_path, "Repository of books.txt"), "a") as repository:
-                repository.write(self.__repr__() + "\n")
+                repository.write(repr(self) + "\n")
 
     def create_books_from_file():
         """
-        Reads the books information from the "Repository of books.txt" file and 
+        Reads the books information from the "Repository of books.txt" file and
         creates book objects for each book, adding them to the all_books list
         """
         if os.path.exists(os.path.join(Library.library_path, "Repository of books.txt")):
             with open(os.path.join(Library.library_path, "Repository of books.txt"), "r") as files:
                 all_books = files.readlines()
-                for book in all_books:
-                    book_info = book.strip().split(",")
+                for temp_book in all_books:
+                    book_info = temp_book.strip().split(",")
                     name, day, month, direction = book_info
                     Library(name, day, month, direction)
 
@@ -114,15 +114,15 @@ class Library:
         Removes the book object with the given name from the all_books list
         and removes it from the "Repository of books.txt" file.
         """
-        for book in Library.all_books:
-            if book.name == book_name:
+        for tempbook1 in Library.all_books:
+            if tempbook1.name == book_name:
                 Library.all_books.remove(book)
-                with open(os.path.join(Library.library_path, "Repository of books.txt"), "r") as f:
-                    lines = f.readlines()
-                with open(os.path.join(Library.library_path, "Repository of books.txt"), "w") as f:
+                with open(os.path.join(Library.library_path, "Repository of books.txt"), "r") as files1:
+                    lines = files1.readlines()
+                with open(os.path.join(Library.library_path, "Repository of books.txt"), "w") as files2:
                     for line in lines:
                         if book_name not in line:
-                            f.write(line)
+                            files2.write(line)
                 print(
                     f"The book {book_name} has been removed from the library.")
                 break
@@ -164,13 +164,13 @@ if Library.clean_start:
     print("Welcome the the book managamet system, please add your first book to our system")
     print("Create your book")
     now = datetime.datetime.now()
-    bookday = str(now.strftime("%d"))
-    bookmonth = str(now.strftime("%b"))
+    BOOKDAY = str(now.strftime("%d"))
+    BOOKMONTH = str(now.strftime("%b"))
     while True:
-        bookname = input("Write the book name: ")
-        if not bookname.strip():
+        temp_bookname = input("Write the book name: ")
+        if not temp_bookname.strip():
             print("The book name can't be empty")
-        elif isinstance(bookname, str):
+        elif isinstance(temp_bookname, str):
             break
         print("Wrong input try again")
     print("----------------------------------------------------")
@@ -185,8 +185,9 @@ if Library.clean_start:
             print("Can't be an empty string")
         else:
             break
-    book1 = Library(bookname, bookday, bookmonth, bookdirection)
+    book1 = Library(temp_bookname, BOOKDAY, BOOKMONTH, bookdirection)
     book1.append_book_file()
+    Library.clear_terminal()
 if not Library.clean_start:
     Library.clear_terminal()
     try:
@@ -195,7 +196,7 @@ if not Library.clean_start:
         print(f"The program find an error {E}")
         print("We can fix this issue making a factory restart")
         Library.factory_restart()
-        raise SystemExit
+        raise SystemExit from E
 
 """
 This section of code is the main menu of the program.
