@@ -5,10 +5,11 @@ search for a book by title, and display all books currently in the library.
 import os
 from shutil import rmtree
 import datetime
+from time import sleep
+
 
 class Library:
     all_books = []
-    books = 0
     library_path = os.path.join(os.getcwd(), "Books")
     clean_start = False
     try:
@@ -27,8 +28,6 @@ class Library:
             clean_start = True
         else:
             files = os.listdir(library_path)
-            if len(files) != 1:
-                books = len(files)-1
             clean_start = False
     except PermissionError as P:
         print(P)
@@ -70,9 +69,8 @@ class Library:
             with open(os.path.join(Library.library_path, "Repository of books.txt"), "w") as repository:
                 repository.write(self.__repr__() + "\n")
         if not Library.clean_start:
-            if self not in Library.all_books:
-                with open(os.path.join(Library.library_path, "Repository of books.txt"), "a") as repository:
-                    repository.write(self.__repr__() + "\n")
+            with open(os.path.join(Library.library_path, "Repository of books.txt"), "a") as repository:
+                repository.write(self.__repr__() + "\n")
 
     def create_books_from_file():
         if os.path.exists(os.path.join(Library.library_path, "Repository of books.txt")):
@@ -127,13 +125,14 @@ while True:
     print("-------------------------------------------")
     print("-++++++++++++ Select an option +++++++++++-")
     print("-------------------------------------------")
-    print("-Input 1 for opening a book               -")
+    print("-Input 1 for opening a book  (Not Integrated)             -")
     print("-Input 2 for display all of the books     -")
-    print("-Input 3 for searching a book             -")
+    print("-Input 3 for searching a book(Not Integrated)             -")
     print("-Input 4 for creating a new book          -")
-    print("-Input 5 for delete a book                -")
+    print("-Input 5 for delete a book(Not Integrated)                -")
     print("-Input 6 for a factory reset              -")
     print("-Input 7 for exit the program             -")
+    print("Posible 8 for modify the book(Not Integrated)")
     print("-------------------------------------------")
     while True:
         try:
@@ -146,26 +145,53 @@ while True:
             print("Should be an integral number")
     match selection:
         case 1:
-            #Open the book
+            # Open the book (Not Integrated)
             Library.clear_terminal()
         case 2:
-            #Show all of the books
+            # Show all of the books
             Library.clear_terminal()
             print(Library.all_books)
+            print("List of instances: ")
+            for book in Library.all_books:
+                print(book.name)
         case 3:
-            #Search for a book
+            # Search for a book (Not Integrated)
             Library.clear_terminal()
         case 4:
-            #Create a new book
+            # Create a new book
             Library.clear_terminal()
+            new_book_in_module = "book" + str(len(Library.all_books))
+            now = datetime.datetime.now()
+            bookday = str(now.strftime("%d"))
+            bookmonth = str(now.strftime("%b"))
+            while True:
+                bookname = input("Add the name of your book: ")
+                if not type(bookname) is str:
+                    print("The name should be a string")
+                elif not bookname.strip():
+                    print("The name can't be empty")
+                else:
+                    break
+            while True:
+                bookdirection = input("Add your book url or file direction: ")
+                if not type(bookdirection) is str:
+                    print("The name should be a string")
+                elif not bookdirection.strip():
+                    print("The name can't be empty")
+                else:
+                    break
+            new_book_in_module = Library(
+                bookname, bookday, bookmonth, bookdirection)
+            new_book_in_module.append_book_file()
+            print("Book created")
         case 5:
-            #Delete the book
+            # Delete the book (Not Integrated)
             Library.clear_terminal()
         case 6:
-            #Delete all of the files
+            # Delete all of the files
             Library.factory_restart()
         case 7:
-            #End Program
+            # End Program
             Library.clear_terminal()
             print("----------------")
             print("Se you next time")
