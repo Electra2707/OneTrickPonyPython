@@ -5,7 +5,6 @@ search for a book by title, and display all books currently in the library.
 import os
 from shutil import rmtree
 import datetime
-from time import sleep
 
 class Library:
     all_books = []
@@ -95,7 +94,7 @@ if Library.clean_start:
     while True:
         bookname = input("Write the book name: ")
         if not bookname.strip():
-            continue
+            print("The book name can't be empty")
         elif isinstance(bookname, str):
             break
         print("Wrong input try again")
@@ -105,36 +104,37 @@ if Library.clean_start:
     print("----------------------------------------------------")
     while True:
         bookdirection = input("Add the direction: ")
-        if bookdirection.strip():
-            print("Can't be an empty string")
-        if type(bookdirection) is str:
-            break
-        else:
+        if not type(bookdirection) is str:
             print("Should be a string")
+        elif not bookdirection.strip():
+            print("Can't be an empty string")
+        else:
+            break
     book1 = Library(bookname, bookday, bookmonth, bookdirection)
     book1.append_book_file()
 if not Library.clean_start:
+    Library.clear_terminal()
     try:
         Library.create_books_from_file()
-    except ValueError as V:
-        print(f"The program find an error {V}")
+    except Exception as E:
+        print(f"The program find an error {E}")
         print("We can fix this issue making a factory restart")
         Library.factory_restart()
 
 
 while True:
-    Library.clear_terminal()
-    print("Welcome Back to our book managemet system")
-    print("-----------------------------------------")
-    print("Select an option")
-    print("Input 1 for creating a new book")
-    print("Input 2 for displaying all of the books")
-    print("Input 3 for searching a book for the title")
-    print("Input 4 for delete a book")
-    print("Input 5 for opening a book")
-    print("Input 6 for a factory reset")
-    print("Input 7 for exit the program")
-    print("-----------------------------------------")
+    print("-Welcome Back to our book managemet system-")
+    print("-------------------------------------------")
+    print("-++++++++++++ Select an option +++++++++++-")
+    print("-------------------------------------------")
+    print("-Input 1 for opening a book               -")
+    print("-Input 2 for display all of the books     -")
+    print("-Input 3 for searching a book             -")
+    print("-Input 4 for creating a new book          -")
+    print("-Input 5 for delete a book                -")
+    print("-Input 6 for a factory reset              -")
+    print("-Input 7 for exit the program             -")
+    print("-------------------------------------------")
     while True:
         try:
             selection = int(input("Input your selection: "))
@@ -146,24 +146,26 @@ while True:
             print("Should be an integral number")
     match selection:
         case 1:
-            pass
+            #Open the book
+            Library.clear_terminal()
         case 2:
+            #Show all of the books
+            Library.clear_terminal()
             print(Library.all_books)
-            if Library.books <9:
-                sleep(5)
-            elif Library.books >10 and Library.books <50:
-                sleep(15)
-            else:
-                sleep(20)
         case 3:
-            pass
+            #Search for a book
+            Library.clear_terminal()
         case 4:
-            pass
+            #Create a new book
+            Library.clear_terminal()
         case 5:
-            pass
+            #Delete the book
+            Library.clear_terminal()
         case 6:
+            #Delete all of the files
             Library.factory_restart()
         case 7:
+            #End Program
             Library.clear_terminal()
             print("----------------")
             print("Se you next time")
