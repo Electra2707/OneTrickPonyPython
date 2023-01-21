@@ -6,6 +6,7 @@ import os
 from shutil import rmtree
 import datetime
 from time import sleep
+import subprocess
 
 
 class Library:
@@ -127,12 +128,11 @@ while True:
     print("-------------------------------------------")
     print("-Input 1 for opening a book  (Not Integrated)             -")
     print("-Input 2 for display all of the books     -")
-    print("-Input 3 for searching a book(Not Integrated)             -")
+    print("-Input 3 for searching a book             -")
     print("-Input 4 for creating a new book          -")
     print("-Input 5 for delete a book(Not Integrated)                -")
     print("-Input 6 for a factory reset              -")
     print("-Input 7 for exit the program             -")
-    print("Posible 8 for modify the book(Not Integrated)")
     print("-------------------------------------------")
     while True:
         try:
@@ -149,14 +149,34 @@ while True:
             Library.clear_terminal()
         case 2:
             # Show all of the books
-            Library.clear_terminal()
-            print(Library.all_books)
             print("List of instances: ")
             for book in Library.all_books:
                 print(book.name)
-        case 3:
-            # Search for a book (Not Integrated)
+                print(book.day, end=" ")
+                print(book.month)
+                print(book.direction)
+            print(Library.all_books)
             Library.clear_terminal()
+        case 3:
+            # Search for a book
+            Library.clear_terminal()
+            print("For searching the book name, input 1")
+            print("For searching the date created, input 2")
+            print("For searching the direction, input 3")
+            while True:
+                search = int(input("Input your selection: "))
+                if search >= 1 and search <= 3:
+                    break
+                else:
+                    print("Wrong input ouside the range 1-3")
+            match search:
+                case 1:
+                    print("Remember the search are case sensitivity")
+                case 2:
+                    pass
+                case 3:
+                    pass
+            restart = input("Press any key to continue: ")
         case 4:
             # Create a new book
             Library.clear_terminal()
@@ -184,6 +204,8 @@ while True:
                 bookname, bookday, bookmonth, bookdirection)
             new_book_in_module.append_book_file()
             print("Book created")
+            restart = input("Press any key to continue: ")
+            Library.clear_terminal()
         case 5:
             # Delete the book (Not Integrated)
             Library.clear_terminal()
