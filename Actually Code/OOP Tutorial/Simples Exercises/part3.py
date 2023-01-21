@@ -6,7 +6,6 @@ import os
 from shutil import rmtree
 import datetime
 from time import sleep
-import subprocess
 
 
 class Library:
@@ -75,7 +74,7 @@ class Library:
 
     def create_books_from_file():
         if os.path.exists(os.path.join(Library.library_path, "Repository of books.txt")):
-            with open(os.path.join(Library.library_path, "Repository of books.txt"), "r", encoding="utf8") as files:
+            with open(os.path.join(Library.library_path, "Repository of books.txt"), "r") as files:
                 all_books = files.readlines()
                 for book in all_books:
                     book_info = book.strip().split(",")
@@ -119,6 +118,7 @@ if not Library.clean_start:
         print(f"The program find an error {E}")
         print("We can fix this issue making a factory restart")
         Library.factory_restart()
+        raise SystemExit
 
 
 while True:
@@ -157,7 +157,7 @@ while True:
                 print(book.day, end=" ")
                 print(book.month)
                 print(book.direction)
-                print("*****************")
+            print("*****************")
             restart = input("Press any key to continue: ")
             Library.clear_terminal()
         case 3:
@@ -170,8 +170,9 @@ while True:
                 print(book.name)
             print("---------------------------------------")
             print("Remember the search are case sensitivity")
-            print("Input an empty string to return to the main menu")
+            print("***Input an empty string to return to the main menu***")
             while True:
+                book_finded=False
                 temp_book_name = input("Write the name of the book: ")
                 if not type(temp_book_name) is str:
                     print("Should be a string")
@@ -181,9 +182,10 @@ while True:
                     for book in Library.all_books:
                         if temp_book_name==book.name:
                             print(book)
-                            break
-            print("---------------------------------------")
-            restart = input("Press any key to continue: ")
+                            book_finded=True
+                if book_finded is False:
+                    print("The program was not able to find your book")
+                print("---------------------------------------")
             Library.clear_terminal()
         case 4:
             # Create a new book
