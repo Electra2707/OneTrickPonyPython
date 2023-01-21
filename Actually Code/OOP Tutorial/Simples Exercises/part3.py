@@ -5,9 +5,17 @@ search for a book by title, and display all books currently in the library.
 import os
 from shutil import rmtree
 import datetime
+import webbrowser
 
 
 class Library:
+    """
+    The Library class represents a collection of books.
+    It provides methods to add, remove, search for and
+    display books.
+    The library's books are stored in a file "Repository
+    of books.txt" in the "Books" folder in the current working directory.
+    """
     all_books = []
     library_path = os.path.join(os.getcwd(), "Books")
     clean_start = False
@@ -36,6 +44,10 @@ class Library:
         raise SystemExit
 
     def __init__(self, name: str, day: int, month: str, direction: str) -> None:
+        """
+        Initializes a new book object with the given name, day, month, and direction.
+        Also adds the new book to the all_books list.
+        """
         self.name = name
         self.day = day
         self.month = month
@@ -43,9 +55,16 @@ class Library:
         Library.all_books.append(self)
 
     def __repr__(self) -> str:
+        """
+        Return a string representation of the book object in the format of 'name,day,month,direction'
+        """
         return f"{self.name},{self.day},{self.month},{self.direction}"
 
     def factory_restart():
+        """
+        Prompts the user to confirm if they want to delete all the files in the library,
+        and if confirmed, deletes the library folder and exits the program.
+        """
         while True:
             factory_confirmation = input(
                 "Are you sure? All of the files will going to be deleted. Y/N: ")
@@ -61,9 +80,15 @@ class Library:
             return
 
     def clear_terminal():
+        """
+        Clears the terminal screen.
+        """
         os.system("cls" if os.name == "nt" else "clear")
 
     def append_book_file(self):
+        """
+        Writes the book information to the "Repository of books.txt" file.
+        """
         if Library.clean_start:
             with open(os.path.join(Library.library_path, "Repository of books.txt"), "w") as repository:
                 repository.write(self.__repr__() + "\n")
@@ -72,6 +97,10 @@ class Library:
                 repository.write(self.__repr__() + "\n")
 
     def create_books_from_file():
+        """
+        Reads the books information from the "Repository of books.txt" file and 
+        creates book objects for each book, adding them to the all_books list
+        """
         if os.path.exists(os.path.join(Library.library_path, "Repository of books.txt")):
             with open(os.path.join(Library.library_path, "Repository of books.txt"), "r") as files:
                 all_books = files.readlines()
@@ -81,6 +110,10 @@ class Library:
                     Library(name, day, month, direction)
 
     def remove_book(book_name: str):
+        """
+        Removes the book object with the given name from the all_books list
+        and removes it from the "Repository of books.txt" file.
+        """
         for book in Library.all_books:
             if book.name == book_name:
                 Library.all_books.remove(book)
@@ -90,10 +123,40 @@ class Library:
                     for line in lines:
                         if book_name not in line:
                             f.write(line)
-                print(f"The book {book_name} has been removed from the library.")
+                print(
+                    f"The book {book_name} has been removed from the library.")
                 break
         else:
             print(f"{book_name} not found in the library.")
+
+
+"""
+This section of the code is responsible for creating
+a new book and adding it to the library. It is executed
+when the program is started for the first time, as
+indicated by the Library.clean_start attribute.
+
+The code starts by clearing the terminal screen and
+displaying a welcome message for the user. Then,
+it creates a new book object by prompting the user
+to input the book name, day, month and direction.
+The date is obtained using the datetime module and
+the book name and direction are obtained by asking
+the user to input them.
+
+If the book is the first book added to the library,
+it creates the "Repository of books.txt" file and appends
+the book's information to it. If the program is not started
+for the first time, it attempts to create book objects
+by reading the information from the "Repository of books.txt"
+file. If an exception occurs, it informs the user and prompts
+them to make a factory restart.
+
+The overall goal of this part of the code is to create a new
+book and add it to the library. The code also handles cases
+where the program is started for the first time and when the
+program is not started for the first time.
+"""
 
 
 if Library.clean_start:
@@ -134,13 +197,62 @@ if not Library.clean_start:
         Library.factory_restart()
         raise SystemExit
 
+"""
+This section of code is the main menu of the program.
+It displays a list of options to the user and prompts
+them to input their selection. The options include
+opening a book, displaying all books, searching for a
+book by title, creating a new book, deleting a book,
+factory reset, and exiting the program.
 
+The code uses a while loop to continuously display
+the menu options to the user until they select the
+option to exit the program. Once the user inputs their
+selection, the code uses a match statement to match
+the selection with the corresponding option.
+
+The case 1 option allows the user to open a book.
+The program displays a list of all the books in the
+library and prompts the user to select one. The program
+then opens the selected book in the appropriate application,
+whether it's a file or a URL.
+
+The case 2 option allows the user to display all the books
+in the library. The program displays the name, date, month,
+and direction of all the books in the library.
+
+The case 3 option allows the user to search for a book
+by title. The program prompts the user to input the title
+of the book they want to search for and then displays the
+information of the book if it's found in the library.
+
+The case 4 option allows the user to create a new book
+and add it to the library. The program prompts the user
+to input the information of the book and then creates a
+new book object and adds it to the library.
+
+The case 5 option allows the user to delete a book from
+the library. The program prompts the user to input the
+title of the book they want to delete and then removes
+the book from the library.
+
+The case 6 option allows the user to factory reset the
+library. The program prompts the user for confirmation
+and if confirmed, deletes all the books from the library.
+
+The case 7 option allows the user to exit the program.
+The program exits when this option is selected.
+
+The overall goal of this part of the code is to provide
+the user with a menu of options to interact with the library
+and handle the user's selection accordingly.
+"""
 while True:
     print("-Welcome Back to our book managemet system-")
     print("-------------------------------------------")
     print("-++++++++++++ Select an option +++++++++++-")
     print("-------------------------------------------")
-    print("-Input 1 for opening a book  (Not Integrated)             -")
+    print("-Input 1 for opening a book               -")
     print("-Input 2 for display all of the books     -")
     print("-Input 3 for search for the name of a book-")
     print("-Input 4 for creating a new book          -")
@@ -161,6 +273,37 @@ while True:
         case 1:
             # Open the book (Not Integrated)
             Library.clear_terminal()
+            print("---------------------------------------")
+            for book in Library.all_books:
+                print(book.name)
+            print("---------------------------------------")
+            print("Input an empty space to return to the menu")
+            while True:
+                selection = input("Select a book to open it: ")
+                if not type(selection) is str:
+                    print("Should be a string")
+                else:
+                    break
+            try:
+                for book in Library.all_books:
+                    if book.name == selection:
+                        temp_direction = book.direction
+                        break
+                else:
+                    raise Exception
+                if os.path.isfile(temp_direction):
+                    os.startfile(temp_direction)
+                    print("Opening file")
+                else:
+                    webbrowser.open(temp_direction)
+                    print("Opening link")
+                restart = input("Press any key to continue: ")
+                Library.clear_terminal()
+            except Exception as E:
+                Library.clear_terminal()
+                print(E)
+                print("The program find an error tring to open the file/url")
+                restart = input("Press any key to continue: ")
         case 2:
             # Show all of the books
             Library.clear_terminal()
@@ -186,7 +329,7 @@ while True:
             print("Remember the search are case sensitivity")
             print("***Input an empty string to return to the main menu***")
             while True:
-                book_finded=False
+                book_finded = False
                 temp_book_name = input("Write the name of the book: ")
                 if not type(temp_book_name) is str:
                     print("Should be a string")
@@ -194,9 +337,9 @@ while True:
                     break
                 else:
                     for book in Library.all_books:
-                        if temp_book_name==book.name:
+                        if temp_book_name == book.name:
                             print(book)
-                            book_finded=True
+                            book_finded = True
                 if book_finded is False:
                     print("The program was not able to find your book")
                 print("---------------------------------------")
