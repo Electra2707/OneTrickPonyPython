@@ -128,7 +128,7 @@ while True:
     print("-------------------------------------------")
     print("-Input 1 for opening a book  (Not Integrated)             -")
     print("-Input 2 for display all of the books     -")
-    print("-Input 3 for searching a book             -")
+    print("-Input 3 for search for the name of a book-")
     print("-Input 4 for creating a new book          -")
     print("-Input 5 for delete a book(Not Integrated)                -")
     print("-Input 6 for a factory reset              -")
@@ -149,34 +149,42 @@ while True:
             Library.clear_terminal()
         case 2:
             # Show all of the books
-            print("List of instances: ")
+            Library.clear_terminal()
+            print("List of the books: ")
             for book in Library.all_books:
+                print("*****************")
                 print(book.name)
                 print(book.day, end=" ")
                 print(book.month)
                 print(book.direction)
-            print(Library.all_books)
+                print("*****************")
+            restart = input("Press any key to continue: ")
             Library.clear_terminal()
         case 3:
             # Search for a book
             Library.clear_terminal()
-            print("For searching the book name, input 1")
-            print("For searching the date created, input 2")
-            print("For searching the direction, input 3")
+            print("---------------------------------------")
+            print("Searching the book name")
+            print("---------------------------------------")
+            for book in Library.all_books:
+                print(book.name)
+            print("---------------------------------------")
+            print("Remember the search are case sensitivity")
+            print("Input an empty string to return to the main menu")
             while True:
-                search = int(input("Input your selection: "))
-                if search >= 1 and search <= 3:
+                temp_book_name = input("Write the name of the book: ")
+                if not type(temp_book_name) is str:
+                    print("Should be a string")
+                elif not temp_book_name.strip():
                     break
                 else:
-                    print("Wrong input ouside the range 1-3")
-            match search:
-                case 1:
-                    print("Remember the search are case sensitivity")
-                case 2:
-                    pass
-                case 3:
-                    pass
+                    for book in Library.all_books:
+                        if temp_book_name==book.name:
+                            print(book)
+                            break
+            print("---------------------------------------")
             restart = input("Press any key to continue: ")
+            Library.clear_terminal()
         case 4:
             # Create a new book
             Library.clear_terminal()
