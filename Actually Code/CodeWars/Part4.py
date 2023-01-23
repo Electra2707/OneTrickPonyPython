@@ -11,20 +11,13 @@ array_diff([1,2,2,2,3],[2]) == [1,3]"""
 
 
 def array_diff(a: list, b: list):
-    normal_procediment=True
-    for numbers in a:
-        sum_list = a.count(numbers)
-        if sum_list >= 3:
-            normal_procediment=False
-    if normal_procediment:
-        return list(set(a)-set(b)) # work 6,5,3,1
-    # return list(set(a) ^ set(b)) # the test 1 and 3 works
-    # return list(set(a) & set(b)) # the test 5 works
-
+    # if not b: return a
+    # if not a: return a
+    return [x for x in a if x not in b]
 
 test1 = array_diff([1, 2], [1])
 # expected [2]") normal
-test2 = array_diff([1, 2, 2], [1]) 
+test2 = array_diff([1, 2, 2], [1])
 # expected [2,2]")
 test3 = array_diff([1, 2, 2], [2])
 # expected [1]") normal""
