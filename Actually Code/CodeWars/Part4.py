@@ -10,8 +10,12 @@ If a value is present in b, all of its occurrences must be removed from the othe
 array_diff([1,2,2,2,3],[2]) == [1,3]"""
 
 
-def array_diff(a, b):
-    return list(str(a) << str(b))
+def array_diff(a:list, b:list):
+    for numbers in range(len(a)):
+        
+    print(a.count[0])
+    print(b.count[0])
+    # return list(set(a)-set(b)) # work 6,5,3,1
     # return list(set(a) ^ set(b)) # the test 1 and 3 works
     # return list(set(a) & set(b)) # the test 5 works
     
