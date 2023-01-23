@@ -11,7 +11,9 @@ array_diff([1,2,2,2,3],[2]) == [1,3]"""
 
 
 def array_diff(a, b):
-    return list(set(a) ^ set(b))
+    return list(str(a) << str(b))
+    # return list(set(a) ^ set(b)) # the test 1 and 3 works
+    # return list(set(a) & set(b)) # the test 5 works
     
 
 
@@ -23,7 +25,7 @@ test3 = array_diff([1, 2, 2], [2])
 # [1], "a was [1,2,2], b was [2], expected [1]")
 test4 = array_diff([1, 2, 2], [])
 # [1,2,2], "a was [1,2,2], b was [], expected [1,2,2]")
-test5 = array_diff([], [1, 2]),   
+test5 = array_diff([], [1, 2])  
 # "a was [], b was [1,2], expected []")
 test6 = array_diff([1, 2, 3], [1, 2])
 # [3], "a was [1,2,3], b was [1, 2], expected [3]")
