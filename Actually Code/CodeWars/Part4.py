@@ -10,29 +10,30 @@ If a value is present in b, all of its occurrences must be removed from the othe
 array_diff([1,2,2,2,3],[2]) == [1,3]"""
 
 
-def array_diff(a:list, b:list):
-    for numbers in range(len(a)):
-        
-    print(a.count[0])
-    print(b.count[0])
-    # return list(set(a)-set(b)) # work 6,5,3,1
+def array_diff(a: list, b: list):
+    normal_procediment=True
+    for numbers in a:
+        sum_list = a.count(numbers)
+        if sum_list >= 3:
+            normal_procediment=False
+    if normal_procediment:
+        return list(set(a)-set(b)) # work 6,5,3,1
     # return list(set(a) ^ set(b)) # the test 1 and 3 works
     # return list(set(a) & set(b)) # the test 5 works
-    
 
 
-test1 = array_diff([1, 2], [1])  
-# [2], "a was [1,2], b was [1], expected [2]")
-test2 = array_diff([1, 2, 2], [1])
-# [2,2], "a was [1,2,2], b was [1], expected [2,2]")
+test1 = array_diff([1, 2], [1])
+# expected [2]") normal
+test2 = array_diff([1, 2, 2], [1]) 
+# expected [2,2]")
 test3 = array_diff([1, 2, 2], [2])
-# [1], "a was [1,2,2], b was [2], expected [1]")
+# expected [1]") normal""
 test4 = array_diff([1, 2, 2], [])
-# [1,2,2], "a was [1,2,2], b was [], expected [1,2,2]")
-test5 = array_diff([], [1, 2])  
-# "a was [], b was [1,2], expected []")
+# expected [1,2,2]")
+test5 = array_diff([], [1, 2])
+#  expected []") normal
 test6 = array_diff([1, 2, 3], [1, 2])
-# [3], "a was [1,2,3], b was [1, 2], expected [3]")
+#  expected [3]") normal
 
 print(test1)
 print(test2)
