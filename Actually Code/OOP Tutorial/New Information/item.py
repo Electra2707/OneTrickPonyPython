@@ -19,9 +19,6 @@ class Item:
     def calculate_total_price(self):
         return self.__price * self.quantity
 
-    def apply_discount(self):
-        self.__price = self.__price * self.PAY_RATE
-
     @classmethod
     def instantiate_from_csv(cls):
         with open("items.csv", "r") as file:
@@ -45,13 +42,17 @@ class Item:
             return False
 
     @property
+    def price(self):
+        return self.__price
+    def apply_discount(self):
+        self.__price = self.__price * self.PAY_RATE
+    def apply_increment(self,increment_value):
+        self.__price = self.__price + increment_value
+
+    @property
     def name(self):
         print("You are trying to get name")
         return self.__name
-
-    @property
-    def price(self):
-        return self.price
 
     @name.setter
     def name(self, value):
