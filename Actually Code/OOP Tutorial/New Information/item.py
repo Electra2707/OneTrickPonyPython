@@ -44,9 +44,11 @@ class Item:
     @property
     def price(self):
         return self.__price
+
     def apply_discount(self):
         self.__price = self.__price * self.PAY_RATE
-    def apply_increment(self,increment_value):
+
+    def apply_increment(self, increment_value):
         self.__price = self.__price + increment_value
 
     @property
@@ -60,3 +62,22 @@ class Item:
         if len(value) > 10:
             raise Exception("The name is too long!")
         self.__name = value
+
+    def __connect(self, smpt_server):
+        pass
+    
+    def __prepare_body(self):
+        return f"""
+        Hello Someone.
+        Wne have {self.name} {self.quantity} time.
+        Regards, have a good night
+        """
+
+    def __send(self):
+        pass
+
+    def send_email(self):
+        self.__connect("")
+        self.__prepare_body()
+        self.__send()
+
