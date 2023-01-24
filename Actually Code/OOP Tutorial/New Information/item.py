@@ -6,10 +6,16 @@ class Item:
 
     def __init__(self, name: str, price: float = 0, quantity: int = 0):
         # Assign to self object
-        self.name = name
+        self.__name = name
         self.price = price
         self.quantity = quantity
         Item.all.append(self)
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}('{self.name}',{self.price},{self.quantity})"
+
+    def calculate_total_price(self):
+        return self.price * self.quantity
 
     @classmethod
     def instantiate_from_csv(cls):
@@ -33,8 +39,12 @@ class Item:
         else:
             return False
 
-    def __repr__(self):
-        return f"{self.__class__.__name__}('{self.name}',{self.price},{self.quantity})"
+    @property
+    def name(self):
+        print("You are trying to get name")
+        return self.__name
 
-    def calculate_total_price(self):
-        return self.price * self.quantity
+    @name.setter
+    def name(self, value):
+        print("You are trying to change the name")
+        self.__name = value
