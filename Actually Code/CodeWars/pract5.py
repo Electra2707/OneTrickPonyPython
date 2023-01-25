@@ -23,42 +23,65 @@ cakes(
     )
 """
 
+# MY CODE ARE BOILERPALET EVERYWERE
+# def cakes(recipe: dict, available: dict):
+#     try:
+#         for key in recipe:
+#             assert isinstance(key, str)
+#             assert isinstance(recipe[key], (int, float))
+#         for key in available:
+#             assert isinstance(key, str)
+#             assert isinstance(available[key], (int, float))
+#         if not recipe or not available:
+#             return 0
+#         if len(recipe) > len(available):
+#             return 0
+#     except AssertionError:
+#         return 0
 
-def cakes(recipe: dict, available: dict):
-    try:
-        for key in recipe:
-            assert isinstance(key, str)
-            assert isinstance(recipe[key], (int, float))
-        for key in available:
-            assert isinstance(key, str)
-            assert isinstance(available[key], (int, float))
-        if not recipe or not available:
+#     recipe_numbers_list = [*recipe.values()]
+#     available_numbers_list = []
+#     for items in recipe:
+#         available_numbers_list.append(available.get(items))
+#     if available_numbers_list == recipe_numbers_list:
+#         return 1
+#     for ingredient, amount in recipe.items():
+#         if ingredient not in available or available[ingredient] < amount:
+#             return 0
+#     cakes = 0
+#     while True:
+#         for i in range(len(recipe)):
+#             available_numbers_list[i] = available_numbers_list[i] - \
+#                 recipe_numbers_list[i]
+#             if available_numbers_list[i] < 0:
+#                 return cakes
+#         cakes += 1
+
+
+def cakes(recipe, available):
+    output = []
+    for i in recipe:
+        if i not in available:
             return 0
-        if len(recipe) > len(available):
-            return 0
-    except AssertionError:
-        return 0
-
-    recipe_numbers_list = [*recipe.values()]
-    available_numbers_list = []
-    for items in recipe:
-        available_numbers_list.append(available.get(items))
-    for ingredient, amount in recipe.items():
-        if ingredient not in available or available[ingredient] < amount:
-            return 0
-    if available_numbers_list == recipe_numbers_list:
-        return 1
-    cakes = 0
-    while True:
-        for i in range(len(recipe)):
-            available_numbers_list[i] = available_numbers_list[i] - \
-                recipe_numbers_list[i]
-            if available_numbers_list[i] < 0:
-                return cakes
-        cakes += 1
+        output.append(available.get(i) // recipe.get(i))
+    return min(output)
 
 
-recipe = {'cream': 1, 'flour': 3, 'sugar': 1, 'milk': 1, 'oil': 1, 'eggs': 1}
-available = {'sugar': 1, 'eggs': 1, 'flour': 3,
-             'cream': 1, 'oil': 1, 'milk': 1}
+recipe = {
+    "cream": 200,
+    "flour": 300,
+    "sugar": 150,
+    "milk": 100,
+    "oil": 100,
+}
+available = {
+    "sugar": 1700,
+    "flour": 20000,
+    "milk": 20000,
+    "oil": 30000,
+    "cream": 5000,
+    'cream': 1000,
+    'oil': 1000,
+    'milk': 1000
+}
 print(cakes(recipe, available))
