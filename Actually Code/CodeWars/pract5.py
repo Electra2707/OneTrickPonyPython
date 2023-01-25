@@ -25,12 +25,28 @@ cakes(
 
 
 def cakes(recipe: dict, available: dict):
-    available_important=[available.get(x) for x in recipe if available.get(x)]
-    # for items in recipe:
-    #     available_important.append(available.get(items))
-    print(available_important)
+    try:
+        assert (recipe.keys,str)
+        assert (available.keys,str)
+        assert (*recipe.values)
+    except AssertionError:
+        return 0
+    if len(recipe) > len(available):
+        return 0
+    recipe_numbers_list = [*recipe.values()]
+    available_numbers_list=[]
+    for items in recipe:
+        available_numbers_list.append(available.get(items))
+    cakes=0
+    while True:
+        for i in range(len(recipe)):
+            available_numbers_list[i] = available_numbers_list[i] - \
+                recipe_numbers_list[i]
+            if available_numbers_list[i] < 0:
+                return cakes
+        cakes += 1
 
-recipe = {"flour": 500, "sugar": 200, "eggs": 1}
-available = {"flour": 1200, "sugar": 1200, "eggs": 5, "milk": 200}
 
-cakes(recipe, available)
+recipe = {'cream': 1, 'flour': 3, 'sugar': 1, 'milk': 1, 'oil': 1, 'eggs': 1}
+available = {'sugar': 1, 'eggs': 1, 'flour': 3, 'cream': 1, 'oil': 1, 'milk': 1}
+print(cakes(recipe, available))
