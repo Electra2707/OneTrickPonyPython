@@ -26,18 +26,22 @@ cakes(
 
 def cakes(recipe: dict, available: dict):
     try:
-        assert (recipe.keys,str)
-        assert (available.keys,str)
-        assert (*recipe.values)
+        for key in recipe:
+            assert isinstance(key, str)
+            assert isinstance(recipe[key], (int, float))
+        for key in available:
+            assert isinstance(key, str)
+            assert isinstance(available[key], (int, float))
     except AssertionError:
         return 0
+    
     if len(recipe) > len(available):
         return 0
     recipe_numbers_list = [*recipe.values()]
-    available_numbers_list=[]
+    available_numbers_list = []
     for items in recipe:
         available_numbers_list.append(available.get(items))
-    cakes=0
+    cakes = 0
     while True:
         for i in range(len(recipe)):
             available_numbers_list[i] = available_numbers_list[i] - \
@@ -48,5 +52,6 @@ def cakes(recipe: dict, available: dict):
 
 
 recipe = {'cream': 1, 'flour': 3, 'sugar': 1, 'milk': 1, 'oil': 1, 'eggs': 1}
-available = {'sugar': 1, 'eggs': 1, 'flour': 3, 'cream': 1, 'oil': 1, 'milk': 1}
+available = {'sugar': 1, 'eggs': 1, 'flour': 3,
+             'cream': 1, 'oil': 1, 'milk': 1}
 print(cakes(recipe, available))
