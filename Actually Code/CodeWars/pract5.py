@@ -32,16 +32,22 @@ def cakes(recipe: dict, available: dict):
         for key in available:
             assert isinstance(key, str)
             assert isinstance(available[key], (int, float))
+        if not recipe or not available:
+            return 0
+        if len(recipe) > len(available):
+            return 0
     except AssertionError:
         return 0
-    if not recipe or not available:
-        return 0
-    if len(recipe) > len(available):
-        return 0
+
     recipe_numbers_list = [*recipe.values()]
     available_numbers_list = []
     for items in recipe:
         available_numbers_list.append(available.get(items))
+    for ingredient, amount in recipe.items():
+        if ingredient not in available or available[ingredient] < amount:
+            return 0
+    if available_numbers_list == recipe_numbers_list:
+        return 1
     cakes = 0
     while True:
         for i in range(len(recipe)):
