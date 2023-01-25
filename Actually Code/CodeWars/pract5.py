@@ -34,7 +34,8 @@ def cakes(recipe: dict, available: dict):
             assert isinstance(available[key], (int, float))
     except AssertionError:
         return 0
-    
+    if not recipe or not available:
+        return 0
     if len(recipe) > len(available):
         return 0
     recipe_numbers_list = [*recipe.values()]
