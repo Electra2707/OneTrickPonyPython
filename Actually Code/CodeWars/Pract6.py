@@ -8,11 +8,11 @@ pig_it('Hello world !')     # elloHay orldway !
 
 def pig_it(text: str) -> str:
     list_of_words=text.split()
+    new_word=[]
     for word in list_of_words:
-        word[:1]
-        # short_word=word[:1]
-    return short_word
-        # "".join()
+        word=word[1:]+word[:1]+"ay"
+        new_word.append(word)
+    return " ".join(new_word)
 
 print(pig_it('Pig latin is cool'))#,'igPay atinlay siay oolcay')
 print(pig_it('This is my string'))#,'hisTay siay ymay tringsay')
