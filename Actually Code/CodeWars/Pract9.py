@@ -18,8 +18,14 @@ I have also created other katas. Take a look if you enjoyed this kata!
 """
 
 
-def find_missing_letter(chars):
-    return
+alphabet = {chr(i+97): i+1 for i in range(26)}
 
 
-alphabet = {i+1: chr(i+97) for i in range(26)}
+def find_missing_letter(chars: list) -> str:
+    chars_difference=[]
+    for letter in chars:
+        
+
+print(alphabet)
+# find_missing_letter(['a', 'b', 'c', 'd', 'f'])  # , 'e')
+# find_missing_letter(['O', 'Q', 'R', 'S'])  # , 'P')
