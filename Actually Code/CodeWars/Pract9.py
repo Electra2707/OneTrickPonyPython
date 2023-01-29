@@ -19,18 +19,18 @@ I have also created other katas. Take a look if you enjoyed this kata!
 
 
 def find_missing_letter(chars: list[str]) -> list:
-    alphabet = {chr(i+65): i+1 for i in range(26)}
-    first_letter = alphabet.get(chars[0])
-    last_letter = alphabet.get(chars[-1])
+    alphabet = {chr(i+97): i+1 for i in range(26)}
+    print(alphabet)
+    first_letter = ord(chars[0]) - ord('a') + 1
+    last_letter = ord(chars[-1]) - ord('a') + 1
     chars_difference = []
     if chars[0].lower():
-        for i in range(first_letter, last_letter+1):
+        for i in range(first_letter, last_letter):
             chars_difference.append(alphabet[chr(i)])
     else:
         for i in range(first_letter, last_letter+1):
             chars_difference.append(alphabet[chr(i).upper])
     return list(set(chars) - set(chars_difference))
-
 
 find_missing_letter(['a', 'b', 'c', 'd', 'f'])  # , 'e')
 find_missing_letter(['O', 'Q', 'R', 'S'])  # , 'P')
