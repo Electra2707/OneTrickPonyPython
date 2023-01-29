@@ -23,17 +23,11 @@ def find_missing_letter(chars: list[str]) -> str:
     if upper_case:
         chars = [char.lower() for char in chars]
     alphabet = {i+1: chr(i+97) for i in range(26)}
-    first_letter = abs(ord(chars[0]) - ord('a') + 1)
-    last_letter = abs(ord(chars[-1]) - ord('a') + 1)
-    chars_difference = []
-    for i in range(first_letter, last_letter+1):
-        chars_difference.append(alphabet.get(i))
-    if upper_case:
-        result = list(set(chars_difference)-set(chars))
-        result = [letters.upper() for letters in result]
-    else:
-        result = list(set(chars_difference)-set(chars))
-    return result[0]
+    first_letter = ord(chars[0]) - ord('a') + 1
+    last_letter = ord(chars[-1]) - ord('a') + 1
+    missing_char = [alphabet[i] for i in range(
+        first_letter, last_letter+1) if alphabet[i] not in chars]
+    return missing_char[0].upper() if upper_case else missing_char[0]
 
 
 print(find_missing_letter(['a', 'b', 'c', 'd', 'f']))  # , 'e')
