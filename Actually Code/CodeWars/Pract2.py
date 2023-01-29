@@ -18,9 +18,9 @@ def duplicate_encode(words: str) -> str:
     return new_word
 
 
-#Extemely crompress code
-# def duplicate_encode(word):
-#     return "".join(["(" if word.lower().count(c) == 1 else ")" for c in word.lower()])
+# Extemely crompress code
+def duplicate_encode(word):
+    return "".join(["(" if word.lower().count(c) == 1 else ")" for c in word.lower()])
 
 print(duplicate_encode("din"))  # , "(((")
 print(duplicate_encode("recede"))  # , "()()()")
