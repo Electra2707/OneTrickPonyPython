@@ -45,16 +45,23 @@ valid more significant unit of time.
 
 """
 import datetime
-def format_duration(seconds:int):
-    seconds=abs(seconds)
-    if seconds==0:
-        now=datetime.datetime.today()
-        return print(now.strftime("%H hours, %M minutes and %S seconds"))
 
 
+def format_duration(seconds: int):
+    seconds = abs(seconds)
+    if seconds == 0:
+        now = datetime.datetime.today()
+        return now.strftime("%H hours, %M minutes and %S seconds")
+    elif seconds >= 1 and seconds <= 60:
+        if seconds == 1:
+            return f"{seconds} second"
+        return f"{seconds} seconds"
+    else:
+        pass
 
-format_duration(1)#, "1 second")
-format_duration(62)#, "1 minute and 2 seconds")
-format_duration(120)#, "2 minutes")
-format_duration(3600)#, "1 hour")
-format_duration(3662)#, "1 hour, 1 minute and 2 seconds")
+
+print(format_duration(1))  # , "1 second")
+print(format_duration(62))  # , "1 minute and 2 seconds")
+print(format_duration(120))  # , "2 minutes")
+print(format_duration(3600))  # , "1 hour")
+print(format_duration(3662))  # , "1 hour, 1 minute and 2 seconds")
