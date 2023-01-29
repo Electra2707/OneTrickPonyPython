@@ -48,29 +48,63 @@ import datetime
 
 
 def format_duration(seconds: int) -> str:
-    seconds = abs(seconds)
-    formatted_time = datetime.datetime.fromtimestamp(seconds)
-
-    if seconds <= 59:  # Only seconds
-        if seconds == 0:
+    final_formatted_time = ""
+    seconds_input = abs(seconds)
+    if seconds_input <= 59:  # Only seconds
+        if seconds_input == 0:
             now = datetime.datetime.today()
             return now.strftime("%H hours, %M minutes and %S seconds")
-        formatted_time_seconds = formatted_time.strftime("%S seconds")
-        return formatted_time_seconds
+        time_only_seconds = datetime.timedelta(seconds=seconds_input)
+        if time_only_seconds == 1:
+            return "1 second"
+        return f"{time_only_seconds} seconds"
+    formatted_time = datetime.timedelta(seconds=seconds_input)
+    print(formatted_time)
 
-    elif seconds >= 60 and seconds <= 3599:  # With minutes until 59min
-        formatted_time_minutes = formatted_time.strftime("%M minutes")
-        return formatted_time_minutes
+    elif seconds_input >= 60 and seconds_input <= 3599:  # With minutes until 59min
+        time_only_seconds = formatted_time.seconds
+        time_with_minutes = formatted_time.min
+        if time_with_minutes == 1:
+            final_formatted_time = "1 minute"
+        final_formatted_time = f"{time_with_minutes} minutes"
+        if time_only_seconds == 0:
+            pass
+        elif time_only_seconds == 1:
+            final_formatted_time = final_formatted_time + f" and 1 second"
+        else:
+            final_formatted_time = final_formatted_time + \
+                f" and {time_only_seconds} seconds"
+        return final_formatted_time
 
-    elif seconds >= 3600 and seconds <= 86399:  # With hours until 23hours
-        formatted_time_hours = formatted_time.strftime("%H hours")
-        return formatted_time_hours
-
-    elif seconds >= 86400 and seconds <= 3.145e+7:  # With days until 364days
-        formatted_time_days = formatted_time.strftime("%D days")
-        return formatted_time_days
+    elif seconds_input >= 3600 and seconds_input <= 86399:  # With hours until 23hours
+        time_only_seconds = formatted_time.seconds
+        time_with_minutes = formatted_time.min
+        time_with_hours = formatted_time.days
+        
+        if time_with_hours == 1:
+            final_formatted_time = "1 hour"
+        final_formatted_time = f"{time_with_hours} hours"
+        
+        if time_with_minutes == 0:
+            pass
+        elif time_with_minutes == 1:
+            final_formatted_time = final_formatted_time + ", 1 minute"
+        else:
+            final_formatted_time = final_formatted_time + \
+                f", {time_with_minutes} minutes"
+                
+        if time_only_seconds == 0:
+            pass
+        elif time_only_seconds == 1:
+            final_formatted_time = final_formatted_time + f" and 1 second"
+        else:
+            final_formatted_time = final_formatted_time + \
+                f" and {time_only_seconds} seconds"
+        return final_formatted_time
+    elif seconds_input >= 86400 and seconds_input <= 3.145e+7:  # With days until 364days
+        pass
     else:  # Work with years
-        return formatted_time.strftime("%Y years, %D days, %H hours, %M minutes, %M seconds")
+        pass
 
 
 print(format_duration(0))  # , "1 second")
