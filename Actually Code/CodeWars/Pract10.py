@@ -49,32 +49,28 @@ import datetime
 
 def format_duration(seconds: int) -> str:
     seconds = abs(seconds)
+    formatted_time = datetime.datetime.fromtimestamp(seconds)
+
     if seconds <= 59:  # Only seconds
         if seconds == 0:
             now = datetime.datetime.today()
             return now.strftime("%H hours, %M minutes and %S seconds")
-        elif seconds == 1:
-            return f"{seconds} second"
-        else:
-            return f"{seconds} seconds"
+        formatted_time_seconds = formatted_time.strftime("%S seconds")
+        return formatted_time_seconds
+
     elif seconds >= 60 and seconds <= 3599:  # With minutes until 59min
-        if seconds == 60:
-            return "1 minute"
+        formatted_time_minutes = formatted_time.strftime("%M minutes")
+        return formatted_time_minutes
 
     elif seconds >= 3600 and seconds <= 86399:  # With hours until 23hours
-        if seconds == 3600:
-            return "1 hour"
+        formatted_time_hours = formatted_time.strftime("%H hours")
+        return formatted_time_hours
 
     elif seconds >= 86400 and seconds <= 3.145e+7:  # With days until 364days
-        if seconds == 86400:
-            return "1 day"
+        formatted_time_days = formatted_time.strftime("%D days")
+        return formatted_time_days
     else:  # Work with years
-        if seconds == 3.154e+7:
-            return "1 year"
-        # time_reach_hours = (time_reach_seconds)
-
-        # raw_time = datetime.datetime.fromtimestamp(seconds)
-        # return raw_time.strftime("%D days, %H hours, %M minutes, %S seconds")
+        return formatted_time.strftime("%Y years, %D days, %H hours, %M minutes, %M seconds")
 
 
 print(format_duration(0))  # , "1 second")
@@ -83,3 +79,4 @@ print(format_duration(62))  # , "1 minute and 2 seconds")
 print(format_duration(120))  # , "2 minutes")
 print(format_duration(3600))  # , "1 hour")
 print(format_duration(3662))  # , "1 hour, 1 minute and 2 seconds")
+print(format_duration(86400))  # , "1 hour, 1 minute and 2 seconds")
