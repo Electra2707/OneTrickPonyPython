@@ -48,20 +48,21 @@ import datetime
 
 
 def format_duration(seconds: int) -> str:
-    final_formatted_time = ""
     seconds_input = abs(seconds)
     if seconds_input <= 59:  # Only seconds
         if seconds_input == 0:
             now = datetime.datetime.today()
             return now.strftime("%H hours, %M minutes and %S seconds")
-        time_only_seconds = datetime.timedelta(seconds=seconds_input)
         if time_only_seconds == 1:
             return "1 second"
-        return f"{time_only_seconds} seconds"
+        else:
+            return f"{time_only_seconds} seconds"
+
+    final_formatted_time = ""
     formatted_time = datetime.timedelta(seconds=seconds_input)
     print(formatted_time)
 
-    elif seconds_input >= 60 and seconds_input <= 3599:  # With minutes until 59min
+    if seconds_input >= 60 and seconds_input <= 3599:  # With minutes until 59min
         time_only_seconds = formatted_time.seconds
         time_with_minutes = formatted_time.min
         if time_with_minutes == 1:
@@ -80,11 +81,11 @@ def format_duration(seconds: int) -> str:
         time_only_seconds = formatted_time.seconds
         time_with_minutes = formatted_time.min
         time_with_hours = formatted_time.days
-        
+
         if time_with_hours == 1:
             final_formatted_time = "1 hour"
         final_formatted_time = f"{time_with_hours} hours"
-        
+
         if time_with_minutes == 0:
             pass
         elif time_with_minutes == 1:
@@ -92,7 +93,7 @@ def format_duration(seconds: int) -> str:
         else:
             final_formatted_time = final_formatted_time + \
                 f", {time_with_minutes} minutes"
-                
+
         if time_only_seconds == 0:
             pass
         elif time_only_seconds == 1:
