@@ -47,19 +47,37 @@ valid more significant unit of time.
 import datetime
 
 
-def format_duration(seconds: int):
+def format_duration(seconds: int) -> str:
     seconds = abs(seconds)
-    if seconds == 0:
-        now = datetime.datetime.today()
-        return now.strftime("%H hours, %M minutes and %S seconds")
-    elif seconds >= 1 and seconds <= 60:
-        if seconds == 1:
+    if seconds <= 59:  # Only seconds
+        if seconds == 0:
+            now = datetime.datetime.today()
+            return now.strftime("%H hours, %M minutes and %S seconds")
+        elif seconds == 1:
             return f"{seconds} second"
-        return f"{seconds} seconds"
-    else:
-        pass
+        else:
+            return f"{seconds} seconds"
+    elif seconds >= 60 and seconds <= 3599:  # With minutes until 59min
+        if seconds == 60:
+            return "1 minute"
+
+    elif seconds >= 3600 and seconds <= 86399:  # With hours until 23hours
+        if seconds == 3600:
+            return "1 hour"
+
+    elif seconds >= 86400 and seconds <= 3.145e+7:  # With days until 364days
+        if seconds == 86400:
+            return "1 day"
+    else:  # Work with years
+        if seconds == 3.154e+7:
+            return "1 year"
+        # time_reach_hours = (time_reach_seconds)
+
+        # raw_time = datetime.datetime.fromtimestamp(seconds)
+        # return raw_time.strftime("%D days, %H hours, %M minutes, %S seconds")
 
 
+print(format_duration(0))  # , "1 second")
 print(format_duration(1))  # , "1 second")
 print(format_duration(62))  # , "1 minute and 2 seconds")
 print(format_duration(120))  # , "2 minutes")
