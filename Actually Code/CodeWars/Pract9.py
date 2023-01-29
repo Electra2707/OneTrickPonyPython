@@ -19,17 +19,22 @@ I have also created other katas. Take a look if you enjoyed this kata!
 
 
 def find_missing_letter(chars: list[str]) -> list:
+    upper_case = False
+    if chars[0].isupper():
+        upper_case = True
+        chars = [char.lower() for char in chars]
     alphabet = {i+1: chr(i+97) for i in range(26)}
-    first_letter = ord(chars[0]) - ord('a') + 1
-    last_letter = ord(chars[-1]) - ord('a') + 1
+    first_letter = abs(ord(chars[0]) - ord('a') + 1)
+    last_letter = abs(ord(chars[-1]) - ord('a') + 1)
     chars_difference = []
-    if chars[0].lower():
-        for i in range(first_letter, last_letter+1):
-            chars_difference.append(alphabet[i])
-    else:
-        for i in range(first_letter, last_letter+1):
-            chars_difference.append(alphabet(i))
-    return list(set(chars) - set(chars_difference))
+    for i in range(first_letter, last_letter+1):
+        chars_difference.append(alphabet[i])
+    if upper_case:
+        result = list(set(chars_difference)-set(chars))
+        result = [letters.upper() for letters in result]
+        return result
+    return list(set(chars_difference)-set(chars))
 
-find_missing_letter(['a', 'b', 'c', 'd', 'f'])  # , 'e')
-find_missing_letter(['O', 'Q', 'R', 'S'])  # , 'P')
+
+print(find_missing_letter(['O', 'Q', 'R', 'S']))  # , 'P')
+print(find_missing_letter(['a', 'b', 'c', 'd', 'f']))  # , 'e')
