@@ -75,7 +75,6 @@ def format_duration(seconds: int) -> str:
         else:
             final_formatted_time = final_formatted_time + \
                 f", {time_only_seconds} seconds"
-        return final_formatted_time
 # ----------------------------------------------------------------------------------
     elif seconds_input >= 3600 and seconds_input <= 86399:  # With hours until 23hours
         time_with_hours = int(formatted_time.seconds // 3600)
@@ -102,7 +101,6 @@ def format_duration(seconds: int) -> str:
         else:
             final_formatted_time = final_formatted_time + \
                 f", {time_only_seconds} seconds"
-        return final_formatted_time
 # ----------------------------------------------------------------------------------
     elif seconds_input >= 86400 and seconds_input <= 3.145e+7:  # With days until 364days
         time_with_days = int(seconds_input // 86400)
@@ -138,7 +136,6 @@ def format_duration(seconds: int) -> str:
         else:
             final_formatted_time = final_formatted_time + \
                 f", {time_only_seconds} seconds"
-        return final_formatted_time
 # ----------------------------------------------------------------------------------
     else:  # Work with years
         time_with_years = int(formatted_time.days // 365)
@@ -183,15 +180,25 @@ def format_duration(seconds: int) -> str:
         else:
             final_formatted_time = final_formatted_time + \
                 f", {time_only_seconds} seconds"
-        return final_formatted_time
+# ----------------------------------------------------------------------------------
+    final_formatted_time = final_formatted_time.split(",")
+    if len(final_formatted_time) == 1:
+        return final_formatted_time[0]
+    last_part = f" and{final_formatted_time[-1]}"
+    final_formatted_time.pop(-1)
+    final_formatted_time = ",".join(final_formatted_time)
+    return final_formatted_time + last_part
 
 
-print(format_duration(1)) # Expected output: "1 second"
-print(format_duration(60)) # Expected output: "1 minute"
-print(format_duration(3600)) # Expected output: "1 hour"
-print(format_duration(86400)) # Expected output: "1 day"
-print(format_duration(31536000)) # Expected output: "1 year"
-print(format_duration(31536000+86400)) # Expected output: "1 year, 1 day"
-print(format_duration(31536000+86400+3600)) # Expected output: "1 year, 1 day, 1 hour"
-print(format_duration(31536000+86400+3600+60)) # Expected output: "1 year, 1 day, 1 hour, 1 minute"
-print(format_duration(31536000+86400+3600+60+1)) # Expected output: "1 year, 1 day, 1 hour, 1 minute and 1 second"
+print(format_duration(1))  # Expected output: "1 second"
+print(format_duration(60))  # Expected output: "1 minute"
+print(format_duration(3600))  # Expected output: "1 hour"
+print(format_duration(86400))  # Expected output: "1 day"
+print(format_duration(31536000))  # Expected output: "1 year"
+print(format_duration(31536000+86400))  # Expected output: "1 year, 1 day"
+# Expected output: "1 year, 1 day, 1 hour"
+print(format_duration(31536000+86400+3600))
+# Expected output: "1 year, 1 day, 1 hour, 1 minute"
+print(format_duration(31536000+86400+3600+60))
+# Expected output: "1 year, 1 day, 1 hour, 1 minute and 1 second"
+print(format_duration(31536000+86400+3600+60+1))
