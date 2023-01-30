@@ -106,11 +106,19 @@ def format_duration(seconds: int) -> str:
         return final_formatted_time
 # ----------------------------------------------------------------------------------
     elif seconds_input >= 86400 and seconds_input <= 3.145e+7:  # With days until 364days
-        time_with_hours = int(formatted_time.seconds // 3600)
+        time_with_days = int(seconds_input // 86400)
+        time_with_hours = int((formatted_time.seconds % 86400)//3600)
         time_with_minutes = int((formatted_time.seconds % 3600)//60)
         time_only_seconds = int(formatted_time.seconds % 60)
 
-        if time_with_hours == 1:
+        if time_with_days == 1:
+            final_formatted_time = "1 day"
+        else:
+            final_formatted_time = f"{time_with_days} days"
+
+        if time_with_hours == 0:
+            pass
+        elif time_with_hours == 1:
             final_formatted_time = final_formatted_time+", 1 hour"
         else:
             final_formatted_time = final_formatted_time + \
@@ -134,13 +142,47 @@ def format_duration(seconds: int) -> str:
         return final_formatted_time
 # ----------------------------------------------------------------------------------
     else:  # Work with years
-        pass
+        time_with_days = int(seconds_input // 86400)
+        time_with_hours = int((formatted_time.seconds % 86400)//3600)
+        time_with_minutes = int((formatted_time.seconds % 3600)//60)
+        time_only_seconds = int(formatted_time.seconds % 60)
+
+        if time_with_days == 1:
+            final_formatted_time = "1 day"
+        else:
+            final_formatted_time = f"{time_with_days} days"
+
+        if time_with_hours == 0:
+            pass
+        elif time_with_hours == 1:
+            final_formatted_time = final_formatted_time+", 1 hour"
+        else:
+            final_formatted_time = final_formatted_time + \
+                f"{time_with_hours} hours"
+
+        if time_with_minutes == 0:
+            pass
+        elif time_with_minutes == 1:
+            final_formatted_time = final_formatted_time+", 1 minute"
+        else:
+            final_formatted_time = final_formatted_time + \
+                f", {time_with_minutes} minutes"
+
+        if time_only_seconds == 0:
+            pass
+        elif time_only_seconds == 1:
+            final_formatted_time = final_formatted_time + f" and 1 second"
+        else:
+            final_formatted_time = final_formatted_time + \
+                f" and {time_only_seconds} seconds"
+        return final_formatted_time
 
 
-print(format_duration(0))  # , "current time")
-print(format_duration(1))  # , "1 second")
+print(format_duration(87580))  # , "1 day, 19 minutes, and 40 seconds")
+print(format_duration(604800))  # , "7 days")
 print(format_duration(62))  # , "1 minute and 2 seconds")
 print(format_duration(120))  # , "2 minutes")
 print(format_duration(3600))  # , "1 hour")
 print(format_duration(3662))  # , "1 hour, 1 minute and 2 seconds")
-print(format_duration(86400))  # , "1 hour, 1 minute and 2 seconds")
+print(format_duration(86400))  # , "1 day")
+print(format_duration(87580))  # , "1 day")
