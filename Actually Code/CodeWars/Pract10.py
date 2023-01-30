@@ -62,7 +62,7 @@ def format_duration(seconds: int) -> str:
     formatted_time = datetime.timedelta(seconds=seconds_input)
 
     if seconds_input >= 60 and seconds_input <= 3599:  # With minutes until 59min
-        time_with_minutes = int(formatted_time.total_seconds() / 60)
+        time_with_minutes = int(formatted_time.total_seconds() // 60)
         time_only_seconds = int(
             formatted_time.total_seconds() - (time_with_minutes*60))
 
@@ -81,11 +81,20 @@ def format_duration(seconds: int) -> str:
         return final_formatted_time
 
     elif seconds_input >= 3600 and seconds_input <= 86399:  # With hours until 23hours
-        time_with_minutes = int(formatted_time.total_seconds() / 60)
+        time_with_hours = int(formatted_time.total_seconds() // 3600)
+        time_with_minutes = int(
+            formatted_time.total_seconds() - (time_with_hours*3600))
         time_only_seconds = int(
-            formatted_time.total_seconds() - (time_with_minutes*60))
-        
-        if time_with_minutes == 1:
+            formatted_time.total_seconds()- (time_with_hours*3600) - (time_with_minutes*60))
+
+        if time_with_hours == 1:
+            final_formatted_time = "1 hour"
+        else:
+            final_formatted_time = f"{time_with_hours} hours"
+
+        if time_with_minutes == 0:
+            pass
+        elif time_with_minutes == 1:
             final_formatted_time = ", 1 minute"
         else:
             final_formatted_time = f", {time_with_minutes} minutes"
