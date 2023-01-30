@@ -142,15 +142,24 @@ def format_duration(seconds: int) -> str:
         return final_formatted_time
 # ----------------------------------------------------------------------------------
     else:  # Work with years
-        time_with_days = int(seconds_input // 86400)
+        time_with_years = int(formatted_time.days // 365)
+        time_with_days = int(formatted_time.days % 365)
         time_with_hours = int((formatted_time.seconds % 86400)//3600)
         time_with_minutes = int((formatted_time.seconds % 3600)//60)
         time_only_seconds = int(formatted_time.seconds % 60)
 
-        if time_with_days == 1:
-            final_formatted_time = "1 day"
+        if time_with_years == 1:
+            final_formatted_time = "1 year"
         else:
-            final_formatted_time = f"{time_with_days} days"
+            final_formatted_time = f"{time_with_years} years"
+
+        if time_with_days == 0:
+            pass
+        elif time_with_days == 1:
+            final_formatted_time = final_formatted_time + ", 1 day"
+        else:
+            final_formatted_time = final_formatted_time + \
+                f", {time_with_days} days"
 
         if time_with_hours == 0:
             pass
@@ -178,11 +187,12 @@ def format_duration(seconds: int) -> str:
         return final_formatted_time
 
 
-print(format_duration(87580))  # , "1 day, 19 minutes, and 40 seconds")
-print(format_duration(604800))  # , "7 days")
-print(format_duration(62))  # , "1 minute and 2 seconds")
-print(format_duration(120))  # , "2 minutes")
-print(format_duration(3600))  # , "1 hour")
-print(format_duration(3662))  # , "1 hour, 1 minute and 2 seconds")
-print(format_duration(86400))  # , "1 day")
-print(format_duration(87580))  # , "1 day")
+print(format_duration(1)) # Expected output: "1 second"
+print(format_duration(60)) # Expected output: "1 minute"
+print(format_duration(3600)) # Expected output: "1 hour"
+print(format_duration(86400)) # Expected output: "1 day"
+print(format_duration(31536000)) # Expected output: "1 year"
+print(format_duration(31536000+86400)) # Expected output: "1 year, 1 day"
+print(format_duration(31536000+86400+3600)) # Expected output: "1 year, 1 day, 1 hour"
+print(format_duration(31536000+86400+3600+60)) # Expected output: "1 year, 1 day, 1 hour, 1 minute"
+print(format_duration(31536000+86400+3600+60+1)) # Expected output: "1 year, 1 day, 1 hour, 1 minute and 1 second"
