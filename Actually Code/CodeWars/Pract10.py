@@ -47,6 +47,7 @@ valid more significant unit of time.
 import datetime
 
 
+# ----------------------------------------------------------------------------------
 def format_duration(seconds: int) -> str:
     seconds_input = abs(seconds)
     if seconds_input <= 59:  # Only seconds
@@ -57,15 +58,12 @@ def format_duration(seconds: int) -> str:
             return "1 second"
         else:
             return f"{seconds_input} seconds"
-
     final_formatted_time = ""
     formatted_time = datetime.timedelta(seconds=seconds_input)
-
+# ----------------------------------------------------------------------------------
     if seconds_input >= 60 and seconds_input <= 3599:  # With minutes until 59min
-        time_with_minutes = int(formatted_time.total_seconds() // 60)
-        time_only_seconds = int(
-            formatted_time.total_seconds() - (time_with_minutes*60))
-
+        time_with_minutes = int((formatted_time.seconds % 3600)//60)
+        time_only_seconds = int(formatted_time.seconds % 60)
         if time_with_minutes == 1:
             final_formatted_time = "1 minute"
         else:
@@ -79,13 +77,11 @@ def format_duration(seconds: int) -> str:
             final_formatted_time = final_formatted_time + \
                 f" and {time_only_seconds} seconds"
         return final_formatted_time
-
+# ----------------------------------------------------------------------------------
     elif seconds_input >= 3600 and seconds_input <= 86399:  # With hours until 23hours
-        time_with_hours = int(formatted_time.total_seconds() // 3600)
-        time_with_minutes = int(
-            formatted_time.total_seconds() - (time_with_hours*3600))
-        time_only_seconds = int(
-            formatted_time.total_seconds()- (time_with_hours*3600) - (time_with_minutes*60))
+        time_with_hours = int(formatted_time.seconds // 3600)
+        time_with_minutes = int((formatted_time.seconds % 3600)//60)
+        time_only_seconds = int(formatted_time.seconds % 60)
 
         if time_with_hours == 1:
             final_formatted_time = "1 hour"
@@ -95,9 +91,10 @@ def format_duration(seconds: int) -> str:
         if time_with_minutes == 0:
             pass
         elif time_with_minutes == 1:
-            final_formatted_time = ", 1 minute"
+            final_formatted_time = final_formatted_time+", 1 minute"
         else:
-            final_formatted_time = f", {time_with_minutes} minutes"
+            final_formatted_time = final_formatted_time + \
+                f", {time_with_minutes} minutes"
 
         if time_only_seconds == 0:
             pass
@@ -107,8 +104,35 @@ def format_duration(seconds: int) -> str:
             final_formatted_time = final_formatted_time + \
                 f" and {time_only_seconds} seconds"
         return final_formatted_time
+# ----------------------------------------------------------------------------------
     elif seconds_input >= 86400 and seconds_input <= 3.145e+7:  # With days until 364days
-        pass
+        time_with_hours = int(formatted_time.seconds // 3600)
+        time_with_minutes = int((formatted_time.seconds % 3600)//60)
+        time_only_seconds = int(formatted_time.seconds % 60)
+
+        if time_with_hours == 1:
+            final_formatted_time = final_formatted_time+", 1 hour"
+        else:
+            final_formatted_time = final_formatted_time + \
+                f"{time_with_hours} hours"
+
+        if time_with_minutes == 0:
+            pass
+        elif time_with_minutes == 1:
+            final_formatted_time = final_formatted_time+", 1 minute"
+        else:
+            final_formatted_time = final_formatted_time + \
+                f", {time_with_minutes} minutes"
+
+        if time_only_seconds == 0:
+            pass
+        elif time_only_seconds == 1:
+            final_formatted_time = final_formatted_time + f" and 1 second"
+        else:
+            final_formatted_time = final_formatted_time + \
+                f" and {time_only_seconds} seconds"
+        return final_formatted_time
+# ----------------------------------------------------------------------------------
     else:  # Work with years
         pass
 
