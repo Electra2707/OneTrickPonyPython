@@ -11,7 +11,7 @@ in learning and mastering Python. It includes:
 - Gallery of images and diagrams to help visualize and understand the concepts
 - Topics covered include:
 -   Algorithms
--   OOP Paradigm
+-   OOP
 -   General libraries
 -   Data Structures
 -   Scripting, Data Science, Full-stack Development, and Machine Learning.
