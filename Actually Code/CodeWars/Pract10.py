@@ -52,8 +52,7 @@ def format_duration(seconds: int) -> str:
     seconds_input = abs(seconds)
     if seconds_input <= 59:  # Only seconds
         if seconds_input == 0:
-            now = datetime.datetime.today()
-            return now.strftime("%H hours, %M minutes and %S seconds")
+            return "now"
         if seconds_input == 1:
             return "1 second"
         else:
@@ -72,10 +71,10 @@ def format_duration(seconds: int) -> str:
         if time_only_seconds == 0:
             pass
         elif time_only_seconds == 1:
-            final_formatted_time = final_formatted_time + f" and 1 second"
+            final_formatted_time = final_formatted_time + f", 1 second"
         else:
             final_formatted_time = final_formatted_time + \
-                f" and {time_only_seconds} seconds"
+                f", {time_only_seconds} seconds"
         return final_formatted_time
 # ----------------------------------------------------------------------------------
     elif seconds_input >= 3600 and seconds_input <= 86399:  # With hours until 23hours
@@ -99,10 +98,10 @@ def format_duration(seconds: int) -> str:
         if time_only_seconds == 0:
             pass
         elif time_only_seconds == 1:
-            final_formatted_time = final_formatted_time + f" and 1 second"
+            final_formatted_time = final_formatted_time + f", 1 second"
         else:
             final_formatted_time = final_formatted_time + \
-                f" and {time_only_seconds} seconds"
+                f", {time_only_seconds} seconds"
         return final_formatted_time
 # ----------------------------------------------------------------------------------
     elif seconds_input >= 86400 and seconds_input <= 3.145e+7:  # With days until 364days
@@ -122,7 +121,7 @@ def format_duration(seconds: int) -> str:
             final_formatted_time = final_formatted_time+", 1 hour"
         else:
             final_formatted_time = final_formatted_time + \
-                f"{time_with_hours} hours"
+                f", {time_with_hours} hours"
 
         if time_with_minutes == 0:
             pass
@@ -135,10 +134,10 @@ def format_duration(seconds: int) -> str:
         if time_only_seconds == 0:
             pass
         elif time_only_seconds == 1:
-            final_formatted_time = final_formatted_time + f" and 1 second"
+            final_formatted_time = final_formatted_time + f", 1 second"
         else:
             final_formatted_time = final_formatted_time + \
-                f" and {time_only_seconds} seconds"
+                f", {time_only_seconds} seconds"
         return final_formatted_time
 # ----------------------------------------------------------------------------------
     else:  # Work with years
@@ -167,7 +166,7 @@ def format_duration(seconds: int) -> str:
             final_formatted_time = final_formatted_time+", 1 hour"
         else:
             final_formatted_time = final_formatted_time + \
-                f"{time_with_hours} hours"
+                f", {time_with_hours} hours"
 
         if time_with_minutes == 0:
             pass
@@ -180,10 +179,10 @@ def format_duration(seconds: int) -> str:
         if time_only_seconds == 0:
             pass
         elif time_only_seconds == 1:
-            final_formatted_time = final_formatted_time + f" and 1 second"
+            final_formatted_time = final_formatted_time + f", 1 second"
         else:
             final_formatted_time = final_formatted_time + \
-                f" and {time_only_seconds} seconds"
+                f", {time_only_seconds} seconds"
         return final_formatted_time
 
 
