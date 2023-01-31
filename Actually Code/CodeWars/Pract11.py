@@ -17,19 +17,26 @@ lengths upwards of 10,000,000 elements. Be sure your code doesn't time out.
 import numpy as np
 
 
+# def sum_pairs(ints: list[int], s: int):
+#     ints_np = np.array(ints)
+#     seen = set()
+#     for num in np.nditer(ints_np):
+#         target = s - num
+#         if target in seen:
+#             return [target, num.item()]
+#         seen.add(num.item())
+#     else:
+#         return None
+
+
 def sum_pairs(ints: list[int], s: int):
-    ints_np = np.array(ints)
     seen = set()
-    for num in np.nditer(ints_np):
+    for num in ints:
         target = s - num
         if target in seen:
-            return [target, num.item()]
-        seen.add(num.item())
-    else:
-        return None
-
-
-
+            return [target, num]
+        seen.add(num)
+    return None
 
 
 l1 = [1, 4, 8, 7, 3, 15]
