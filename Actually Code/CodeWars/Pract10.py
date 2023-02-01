@@ -214,7 +214,7 @@ def format_duration(seconds):
 
     return ', '.join(chunks[:-1]) + ' and ' + chunks[-1] if len(chunks) > 1 else chunks[0]
 
-print(format_duration(1))  # Expected output: "1 second"
+print(format_duration(8.225e+7))  # Expected output: "1 second"
 print(format_duration(60))  # Expected output: "1 minute"
 print(format_duration(3600))  # Expected output: "1 hour"
 print(format_duration(86400))  # Expected output: "1 day"
