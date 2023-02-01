@@ -17,3 +17,16 @@ def calculate_len(argument: list):
     return equals_original
 
 
+def same_structure_as(original: list, other: list):
+    try:
+        assert isinstance(original, list)
+        assert isinstance(other, list)
+    except AssertionError:
+        return False
+    equals_other = calculate_len(original)
+    equals_original = calculate_len(other)
+    if equals_original == equals_other:
+        return True
+    return False
+
+
