@@ -30,3 +30,15 @@ def same_structure_as(original: list, other: list):
     return False
 
 
+
+
+
+def same_structure_as(a, b):
+    return (False if not (isinstance(a, list) and isinstance(b, list)) or len(a) != len(b)
+            else all(same_structure_as(c, d) for c, d in zip(a, b) if isinstance(c, list)))
+
+
+# , [[[],[]]] not same as [[1,1]]: True should equal False
+print(same_structure_as([[[], []]], [[1, 1]]))
+# , True, "[1,[1,1]] same as [2,[2,2]]")
+print(same_structure_as([1, [1, 1]], [2, [2, 2]]))
