@@ -7,10 +7,8 @@ if __name__ == '__main__':
     # assert 0 < len(s) and len(s) <= 10**6
     s = "BANANA"
     VOWELS = set(["A", "E", "I", "O", "U"])
-    s_kevin = ""
-    s_stuart = ""
-    for i,j in s:
-        if i in VOWELS:
-            s_kevin += s
+    s_kevin = [s[i:] for i, char in enumerate(s) if char in VOWELS][0]
+    s_stuart = [s[i:] for i, char in enumerate(s) if not char in VOWELS][0]
+
 
     minion_game(s)
