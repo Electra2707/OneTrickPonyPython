@@ -1,8 +1,13 @@
-def minion_game(string: str, VOWELS: tuple) -> int:
+def minion_game(string: str) -> int:
+    constructor = []
     if string.startswith(VOWELS):
-        return 0
-    if not string.startswith(VOWELS):
-        return 1
+        for i in string:
+            if i in VOWELS:
+                ap
+    else:
+        pass
+    return len(string)
+
 
 if __name__ == '__main__':
     # s = input().upper()
@@ -12,8 +17,8 @@ if __name__ == '__main__':
     S_KEVIN = [s[i:] for i, char in enumerate(s) if char in VOWELS][0]
     S_STUART = [s[i:] for i, char in enumerate(s) if not char in VOWELS][0]
     VOWELS = tuple(VOWELS)
-    number_kevin = minion_game(S_KEVIN, VOWELS)
-    number_stuart = minion_game(S_STUART, VOWELS)
+    number_kevin = minion_game(S_KEVIN)
+    number_stuart = minion_game(S_STUART)
     if number_kevin > number_stuart:
         print(f"Kevin {number_kevin}")
     elif number_stuart > number_kevin:
