@@ -1,22 +1,9 @@
 def minion_game(string: str) -> int:
-    result = set()
-    constructor = set()
-    possibilities = set()
-
-
-    if string.startswith(VOWELS):
-        for i in string:
-            if i in VOWELS:
-                constructor.add(i)
-            else:
-                possibilities.add(i)
-    else:
-        for i in string:
-            if not i in VOWELS:
-                constructor.add(i)
-            else:
-                possibilities.add(i)
-    return len(result)
+    score = 0
+    for i, char in enumerate(string):
+        if char in VOWELS:
+            score += len(string) - i
+    return score
 
 
 if __name__ == '__main__':
@@ -26,7 +13,6 @@ if __name__ == '__main__':
     VOWELS = set(["A", "E", "I", "O", "U"])
     S_KEVIN = [s[i:] for i, char in enumerate(s) if char in VOWELS][0]
     S_STUART = [s[i:] for i, char in enumerate(s) if not char in VOWELS][0]
-    VOWELS = tuple(VOWELS)
     number_kevin = minion_game(S_KEVIN)
     number_stuart = minion_game(S_STUART)
     if number_kevin > number_stuart:
