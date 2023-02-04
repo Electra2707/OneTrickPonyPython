@@ -3,12 +3,14 @@
 In other words, return true if one of s1's permutations is the substring of s2.
 """
 class Solution:
-    def generate_lists(string:str) -> list:
-        pass
-    def checkInclusion(self, s: str, s2: str) -> bool:
-        items_in_s2 = Solution.generate_lists(s1)
-
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        find_permutations,letters = s1,s2
+        items_in_letter = [x for x in letters]
+        for i,char in enumerate(items_in_letter):
+            items_in_letter.count()
 if __name__=="__main__":
-    s1=input()
-    s2=input()
-    print(Solution.checkInclusion(s1,s2))
+    s1="ab"
+    s2="eidboaoo"
+    # s1=input()
+    # s2=input()
+    print(Solution().checkInclusion(s1,s2))
