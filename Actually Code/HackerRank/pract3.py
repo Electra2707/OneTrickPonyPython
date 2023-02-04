@@ -1,12 +1,22 @@
 def minion_game(string: str) -> int:
-    constructor = []
+    result = set()
+    constructor = set()
+    possibilities = set()
+
+
     if string.startswith(VOWELS):
         for i in string:
             if i in VOWELS:
-                ap
+                constructor.add(i)
+            else:
+                possibilities.add(i)
     else:
-        pass
-    return len(string)
+        for i in string:
+            if not i in VOWELS:
+                constructor.add(i)
+            else:
+                possibilities.add(i)
+    return len(result)
 
 
 if __name__ == '__main__':
