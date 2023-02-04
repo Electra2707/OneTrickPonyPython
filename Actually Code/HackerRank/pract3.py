@@ -1,4 +1,4 @@
-def minion_game(string):
+def minion_game(kevin: str, stuart: str):
     pass
 
 
@@ -9,6 +9,4 @@ if __name__ == '__main__':
     VOWELS = set(["A", "E", "I", "O", "U"])
     s_kevin = [s[i:] for i, char in enumerate(s) if char in VOWELS][0]
     s_stuart = [s[i:] for i, char in enumerate(s) if not char in VOWELS][0]
-
-
-    minion_game(s)
+    print(minion_game(s_kevin, s_stuart))
