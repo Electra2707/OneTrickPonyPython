@@ -9,8 +9,8 @@ if __name__ == '__main__':
     VOWELS = set(["A", "E", "I", "O", "U"])
     s_kevin = ""
     s_stuart = ""
-    for i in s:
+    for i,j in s:
         if i in VOWELS:
-            s_kevin = s.
+            s_kevin += s
 
     minion_game(s)
