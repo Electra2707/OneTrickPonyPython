@@ -6,9 +6,13 @@ In other words, return true if one of s1's permutations is the substring of s2.
 
 class Solution:
     def checkInclusion(self, find_permutations: str, letters: str) -> bool:
-        items_in_letter = [x for x in letters]
-        for i, char in enumerate(items_in_letter):
-            items_in_letter.count()
+        for i in find_permutations:
+            number_letter = letters.count(i)
+            number_permutations = find_permutations.count(i)
+            if number_letter < number_permutations:
+                return False
+        else:
+            return True
 
 
 if __name__ == "__main__":
