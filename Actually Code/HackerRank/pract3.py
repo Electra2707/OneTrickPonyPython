@@ -1,23 +1,20 @@
-def minion_game(string: str) -> int:
-    score = 0
-    for i, char in enumerate(string):
-        if char in VOWELS:
-            score += len(string) - i
-    return score
-
+def minion_game(string: str) -> None:
+    VOWELS = set(['A', 'E', 'I', 'O', 'U'])
+    n = len(string)
+    kevin_score = 0
+    stuart_score = 0
+    for i in range(n):
+        if string[i] in VOWELS:
+            kevin_score += n - i
+        else:
+            stuart_score += n - i
+    if kevin_score > stuart_score:
+        print(f'Kevin {kevin_score}')
+    elif stuart_score > kevin_score:
+        print(f'Stuart {stuart_score}')
+    else:
+        print('Draw')
 
 if __name__ == '__main__':
-    # s = input().upper()
-    # assert 0 < len(s) and len(s) <= 10**6
     s = "BANANA"
-    VOWELS = set(["A", "E", "I", "O", "U"])
-    S_KEVIN = [s[i:] for i, char in enumerate(s) if char in VOWELS][0]
-    S_STUART = [s[i:] for i, char in enumerate(s) if not char in VOWELS][0]
-    number_kevin = minion_game(S_KEVIN)
-    number_stuart = minion_game(S_STUART)
-    if number_kevin > number_stuart:
-        print(f"Kevin {number_kevin}")
-    elif number_stuart > number_kevin:
-        print(f"Stuart {number_stuart}")
-    else:
-        print("Draw")
+    minion_game(s)
