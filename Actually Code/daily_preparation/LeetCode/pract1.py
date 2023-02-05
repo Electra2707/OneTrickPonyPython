@@ -5,7 +5,21 @@ You may assume that each input would have exactly one solution, and you may not 
 You can return the answer in any order.
 """
 
+# class Solution:
+#     def twoSum(self, nums: list[int], target: int) -> list[int]:
+#         for i,num in enumerate(nums):
+#             for j,num1 in enumerate(nums):
+#                 if num1 + num == target:
+#                     return [i,j]
+
 class Solution:
     def twoSum(self, nums: list[int], target: int) -> list[int]:
-        for num in nums:
-
+        complement_map = {}
+        for i, num in enumerate(nums):
+            complement = target - num
+            if complement in complement_map:
+                return [complement_map[complement], i]
+            complement_map[num] = i
+        return []
+    
+print(Solution().twoSum([2,7,11,15],9))
