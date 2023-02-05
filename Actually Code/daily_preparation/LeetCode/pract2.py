@@ -5,3 +5,8 @@ palindrome
 
 class Solution:
     def isPalindrome(self, x: int) -> bool:
+        string_number=str(x)
+        if string_number == string_number[::-1]:
+            return True
+        else:
+            return False
