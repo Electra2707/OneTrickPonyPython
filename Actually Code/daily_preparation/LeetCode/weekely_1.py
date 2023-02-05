@@ -6,6 +6,8 @@ In other words, return true if one of s1's permutations is the substring of s2.
 
 class Solution:
     def checkInclusion(self, find_permutations: str, letters: str) -> bool:
+        if len(find_permutations)>len(letters):
+            return False
         for i in find_permutations:
             number_letter = letters.count(i)
             number_permutations = find_permutations.count(i)
@@ -16,8 +18,6 @@ class Solution:
 
 
 if __name__ == "__main__":
-    s1 = "ab"
-    s2 = "eidboaoo"
-    # s1=input()
-    # s2=input()
+    s1=input()
+    s2=input()
     print(Solution().checkInclusion(s1, s2))
