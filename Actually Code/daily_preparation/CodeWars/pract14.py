@@ -39,3 +39,6 @@ def is_palindrome_or_equal(string_number: str) -> bool:
 def number_is_round(string_number: str) -> bool:
     return string_number.count("0") == (len(string_number)-1)
 
+
+def is_consecutive(string_number: str) -> bool:
+    digits = tuple(int(x) for x in string_number)
