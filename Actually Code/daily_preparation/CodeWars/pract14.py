@@ -87,3 +87,7 @@ def close_to_be_interesting(number: int) -> bool:
     return False
 
 
+def math_check(original_num: int, awesome_number: int) -> bool:
+    result = abs(original_num - awesome_number)
+    return result >= 1 and result <= 2
+
