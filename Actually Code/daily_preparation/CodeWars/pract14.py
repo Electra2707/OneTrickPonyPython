@@ -42,3 +42,33 @@ def number_is_round(string_number: str) -> bool:
 
 def is_consecutive(string_number: str) -> bool:
     digits = tuple(int(x) for x in string_number)
+
+    def check_consecutive(digits: tuple) -> bool:
+        counter = 0
+        # hard_check = ""
+        for i, num in enumerate(digits):
+            if digits[i] != digits[-1] and num != 9:
+                if (num + 1) == digits[i + 1]:
+                    counter += 1
+                    # hard_check += str(num)
+                else:
+                    # hard_check = ""
+                    counter = 0
+            elif digits[i] != digits[-1] and num == 9:
+                if digits[i + 1] == 0:
+                    counter += 1
+                    # hard_check += str(num)
+                else:
+                    counter = 0
+                    # hard_check = ""
+            else:
+                if num == digits[i - 1] + 1:
+                    counter += 1
+                    # hard_check += str(num)
+                break
+            if counter >= 3:
+                break
+        # if hard_check == "901":
+        #     print(1)
+        #     raise SystemExit
+        return counter >= 3
