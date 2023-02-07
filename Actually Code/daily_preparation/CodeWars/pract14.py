@@ -19,3 +19,14 @@ The input number will always be an integer greater than 0 and less than
 """
 
 
+def main_process(number: int) -> bool:
+    string_number = str(number)
+    if is_palindrome_or_equal(string_number):
+        return True
+    elif number_is_round(string_number):
+        return True
+    elif is_consecutive(string_number):
+        return True
+    return False
+
+
