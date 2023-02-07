@@ -77,3 +77,13 @@ def is_consecutive(string_number: str) -> bool:
         return True
     return check_consecutive(digits[::-1])
 
+
+def close_to_be_interesting(number: int) -> bool:
+    numbers = set([number - x for x in range(1, 3)] +
+                  [number + x for x in range(1, 3)])
+    for item in numbers:
+        if main_process(item):
+            return True
+    return False
+
+
