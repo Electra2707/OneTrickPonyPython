@@ -30,3 +30,9 @@ def main_process(number: int) -> bool:
     return False
 
 
+def is_palindrome_or_equal(string_number: str) -> bool:
+    if string_number == string_number[::-1]:
+        return True
+    return len(set(string_number)) == 1
+
+
