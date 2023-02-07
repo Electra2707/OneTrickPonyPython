@@ -72,3 +72,8 @@ def is_consecutive(string_number: str) -> bool:
         #     print(1)
         #     raise SystemExit
         return counter >= 3
+
+    if check_consecutive(digits):
+        return True
+    return check_consecutive(digits[::-1])
+
