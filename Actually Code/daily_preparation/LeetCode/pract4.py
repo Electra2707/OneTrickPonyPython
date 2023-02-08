@@ -1,12 +1,8 @@
 class Solution:
     def romanToInt(self, s: str) -> int:
         conversion = 0
-        for letter in s:
-            value = roman_dict[letter]
-            if value > conversion:
-                conversion = conversion - value
-            else:
-                conversion = value
+        values = reversed([roman_dict[x] for x in s])
+        
         return conversion
 
 
