@@ -8,3 +8,15 @@ class Solution:
             else:
                 conversion = value
         return conversion
+
+
+roman_dict = {
+    "I": 1,
+    "V": 5,
+    "X": 10,
+    "L": 50,
+    "C": 100,
+    "D": 500,
+    "M": 100
+}
+print(Solution().romanToInt("LVIII"))
