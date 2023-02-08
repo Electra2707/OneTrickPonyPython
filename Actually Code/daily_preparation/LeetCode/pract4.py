@@ -14,11 +14,13 @@ class Solution:
         values = [Solution.roman_dict[x] for x in s]
         new_values = [-1] + values
         for num1, num2 in zip(values, new_values):
-            if num1>num2:
+            if num1 == num2:
+                conversion = conversion + num1
+            elif num1>num2:
                 conversion = conversion + num1
             elif num1<num2:
                 conversion = conversion - num1
         return conversion
 
 
-print(Solution().romanToInt("MCMXCIV"))
+print(Solution().romanToInt("LVIII"))
