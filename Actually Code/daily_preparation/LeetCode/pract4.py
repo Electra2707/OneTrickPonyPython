@@ -12,13 +12,16 @@ class Solution:
     def romanToInt(self, s: str) -> int:
         conversion = 0
         values = [Solution.roman_dict[x] for x in s]
-        new_values = [-1] + values
-        for num1, num2 in zip(values, new_values):
-            if num1 == num2:
+        length_values = len(values)
+        for i in range(length_values):
+            num1 = values[i]
+            if i == length_values:
                 conversion = conversion + num1
-            elif num1>num2:
+                break
+            num2 = values[i+1]
+            if num1 >= num2:
                 conversion = conversion + num1
-            elif num1<num2:
+            else:
                 conversion = conversion - num1
         return conversion
 
