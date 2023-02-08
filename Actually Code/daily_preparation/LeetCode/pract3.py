@@ -8,16 +8,17 @@ different word or phrase, typically using all the original letters exactly once.
 
 class Solution:
     def findAnagrams(self, long_string: str, find_string: str) -> list[int]:
-        counter = []
+        start_indices = []
+        find_string = sorted(find_string)
         find_length = len(find_string)
         try:
             for i in range(len(long_string)):
-                anagram = long_string[:i] + long_string[:find_length]
+                anagram = sorted(long_string[i:find_length+i])
                 if find_string == anagram:
-                    counter.append(i)
+                    start_indices.append(i)
         except IndexError:
             pass
-        return counter
+        return start_indices
 
 
 s = "cbaebabacd"
