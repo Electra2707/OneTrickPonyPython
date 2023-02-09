@@ -1,3 +1,10 @@
+"""Given a roman numeral, convert it to an integer.
+
+:return: the program take a roman number and convert
+it into an int
+:rtype: int
+"""
+
 class Solution:
     roman_dict = {
         "I": 1,
@@ -12,8 +19,8 @@ class Solution:
     def romanToInt(self, s: str) -> int:
         conversion = 0
         values = [Solution.roman_dict[x] for x in s]
-        length_values = len(values)
-        for i in range(length_values):
+        length_values = (len(values)-1)
+        for i in range(length_values+1):
             num1 = values[i]
             if i == length_values:
                 conversion = conversion + num1
@@ -26,4 +33,4 @@ class Solution:
         return conversion
 
 
-print(Solution().romanToInt("LVIII"))
+print(Solution().romanToInt("MCMXCIV"))
