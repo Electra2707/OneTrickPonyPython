@@ -11,22 +11,26 @@ strs[i] consists of only lowercase English letters.
 
 from collections import deque
 
+# def longestCommonPrefix(self, strs):
+#     if not strs:
+#         return ""
+#     prefix = min(strs, key=len)
+#     for i, char in enumerate(prefix):
+#         for word in strs:
+#             if word[i] != char:
+#                 return prefix[:i]
+#     return prefix
+
 
 class Solution:
-    # def longestCommonPrefix(self, strs):
-    #     if not strs:
-    #         return ""
-    #     prefix = min(strs, key=len)
-    #     for i, char in enumerate(prefix):
-    #         for word in strs:
-    #             if word[i] != char:
-    #                 return prefix[:i]
-    #     return prefix
-
     def longestCommonPrefix(self, strs: list[str]) -> str:
+        if len(strs) <= 1:
+            return strs[0]
+
         def find_prefix(prefix: str, words: list[str]) -> bool:
             for element in words:
-                if not prefix in element:
+                element = element[:len(prefix)]
+                if not prefix == element:
                     return False
             return True
         common_prefix = ""
@@ -35,7 +39,7 @@ class Solution:
         while queue:
             element, counter = queue.popleft()
             prefix = element[:counter]
-            if not element or len(prefix) >= len(element):
+            if not element or len(prefix) > len(element):
                 break
             if prefix not in seen:
                 if find_prefix(prefix, strs):
@@ -50,5 +54,5 @@ class Solution:
         return common_prefix
 
 
-print(Solution().longestCommonPrefix(["a"]))
-print(Solution().longestCommonPrefix(["flower", "flow", "flight"]))
+print(Solution().longestCommonPrefix(["c", "acc", "ccc"]))
+print(Solution().longestCommonPrefix(["flower", "flower", "flower", "flower"]))
