@@ -20,12 +20,11 @@ class Solution:
         max_dist = -1
         visited = set()
         for dimension in grid:
-            for element in dimension:
-                vertex = element[0]
+            while dimension:
+                vertex = dimension.pop(0)
                 if vertex not in visited:
                     visited.add(vertex)
-            while dimension:
-                
+                    dimension.extend(grid[vertex] - visited)
         return max_dist
 
 
