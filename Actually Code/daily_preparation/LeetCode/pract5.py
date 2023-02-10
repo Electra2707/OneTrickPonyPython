@@ -15,21 +15,24 @@ n == grid[i].length
 grid[i][j] is 0 or 1
 """
 
+
 class Solution:
     def maxDistance(self, grid: list[list[int]]) -> int:
         max_dist = -1
-        visited = set()
+        counter = -1
         for dimension in grid:
             while dimension:
+                counter += 1
                 vertex = dimension.pop(0)
-                if vertex not in visited:
-                    visited.add(vertex)
-                    dimension.extend(grid[vertex] - visited)
+                if vertex == 1:
+                    counter = -1
+                elif vertex == 0:
+                    if counter > max_dist:
+                        max_dist = counter
+
         return max_dist
 
 
 print(Solution().maxDistance(
-    [[1, 0, 1],
-     [0, 0, 0],
-     [1, 0, 1]]
+    [[1,0,0],[0,0,0],[0,0,0]]
 ))
