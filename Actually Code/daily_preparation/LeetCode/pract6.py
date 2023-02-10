@@ -9,6 +9,8 @@ Constraints:
 strs[i] consists of only lowercase English letters.
 """
 
+from collections import deque
+
 
 class Solution:
     def longestCommonPrefix(self, strs: list[str]) -> str:
@@ -19,21 +21,16 @@ class Solution:
             return True
         common_prefix = ""
         seen = set()
-        queue = zip(strs, [1 for x in range(len(strs))])
+        queue = deque(strs, [1 for x in range(len(strs))])
         while queue:
-            # for string in strs:
-            #     prefix = string[:counter]
-            #     if not prefix in seen:
-            #         seen.add(prefix)
-            element, counter = queue.pop(0)
+            element, counter = queue.popleft()
             prefix = element[:counter]
-            if prefix not in seen:
-                
-            if prefix in seen:
-                continue
-            if len(seen) == 2:
-                common_prefix = prefix
+            if not element or len(prefix) >= counter:
                 break
+            if prefix not in seen:
+                if find_prefix(prefix, strs):
+                    common_prefix = prefix
+                    queue.append(element,counter+1)
         return common_prefix
 
 
