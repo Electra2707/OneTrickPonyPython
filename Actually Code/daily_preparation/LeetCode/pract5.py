@@ -19,16 +19,23 @@ grid[i][j] is 0 or 1
 class Solution:
     def maxDistance(self, grid: list[list[int]]) -> int:
         max_dist = -1
-        counter = -1
-        for dimension in grid:
-            while dimension:
-                counter += 1
-                vertex = dimension.pop(0)
-                if vertex == 1:
-                    counter = -1
-                elif vertex == 0:
-                    if counter > max_dist:
-                        max_dist = counter
+        # for dimension in grid:
+        #     counter = -1
+        #     if counter != -1:
+        #         counter += 1
+        #     while dimension:
+        #         vertex = dimension.pop(0)
+        #         if vertex == 1:
+        #             counter = -1
+        #         elif vertex == 0:
+        #             counter += 1
+        #             if counter > max_dist:
+        #                 max_dist = counter
+                        
+        # visited = set()
+        # for i, dimension in enumerate(grid):
+        #     for j, element in enumerate(dimension):
+        #         vertex = 
 
         return max_dist
 
