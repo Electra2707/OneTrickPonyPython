@@ -21,16 +21,21 @@ class Solution:
             return True
         common_prefix = ""
         seen = set()
-        queue = deque(strs, [1 for x in range(len(strs))])
+        queue = deque(zip(strs, [1 for x in range(len(strs))]))
         while queue:
             element, counter = queue.popleft()
             prefix = element[:counter]
-            if not element or len(prefix) >= counter:
+            if not element or len(prefix) >= len(element):
                 break
             if prefix not in seen:
                 if find_prefix(prefix, strs):
                     common_prefix = prefix
-                    queue.append(element,counter+1)
+                    seen.add(prefix)
+                    queue.append((element, counter))
+                else:
+                    break
+            else:
+                continue
         return common_prefix
 
 
