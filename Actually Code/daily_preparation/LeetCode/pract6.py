@@ -18,7 +18,12 @@ class Solution:
             element = strs.pop(0)
             for i in range(len(strs)):
                 prefix = strs[i][i+1:]
-                seen 
+                if not prefix in seen:
+                    seen.add(prefix)
+            if len(seen) == 2:
+                common_prefix = prefix
+                break
+            strs.append(element)
         return common_prefix
 
 
