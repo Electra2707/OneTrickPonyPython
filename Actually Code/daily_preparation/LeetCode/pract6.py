@@ -9,7 +9,6 @@ Constraints:
 strs[i] consists of only lowercase English letters.
 """
 
-from collections import deque
 
 # def longestCommonPrefix(self, strs):
 #     if not strs:
@@ -27,31 +26,52 @@ class Solution:
         if len(strs) <= 1:
             return strs[0]
 
-        def find_prefix(prefix: str, words: list[str]) -> bool:
-            for element in words:
-                element = element[:len(prefix)]
-                if not prefix == element:
-                    return False
-            return True
         common_prefix = ""
         seen = set()
-        queue = deque(zip(strs, [1 for x in range(len(strs))]))
+        queue = [(strs, 1)]
         while queue:
-            element, counter = queue.popleft()
-            prefix = element[:counter]
-            if not element or len(prefix) > len(element):
+            elements, counter = queue.pop(0)
+            prefix = elements[0][:counter]
+            if not elements[0] or len(prefix) > len(elements[0]):
                 break
             if prefix not in seen:
-                if find_prefix(prefix, strs):
+                if all(element.startswith(prefix) for element in elements):
                     counter += 1
                     common_prefix = prefix
                     seen.add(prefix)
-                    queue.append((element, counter))
+                    queue.append((elements, counter))
                 else:
                     break
-            else:
-                continue
         return common_prefix
+# from collections import deque
+        # if len(strs) <= 1:
+        #     return strs[0]
+
+        # def find_prefix(prefix: str, words: list[str]) -> bool:
+        #     for element in words:
+        #         element = element[:len(prefix)]
+        #         if not prefix == element:
+        #             return False
+        #     return True
+        # common_prefix = ""
+        # seen = set()
+        # queue = deque(zip(strs, [1 for x in range(len(strs))]))
+        # while queue:
+        #     element, counter = queue.popleft()
+        #     prefix = element[:counter]
+        #     if not element or len(prefix) > len(element):
+        #         break
+        #     if prefix not in seen:
+        #         if find_prefix(prefix, strs):
+        #             counter += 1
+        #             common_prefix = prefix
+        #             seen.add(prefix)
+        #             queue.append((element, counter))
+        #         else:
+        #             break
+        #     else:
+        #         continue
+        # return common_prefix
 
 
 print(Solution().longestCommonPrefix(["c", "acc", "ccc"]))
