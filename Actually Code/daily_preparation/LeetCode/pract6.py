@@ -16,11 +16,12 @@ class Solution:
         seen = set()
         counter = 1
         while strs:
-            for string in strs:
-                prefix = string[:counter]
-                if not prefix in seen:
-                    seen.add(prefix)
+            # for string in strs:
+            #     prefix = string[:counter]
+            #     if not prefix in seen:
+            #         seen.add(prefix)
             element = strs.pop(0)
+            
             if len(seen) == 2:
                 common_prefix = prefix
                 break
