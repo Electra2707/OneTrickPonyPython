@@ -14,21 +14,18 @@ n == grid[i].length
 1 <= n <= 100
 grid[i][j] is 0 or 1
 """
-from collections import deque
-
 
 class Solution:
     def maxDistance(self, grid: list[list[int]]) -> int:
         max_dist = -1
-        for element in grid:
-            pass
-        queue = deque([(i, j)])
         visited = set()
-        queue = grid[0][0]
-        while queue:
-            vertex = list.pop(0)
-            if grid not in visited:
-                visited.add(vertex)
+        for dimension in grid:
+            for element in dimension:
+                vertex = element[0]
+                if vertex not in visited:
+                    visited.add(vertex)
+            while dimension:
+                
         return max_dist
 
 
