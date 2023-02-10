@@ -15,3 +15,16 @@ n == grid[i].length
 grid[i][j] is 0 or 1
 """
 
+class Solution:
+    def maxDistance(self, grid: list[list[int]]) -> int:
+        visited = set()
+        queue = grid[0][0]
+        while queue:
+            vertex = list.pop(0)
+            if grid not in visited:
+                visited.add(vertex)
+        for element in grid:
+            
+        return visited
+
+print(Solution().maxDistance())
