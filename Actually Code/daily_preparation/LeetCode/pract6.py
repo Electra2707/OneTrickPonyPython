@@ -13,6 +13,16 @@ from collections import deque
 
 
 class Solution:
+    # def longestCommonPrefix(self, strs):
+    #     if not strs:
+    #         return ""
+    #     prefix = min(strs, key=len)
+    #     for i, char in enumerate(prefix):
+    #         for word in strs:
+    #             if word[i] != char:
+    #                 return prefix[:i]
+    #     return prefix
+
     def longestCommonPrefix(self, strs: list[str]) -> str:
         def find_prefix(prefix: str, words: list[str]) -> bool:
             for element in words:
@@ -40,5 +50,5 @@ class Solution:
         return common_prefix
 
 
-print(Solution().longestCommonPrefix(["dog", "racecar", "car"]))
+print(Solution().longestCommonPrefix(["a"]))
 print(Solution().longestCommonPrefix(["flower", "flow", "flight"]))
