@@ -18,7 +18,6 @@ grid[i][j] is 0 or 1
 
 from collections import deque
 
-
 class Solution:
     def maxDistance(self, grid: list[list[int]]) -> int:
         max_dist = -1
@@ -32,8 +31,8 @@ class Solution:
         if not queue or len(queue) == len(grid) * len(grid[0]):
             return max_dist
         while queue:
-            i,j, dist = queue.popleft()
-            max_dist = max(dist, dist)
+            i, j, dist = queue.popleft()
+            max_dist = max(max_dist, dist)
             for x, y in [(i - 1, j), (i + 1, j), (i, j - 1), (i, j + 1)]:
                 if 0 <= x < len(grid) and 0 <= y < len(grid[0]) and (x, y) not in visited:
                     queue.append((x, y, dist + 1))
@@ -56,7 +55,7 @@ class Solution:
 
 
 print(Solution().maxDistance(
-    [[1, 0, 0],
+    [[1, 0, 1],
      [0, 0, 0],
-     [0, 0, 0]]
+     [1, 0, 1]]
 ))
