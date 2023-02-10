@@ -29,6 +29,7 @@ class Solution:
                 break
             if prefix not in seen:
                 if find_prefix(prefix, strs):
+                    counter += 1
                     common_prefix = prefix
                     seen.add(prefix)
                     queue.append((element, counter))
