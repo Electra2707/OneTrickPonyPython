@@ -12,23 +12,30 @@ strs[i] consists of only lowercase English letters.
 
 class Solution:
     def longestCommonPrefix(self, strs: list[str]) -> str:
+        def find_prefix(prefix: str, words: list[str]) -> bool:
+            for element in words:
+                if not prefix in element:
+                    return False
+            return True
         common_prefix = ""
         seen = set()
-        strs = zip(strs,[1 for x in range(len(strs))])
-        while strs:
+        queue = zip(strs, [1 for x in range(len(strs))])
+        while queue:
             # for string in strs:
             #     prefix = string[:counter]
             #     if not prefix in seen:
             #         seen.add(prefix)
-            element,counter = strs.pop(0)
+            element, counter = queue.pop(0)
             prefix = element[:counter]
+            if prefix not in seen:
+                
             if prefix in seen:
-                counter
+                continue
             if len(seen) == 2:
                 common_prefix = prefix
                 break
         return common_prefix
 
 
-print(Solution().longestCommonPrefix(["dog","racecar","car"]))
+print(Solution().longestCommonPrefix(["dog", "racecar", "car"]))
 print(Solution().longestCommonPrefix(["flower", "flow", "flight"]))
