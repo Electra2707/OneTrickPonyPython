@@ -14,12 +14,12 @@ class Solution:
     def longestCommonPrefix(self, strs: list[str]) -> str:
         common_prefix = ""
         seen = set()
+        for i in range(len(strs)):
+            prefix = strs[i][:i+1]
+            if not prefix in seen:
+                seen.add(prefix)
         while strs:
             element = strs.pop(0)
-            for i in range(len(strs)):
-                prefix = strs[i][i+1:]
-                if not prefix in seen:
-                    seen.add(prefix)
             if len(seen) == 2:
                 common_prefix = prefix
                 break
@@ -27,4 +27,5 @@ class Solution:
         return common_prefix
 
 
+print(Solution().longestCommonPrefix(["dog","racecar","car"]))
 print(Solution().longestCommonPrefix(["flower", "flow", "flight"]))
