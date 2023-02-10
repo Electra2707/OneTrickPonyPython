@@ -14,18 +14,19 @@ class Solution:
     def longestCommonPrefix(self, strs: list[str]) -> str:
         common_prefix = ""
         seen = set()
-        counter = 1
+        strs = zip(strs,[1 for x in range(len(strs))])
         while strs:
             # for string in strs:
             #     prefix = string[:counter]
             #     if not prefix in seen:
             #         seen.add(prefix)
-            element = strs.pop(0)
-            
+            element,counter = strs.pop(0)
+            prefix = element[:counter]
+            if prefix in seen:
+                counter
             if len(seen) == 2:
                 common_prefix = prefix
                 break
-            strs.append(element)
         return common_prefix
 
 
