@@ -15,4 +15,18 @@ Both list1 and list2 are sorted in non-decreasing order.
 
 class Solution:
     def mergeTwoLists(self, list1: list[int], list2: list[int]) -> list:
-        pass
+        return list1.extend(list2)
+        # if not list1 and not list2:
+        #     return []
+        # elif len(list1) <= 1 and len(list2)<= 1 :
+        #     return list1 
+        # result = []
+        # for element in list([x1]+[x2] for x1, x2 in zip(list1,list2)):
+        #     for integral in element:
+        #         result.append(integral)
+        # return result 
+        
+
+print(Solution().mergeTwoLists([1,2,4],[1,3,4]))
+print(Solution().mergeTwoLists([],[]))
+print(Solution().mergeTwoLists([],[0]))
