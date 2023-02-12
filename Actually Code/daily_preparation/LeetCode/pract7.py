@@ -55,9 +55,9 @@ s consists of parentheses only '()[]{}'.
         # return not stack
 
 
-print(Solution().isValid("([)]"))  # True
-print(Solution().isValid("()"))  # True
-print("------------------------------------")
-print(Solution().isValid("{[]}"))  # true
-print("------------------------------------")
-print(Solution().isValid("(]"))  # false
+# print(Solution().isValid("([)]"))  # True
+# print(Solution().isValid("()"))  # True
+# print("------------------------------------")
+# print(Solution().isValid("{[]}"))  # true
+# print("------------------------------------")
+# print(Solution().isValid("(]"))  # false
