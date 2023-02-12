@@ -13,3 +13,18 @@ Constraints:
 1 <= s.length <= 104
 s consists of parentheses only '()[]{}'.
 """
+
+class Solution:
+    def isValid(self, string: str) -> bool:
+        if len(string) <= 1:
+            return False
+        for i in range(len(string)):
+            if i is None:
+                break
+            print(i)
+
+print(Solution().isValid("()")) #True
+print("------------------------------------")
+print(Solution().isValid("()[]{}")) #False
+print("------------------------------------")
+print(Solution().isValid("(]")) #false
