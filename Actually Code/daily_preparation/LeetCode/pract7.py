@@ -16,12 +16,15 @@ s consists of parentheses only '()[]{}'.
 
 class Solution:
     def isValid(self, string: str) -> bool:
-        if len(string) <= 1:
+        length_string=len(string)
+        if length_string <= 1:
             return False
-        for i in range(len(string)):
-            if i is None:
+        
+        for i,letter in enumerate(string):
+            if i == length_string:
                 break
-            print(i)
+            print(i,letter)
+        return True
 
 print(Solution().isValid("()")) #True
 print("------------------------------------")
