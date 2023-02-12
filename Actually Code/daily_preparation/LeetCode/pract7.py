@@ -17,31 +17,45 @@ s consists of parentheses only '()[]{}'.
 
 class Solution:
     def isValid(self, string: str) -> bool:
-        length_string = len(string)
-        if length_string <= 1:
-            return False
-        for i in range(0,len(string),2):
-            if i == length_string-1:
-                break
-            parenthesis_1 = ord(string[i])
-            parenthesis_2 = ord(string[i+1])
-            if parenthesis_1 == 40:
-                if not parenthesis_2 == 41:
-                    return False
-            elif parenthesis_1 == 91:
-                if not parenthesis_2 == 93:
-                    return False
-            elif parenthesis_1 == 123:
-                if not parenthesis_2 == 125:
+        #     length_string = len(string)
+        #     if length_string <= 1:
+        #         return False
+        #     for i in range(0, len(string), 2):
+        #         if i == length_string-1:
+        #             break
+        #         parenthesis_1 = ord(string[i])
+        #         parenthesis_2 = ord(string[i+1])
+        #         if parenthesis_1 == 40:
+        #             if not parenthesis_2 == 41:
+        #                 return False
+        #         elif parenthesis_1 == 91:
+        #             if not parenthesis_2 == 93:
+        #                 return False
+        #         elif parenthesis_1 == 123:
+        #             if not parenthesis_2 == 125:
+        #                 return False
+        #         else:
+        #             return False
+        #     return True
+        stack = []
+        mapping = {
+            ')': '(',
+            '}': '{',
+            ']': '['
+        }
+
+        for char in string:
+            if char in mapping:
+                if not stack or stack.pop() != mapping[char]:
                     return False
             else:
-                return False
+                stack.append(char)
 
-        return True
+        return not stack
 
 
-print(Solution().isValid("()[]{}"))  # true
-print("------------------------------------")
 print(Solution().isValid("()"))  # True
+print("------------------------------------")
+print(Solution().isValid("{[]}"))  # true
 print("------------------------------------")
 print(Solution().isValid("(]"))  # false
