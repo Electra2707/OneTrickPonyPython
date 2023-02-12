@@ -21,8 +21,10 @@ class Solution:
                 result.append(integral)
         if len(list1) + len(list2) == len(result):
             return result 
-        
-        
+        elif len(list1) > len(list2):
+            return list1
+        elif len(list2) > len(list1):
+            return list2
 
 print(Solution().mergeTwoLists([1,2,4],[1,3,4]))
 print(Solution().mergeTwoLists([],[]))
