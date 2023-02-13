@@ -26,12 +26,21 @@ class Solution:
             for integral in element:
                 result.append(integral)
         if (len(list1) - len(list2)) <= -1:
-            result.append(list1[(len(list1) - len(list2))])
+            if len(list2) == 1:
+                result = list2
+            else:
+                result.append(list1[(len(list1) - len(list2))])
         if (len(list2) - len(list1)) <= -1:
-
+            if len(list1) == 1:
+                result = list1
+            else:
+                result.append(list2[(len(list2) - len(list1))])
         return result
 
 
 print(Solution().mergeTwoLists([1, 2, 4], [1, 3, 4]))
+print(Solution().mergeTwoLists([1, 2, 4], [1]))
+print(Solution().mergeTwoLists([1], [1, 3, 4]))
 print(Solution().mergeTwoLists([], []))
 print(Solution().mergeTwoLists([], [0]))
+print(Solution().mergeTwoLists([0],[]))
