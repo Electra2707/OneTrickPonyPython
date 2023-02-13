@@ -22,7 +22,7 @@ class ListNode:
 class Solution:
     def mergeTwoLists(self, list1: list[int], list2: list[int]) -> list:
         result = []
-        for element in list([x1]+[x2] for x1, x2 in zip(list1, list2)):
+        for element in list([x1]+[x2] for x1, x2 in zip(sorted(list1), sorted(list2))):
             for integral in element:
                 result.append(integral)
         if (len(list1) + len(list2))!=len(result):
@@ -30,13 +30,14 @@ class Solution:
                 for element in list1:
                     if element not in result:
                         result.append(element)
-            elif list2:
+            if list2:
                 for element in list2:
                     if element not in result:
                         result.append(element)
         return result
 
 
+print(Solution().mergeTwoLists([4,2,1], [4,3,1]))
 print(Solution().mergeTwoLists([1, 2, 4], [1, 3, 4]))
 print(Solution().mergeTwoLists([1, 2, 4], [1]))
 print(Solution().mergeTwoLists([1], [1, 3, 4]))
