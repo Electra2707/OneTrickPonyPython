@@ -30,6 +30,14 @@ class Solution:
         cur.next = l1 or l2
         return dummy.next
 
+print(Solution().mergeTwoLists(ListNode(2,4),ListNode(2,4)))
+print(Solution().mergeTwoLists([4,2,1], [4,3,1]))
+# print(Solution().mergeTwoLists([1, 2, 4], [1, 3, 4]))
+# print(Solution().mergeTwoLists([1, 2, 4], [1]))
+# print(Solution().mergeTwoLists([1], [1, 3, 4]))
+# print(Solution().mergeTwoLists([], []))
+# print(Solution().mergeTwoLists([], [0]))
+# print(Solution().mergeTwoLists([0],[]))
     # def mergeTwoLists(self, list1: list[int], list2: list[int]) -> list:
     #     result = []
     #     for element in list([x1]+[x2] for x1, x2 in zip(sorted(list1), sorted(list2))):
@@ -47,10 +55,3 @@ class Solution:
     #     return result
 
 
-print(Solution().mergeTwoLists([4,2,1], [4,3,1]))
-# print(Solution().mergeTwoLists([1, 2, 4], [1, 3, 4]))
-# print(Solution().mergeTwoLists([1, 2, 4], [1]))
-# print(Solution().mergeTwoLists([1], [1, 3, 4]))
-# print(Solution().mergeTwoLists([], []))
-# print(Solution().mergeTwoLists([], [0]))
-# print(Solution().mergeTwoLists([0],[]))
