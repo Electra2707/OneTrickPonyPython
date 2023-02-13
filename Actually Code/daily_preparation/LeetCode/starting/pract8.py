@@ -29,9 +29,18 @@ class Solution:
             cur = cur.next
         cur.next = l1 or l2
         return dummy.next
+    def to_list(self, head):
+        result = []
+        while head:
+            result.append(head.val)
+            head = head.next
+        return result
 
-print(Solution().mergeTwoLists(ListNode(2,4),ListNode(2,4)))
-print(Solution().mergeTwoLists([4,2,1], [4,3,1]))
+
+l1 = ListNode(1, ListNode(2, ListNode(4)))
+l2 = ListNode(1, ListNode(3, ListNode(4)))
+print(Solution().to_list(Solution().mergeTwoLists(l1,l2)))
+# print(Solution().mergeTwoLists([4,2,1], [4,3,1]))
 # print(Solution().mergeTwoLists([1, 2, 4], [1, 3, 4]))
 # print(Solution().mergeTwoLists([1, 2, 4], [1]))
 # print(Solution().mergeTwoLists([1], [1, 3, 4]))
