@@ -25,16 +25,15 @@ class Solution:
         for element in list([x1]+[x2] for x1, x2 in zip(list1, list2)):
             for integral in element:
                 result.append(integral)
-        if (len(list1) - len(list2)) <= -1:
-            if len(list2) == 1:
-                result = list2
-            else:
-                result.append(list1[(len(list1) - len(list2))])
-        if (len(list2) - len(list1)) <= -1:
-            if len(list1) == 1:
-                result = list1
-            else:
-                result.append(list2[(len(list2) - len(list1))])
+        if (len(list1) + len(list2))!=len(result):
+            if list1:
+                for element in list1:
+                    if element not in result:
+                        result.append(element)
+            elif list2:
+                for element in list2:
+                    if element not in result:
+                        result.append(element)
         return result
 
 
