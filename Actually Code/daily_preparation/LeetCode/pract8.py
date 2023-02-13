@@ -12,29 +12,24 @@ The number of nodes in both lists is in the range [0, 50].
 Both list1 and list2 are sorted in non-decreasing order.
 """
 
-
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
 
-
 class Solution:
-    def mergeTwoLists(self, list1: list[int], list2: list[int]) -> list:
-        result = []
-        for element in list([x1]+[x2] for x1, x2 in zip(sorted(list1), sorted(list2))):
-            for integral in element:
-                result.append(integral)
-        if (len(list1) + len(list2))!=len(result):
-            if list1:
-                for element in list1:
-                    if element not in result:
-                        result.append(element)
-            if list2:
-                for element in list2:
-                    if element not in result:
-                        result.append(element)
-        return result
+    def mergeTwoLists(self, l1, l2):
+        dummy = cur = ListNode(0)
+        while l1 and l2:
+            if l1.val < l2.val:
+                cur.next = l1
+                l1 = l1.next
+            else:
+                cur.next = l2
+                l2 = l2.next
+            cur = cur.next
+        cur.next = l1 or l2
+        return dummy.next
 
 
 print(Solution().mergeTwoLists([4,2,1], [4,3,1]))
