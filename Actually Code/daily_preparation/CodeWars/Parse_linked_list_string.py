@@ -27,16 +27,18 @@ class Node:
     def __init__(self, data, next=None):
         self.data = data
         self.next = next
+        print(self.data, self.next)
 
 
-def linked_list_from_string(string:str):
+def linked_list_from_string(string: str):
     if string == "None":
         return None
     list_string = string.split()
     if len(list_string) == 1:
-        return Node(string,None)
-    list_string = [element for element in list_string if not element == "->" ]
+        return Node(string, None)
+    list_string = [element for element in list_string if not element in ["->","None"]]
+    return Node(element for element in list_string)
 
-head = Node(0, Node(1,Node(4,Node(9,Node(16)))))
+head = Node(0, Node(1, Node(4, Node(9, Node(16)))))
 print(linked_list_from_string("0"))
 print(linked_list_from_string("0 -> 10 -> 20 -> 30 -> None"))
