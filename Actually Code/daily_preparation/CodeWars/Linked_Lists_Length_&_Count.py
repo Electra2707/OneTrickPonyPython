@@ -22,13 +22,14 @@ def length(node):
     pass
   
 def count(node, data):
-    pass
+    counter = 0
+    while node:
+        if node.data == data:
+            counter += 1
+        node = node.next
+    return counter
 
 
-# node_list = Node(1)
-# node_list.next = Node(2)
-# node_list.next.next = Node(3)
-# node_list.next.next.next = None
 node_list = None
 for i in range(3, 0, -1):
     node = Node(i)
@@ -36,17 +37,6 @@ for i in range(3, 0, -1):
     node_list = node
 
 node = Node(1)
-
-# node_list_r = Node(1)
-# node_list_r.next = Node(1)
-# node_list_r.next.next = Node(1)
-# node_list_r.next.next.next = Node(1)
-# node_list_r.next.next.next.next = Node(2)
-# node_list_r.next.next.next.next.next = Node(2)
-# node_list_r.next.next.next.next.next.next = Node(2)
-# node_list_r.next.next.next.next.next.next.next = Node(2)
-# node_list_r.next.next.next.next.next.next.next.next = Node(3)
-# node_list_r.next.next.next.next.next.next.next.next.next = Node(3)
 
 node_list_r = None
 for i in [3, 2, 1]:
@@ -61,10 +51,32 @@ for i in [3, 2, 1]:
             node.next = node_list_r
             node_list_r = node
 
-while node_list:
-    print(node_list.data)
-    node_list = node_list.next
-print("------------------")
-while node_list_r:
-    print(node_list_r.data)
-    node_list_r = node_list_r.next
+print(length(node))
+print(count(node,1))
+print(length(node_list))
+print(count(node_list,1))
+print(length(node_list_r))
+print(count(node_list_r,3))
+# node_list = Node(1)
+# node_list.next = Node(2)
+# node_list.next.next = Node(3)
+# node_list.next.next.next = None
+# node_list_r = Node(1)
+# node_list_r.next = Node(1)
+# node_list_r.next.next = Node(1)
+# node_list_r.next.next.next = Node(1)
+# node_list_r.next.next.next.next = Node(2)
+# node_list_r.next.next.next.next.next = Node(2)
+# node_list_r.next.next.next.next.next.next = Node(2)
+# node_list_r.next.next.next.next.next.next.next = Node(2)
+# node_list_r.next.next.next.next.next.next.next.next = Node(3)
+# node_list_r.next.next.next.next.next.next.next.next.next = Node(3)
+
+
+# while node_list:
+#     print(node_list.data)
+#     node_list = node_list.next
+# print("------------------")
+# while node_list_r:
+#     print(node_list_r.data)
+#     node_list_r = node_list_r.next
