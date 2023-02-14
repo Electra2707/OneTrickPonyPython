@@ -29,5 +29,9 @@ class Node:
         self.next = next
 
 
-def linked_list_from_string(s):
-    return  # head to linked list
+def linked_list_from_string(string:str):
+    
+    return  
+
+head = Node(0, Node(1,Node(4,Node(9,Node(16)))))
+print(linked_list_from_string("0 -> 10 -> 20 -> 30 -> null"))
