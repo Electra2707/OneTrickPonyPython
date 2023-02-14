@@ -25,6 +25,39 @@ Don't miss dmitry's article in the discussion after you pass the Kata !!
 #             return condition
 #         pointer_1 = pointer_1.next
 #         condition += 1
+class Node(object):
+    def __init__(self, next=None):
+        self.next = next
+
+# def loop_size(node):
+#     tortoise = node.next
+#     hare = node.next.next
+#     count = 1
+#     while tortoise != hare:
+#         tortoise = tortoise.next
+#         hare = hare.next.next
+#         count += 1
+#     return count
+    # The tortoise and hare have met, so there is a loop
+    
+    # Count the length of the loop
+    # hare = hare.next
+    # while tortoise != hare:
+    #     hare = hare.next
+def loop_size(node):
+    tortoise = node.next
+    hare = node.next.next
+    while tortoise != hare:
+        tortoise = tortoise.next
+        hare = hare.next.next
+    count = 1
+    hare = hare.next
+    while tortoise != hare:
+        hare = hare.next
+        count += 1
+    return count
+
+
 
 # Make a short chain with a loop of 3
 node1 = Node()
