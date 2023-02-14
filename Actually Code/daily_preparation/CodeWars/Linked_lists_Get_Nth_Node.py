@@ -39,10 +39,10 @@ def get_nth(node, index:int):
     counter = 0
     while node:
         if counter == index:
-            return node.data
+            return node
         node = node.next
         counter += 1
     raise Exception("index out of range")
 
 head = Node(42, Node(13, Node(666)))
-print(get_nth(head, 1))#.data === 1)
+print(get_nth(head, 1).data)#.data === 1)
