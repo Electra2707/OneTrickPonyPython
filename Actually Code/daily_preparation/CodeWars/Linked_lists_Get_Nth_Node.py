@@ -25,6 +25,10 @@ class Node(object):
         Node.index += 1
 
 
-def get_nth(node, index):
-    # Your code goes here.
-    pass
+def get_nth(node, index:int):
+    while node:
+        if node.index == index:
+            return node.data
+        node = node.next
+
+print(get_nth(Node(42,Node(13,Node(666))), 1))#.data === 1)
