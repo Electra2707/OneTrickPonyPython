@@ -15,20 +15,34 @@ if the list is empty, GetNth() should throw/raise an exception
 """
 
 
-class Node(object):
-    index = 0
+# class Node(object):
+#     index = 0
 
+#     def __init__(self, data, next=None):
+#         self.data = data
+#         self.next = next
+#         self.index = Node.index
+#         Node.index += 1
+
+
+# def get_nth(node, index:int):
+#     while node:
+#         if node.index == index:
+#             return node.data
+#         node = node.next
+# works BUT IT'S BAD
+class Node(object):
     def __init__(self, data, next=None):
         self.data = data
         self.next = next
-        self.index = Node.index
-        Node.index += 1
-
-
 def get_nth(node, index:int):
+    counter = 0
     while node:
-        if node.index == index:
+        if counter == index:
             return node.data
         node = node.next
+        counter += 1
+    raise Exception("index out of range")
 
-print(get_nth(Node(42,Node(13,Node(666))), 1))#.data === 1)
+head = Node(42, Node(13, Node(666)))
+print(get_nth(head, 1))#.data === 1)
