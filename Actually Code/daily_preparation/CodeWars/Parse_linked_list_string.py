@@ -30,14 +30,13 @@ class Node:
 
 
 def linked_list_from_string(string:str):
-    list_string = string.split()
-    if list_string[0] == "None":
+    if string == "None":
         return None
-    elif len(list_string) == 1:
+    list_string = string.split()
+    if len(list_string) == 1:
         return Node(string,None)
-    for element in list_string:
-        if element == "->":
-            pass
+    list_string = [element for element in list_string if not element == "->" ]
 
 head = Node(0, Node(1,Node(4,Node(9,Node(16)))))
+print(linked_list_from_string("0"))
 print(linked_list_from_string("0 -> 10 -> 20 -> 30 -> None"))
