@@ -19,7 +19,37 @@ class Node(object):
         self.next = None
     
 def length(node):
-    # Your code goes here.
+    pass
   
 def count(node, data):
-    # Your code goes here.
+    pass
+
+# node_list = Node(1)
+# node_list.next = Node(2)
+# node_list.next.next = Node(3)
+# node_list.next.next.next = None
+node_list = None
+for i in range(3, 0, -1):
+    node = Node(i)
+    node.next = node_list
+    node_list = node
+
+node = Node(1)
+
+# node_list_r = Node(1)
+# node_list_r.next = Node(1)
+# node_list_r.next.next = Node(1)
+# node_list_r.next.next.next = Node(1)
+# node_list_r.next.next.next.next = Node(2)
+# node_list_r.next.next.next.next.next = Node(2)
+# node_list_r.next.next.next.next.next.next = Node(2)
+# node_list_r.next.next.next.next.next.next.next = Node(2)
+# node_list_r.next.next.next.next.next.next.next.next = Node(3)
+# node_list_r.next.next.next.next.next.next.next.next.next = Node(3)
+
+node_list_r = None
+for i in range(3, 0, -1):
+    for j in range(4-i):
+        node = Node(i)
+        node.next = node_list_r
+        node_list_r = node
