@@ -19,7 +19,11 @@ class Node(object):
         self.next = None
     
 def length(node):
-    pass
+    length_counter = 0
+    while node:
+        length_counter += 1
+        node = node.next
+    return length_counter
   
 def count(node, data):
     counter = 0
@@ -36,8 +40,6 @@ for i in range(3, 0, -1):
     node.next = node_list
     node_list = node
 
-node = Node(1)
-
 node_list_r = None
 for i in [3, 2, 1]:
     if i == 3:
@@ -51,8 +53,10 @@ for i in [3, 2, 1]:
             node.next = node_list_r
             node_list_r = node
 
+node = None
+
 print(length(node))
-print(count(node,1))
+print(count(node,2))
 print(length(node_list))
 print(count(node_list,1))
 print(length(node_list_r))
