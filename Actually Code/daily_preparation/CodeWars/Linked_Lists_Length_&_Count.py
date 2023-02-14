@@ -24,6 +24,7 @@ def length(node):
 def count(node, data):
     pass
 
+
 # node_list = Node(1)
 # node_list.next = Node(2)
 # node_list.next.next = Node(3)
@@ -48,8 +49,22 @@ node = Node(1)
 # node_list_r.next.next.next.next.next.next.next.next.next = Node(3)
 
 node_list_r = None
-for i in range(3, 0, -1):
-    for j in range(4-i):
-        node = Node(i)
-        node.next = node_list_r
-        node_list_r = node
+for i in [3, 2, 1]:
+    if i == 3:
+        for j in range(2):
+            node = Node(i)
+            node.next = node_list_r
+            node_list_r = node
+    else:
+        for j in range(4):
+            node = Node(i)
+            node.next = node_list_r
+            node_list_r = node
+
+while node_list:
+    print(node_list.data)
+    node_list = node_list.next
+print("------------------")
+while node_list_r:
+    print(node_list_r.data)
+    node_list_r = node_list_r.next
