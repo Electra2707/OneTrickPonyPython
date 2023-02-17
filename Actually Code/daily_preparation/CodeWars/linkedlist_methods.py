@@ -90,17 +90,17 @@ def loop_size(node):
 
 
 def mergeTwoLists(l1, l2):
-    dummy = cur = Node(0)
+    head = current = Node(0)
     while l1 and l2:
         if l1.data < l2.data:
-            cur.next = l1
+            current.next = l1
             l1 = l1.next
         else:
-            cur.next = l2
+            current.next = l2
             l2 = l2.next
-        cur = cur.next
-    cur.next = l1 or l2
-    return dummy.next
+        current = current.next
+    current.next = l1 or l2
+    return head.next
 
 
 if __name__ == "__main__":
