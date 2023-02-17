@@ -54,3 +54,21 @@ def build_one_two_three():
     return linked_list
 
 
+default = push(None, 1)
+one_two_tree = build_one_two_three()
+print(default.data)
+print(one_two_tree.data)
+one_two_tree = one_two_tree.next.next
+print(default.data)
+print(one_two_tree.data)
+# create and print a linked list with nodes 5 -> 4 -> 3 -> None
+head = None
+head = push(head, 3)
+head = push(head, 4)
+head = push(head, 5)
+current = head
+while current:
+    print(current.data, end=' -> ')
+    current = current.next
+else:
+    print('None')
