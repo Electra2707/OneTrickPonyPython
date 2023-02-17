@@ -19,3 +19,22 @@ The buildOneTwoThree function should create and return a
 linked list with three nodes: 1 -> 2 -> 3 -> null
 """
 
+
+# class Node(object):
+#     def __init__(self, data):
+#         self.data = data
+#         self.next = None
+
+
+# def push(head, data):
+#     new_node = Node(data)
+#     new_node.next = head
+#     return new_node
+
+
+# def build_one_two_three():
+#     linked_list = None
+#     linked_list = push(linked_list, 3)
+#     linked_list = push(linked_list, 2)
+#     linked_list = push(linked_list, 1)
+#     return linked_list
