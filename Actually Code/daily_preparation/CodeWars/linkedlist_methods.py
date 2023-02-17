@@ -8,14 +8,14 @@ class Node(object):
         self.next = next
 
 
-def push(head, data):
-    new_node = Node(data, head)
-    return new_node
-
-
 def build_one_two_three():
     linked_list = Node(1, Node(2, Node(3)))
     return linked_list
+
+
+def push(head, data):
+    new_node = Node(data, head)
+    return new_node
 
 
 def length(node):
@@ -33,6 +33,36 @@ def count(node, data):
             counter += 1
         node = node.next
     return counter
+
+
+def node_to_list(head):
+    result = []
+    while head:
+        result.append(head.data)
+        head = head.next
+    return result
+
+
+def node_to_string(node):
+    result = []
+    while node:
+        result.append(str(node.data))
+        node = node.next
+    result.append("None")
+    return " -> ".join(result)
+
+
+def string_to_node(string: str):
+    if string == "None":
+        return None
+    try:
+        elements = list(map(int, string.split(" -> ")[:-1]))
+    except ValueError:
+        elements = list(string.split(" -> ")[:-1])
+    head = None
+    for i in reversed(range(len(elements))):
+        head = Node(elements[i], head)
+    return head
 
 
 def get_nth(node, index: int):
@@ -59,23 +89,18 @@ def loop_size(node):
     return count
 
 
-def stringify(node):
-    result = []
-    while node:
-        result.append(str(node.data))
-        node = node.next
-    result.append("None")
-    return " -> ".join(result)
-
-
-def linked_list_from_string(string: str):
-    if string == "None":
-        return None
-    elements = list(map(int, string.split(" -> ")[:-1]))
-    head = None
-    for i in reversed(range(len(elements))):
-        head = Node(elements[i], head)
-    return head
+def mergeTwoLists(l1, l2):
+    dummy = cur = Node(0)
+    while l1 and l2:
+        if l1.data < l2.data:
+            cur.next = l1
+            l1 = l1.next
+        else:
+            cur.next = l2
+            l2 = l2.next
+        cur = cur.next
+    cur.next = l1 or l2
+    return dummy.next
 
 
 if __name__ == "__main__":
