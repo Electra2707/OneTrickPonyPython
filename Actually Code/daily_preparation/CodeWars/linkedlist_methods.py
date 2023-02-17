@@ -45,5 +45,38 @@ def get_nth(node, index: int):
     raise Exception("index out of range")
 
 
+def loop_size(node):
+    tortoise = node.next
+    hare = node.next.next
+    while tortoise != hare:
+        tortoise = tortoise.next
+        hare = hare.next.next
+    count = 1
+    hare = hare.next
+    while tortoise != hare:
+        hare = hare.next
+        count += 1
+    return count
+
+
+def stringify(node):
+    result = []
+    while node:
+        result.append(str(node.data))
+        node = node.next
+    result.append("None")
+    return " -> ".join(result)
+
+
+def linked_list_from_string(string: str):
+    if string == "None":
+        return None
+    elements = list(map(int, string.split(" -> ")[:-1]))
+    head = None
+    for i in reversed(range(len(elements))):
+        head = Node(elements[i], head)
+    return head
+
+
 if __name__ == "__main__":
     print("Hello")
