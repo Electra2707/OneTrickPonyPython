@@ -49,6 +49,13 @@ def node_to_list(head):
     return result
 
 def list_to_node(lst:list):
+    if not lst:
+        return None
+    lst = reversed(lst)
+    new_linked = Node(lst[0])
+    while lst:
+        lst=lst.pop()
+        
 
 
 
