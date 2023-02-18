@@ -36,17 +36,19 @@ def node_to_string(node):
 
 
 def insert_nth(linked_list, index, data):
-    head = current = linked_list
+    if index == 0:
+        return Node(data,linked_list)
+    current = linked_list
     counter = 0
     while current:
-        if counter == index:
+        if counter == index-1:
             current.next = Node(data,current.next)
-            return head
+            return linked_list
         current = current.next
         counter += 1
     raise Exception("index out of range")
     # Your code goes here.
     # Return the head of the list.
 
-testing = insert_nth(Node(1,Node(2)),0,4)
+testing = insert_nth(Node(1,Node(2)),3,4)
 print(node_to_string(testing))
