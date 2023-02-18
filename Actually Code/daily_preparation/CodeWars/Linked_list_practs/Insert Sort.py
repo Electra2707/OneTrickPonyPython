@@ -48,17 +48,19 @@ def node_to_list(head):
         head = head.next
     return result
 
-def list_to_node(lst:list):
+
+def list_to_node(lst: list):
     if not lst:
         return None
-    lst = reversed(lst)
-    new_linked = Node(lst[0])
-    while lst:
-        lst=lst.pop()
-        
+    head = Node(lst[0])
+    current = head
+    for element in lst[1:]:
+        current.next = Node(element)
+        current = current.next
+    return head
 
 
-
-testing = insert_sort(build_one_two_three())
+testing = list_to_node([1, 2, 3, 4, 6, 7])
 print(node_to_list(testing))
-
+# testing = insert_sort(build_one_two_three())
+# print(node_to_list(testing))
