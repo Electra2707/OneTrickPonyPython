@@ -21,22 +21,7 @@ class Node(object):
 
 def insert_sort(head):
     current = reversed(node_to_list(head))
-    return current
-
-
-def sorted_insert(head, data):
-    current = head
-    if not current or data < current.data:
-        return Node(data, head)
-    while current.next and current.next.data < data:
-        current = current.next
-    current.next = Node(data, current.next)
-    return head
-
-
-def build_one_two_three():
-    linked_list = Node(1, Node(2, Node(3)))
-    return linked_list
+    return list_to_node(current)
 
 
 def node_to_list(head):
@@ -60,7 +45,7 @@ def list_to_node(lst: list):
     return head
 
 
-testing = list_to_node([1, 2, 3, 4, 6, 7])
+testing = insert_sort(list_to_node([1, 2, 3, 4, 6, 7]))
 print(node_to_list(testing))
 # testing = insert_sort(build_one_two_three())
 # print(node_to_list(testing))
