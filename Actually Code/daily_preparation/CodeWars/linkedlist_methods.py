@@ -31,6 +31,21 @@ class Node(object):
 #     source = source.next
 #     return Context(source, dest)
 
+
+def append(listA, listB):
+    if not listA and not listB:
+        return None
+    elif not listB:
+        return listA
+    elif not listA:
+        return listB
+    head = listA
+    while listA.next:
+        listA = listA.next
+    listA.next = listB
+    return head
+
+
 def length(node):
     length_counter = 0
     while node:
