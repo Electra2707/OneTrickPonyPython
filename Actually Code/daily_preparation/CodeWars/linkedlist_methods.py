@@ -35,6 +35,17 @@ def count(node, data):
     return counter
 
 
+def list_to_node(lst: list):
+    if not lst:
+        return None
+    head = Node(lst[0])
+    current = head
+    for element in lst[1:]:
+        current.next = Node(element)
+        current = current.next
+    return head
+
+
 def node_to_list(head):
     if head is None:
         return []
@@ -110,6 +121,20 @@ def sorted_insert(head, data):
         current = current.next
     current.next = Node(data, current.next)
     return head
+
+
+def insert_sort(head):
+    sorted_list = sorted(node_to_list(head))
+    return list_to_node(sorted_list)
+    # # efficient version
+    # if not head or not head.next:
+    #     return head
+    # new_head = Node(0)
+    # current = head
+    # while current:
+    #     new_head = sorted_insert(new_head, current.data)
+    #     current = current.next
+    # return new_head.next
 
 
 def mergeTwoLists(l1, l2):

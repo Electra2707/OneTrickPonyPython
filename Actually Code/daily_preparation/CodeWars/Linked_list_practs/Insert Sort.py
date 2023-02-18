@@ -22,6 +22,15 @@ class Node(object):
 def insert_sort(head):
     sorted_list = sorted(node_to_list(head))
     return list_to_node(sorted_list)
+    # # efficient version
+    # if not head or not head.next:
+    #     return head
+    # new_head = Node(0)
+    # current = head
+    # while current:
+    #     new_head = sorted_insert(new_head, current.data)
+    #     current = current.next
+    # return new_head.next
 
 
 def sorted_insert(head, data):
