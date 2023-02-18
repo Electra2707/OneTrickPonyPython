@@ -18,10 +18,12 @@ class Node(object):
         self.data = data
         self.next = next
 
+
 def insert_sort(head):
     # Your code goes here.
     # Remember to return the head of the list.
     pass
+
 
 def sorted_insert(head, data):
     current = head
@@ -46,6 +48,19 @@ def node_to_list(head):
         result.append(head.data)
         head = head.next
     return result
+
+
+def string_to_node(string: str):
+    if string == "None":
+        return None
+    try:
+        elements = list(map(int, string.split(" -> ")[:-1]))
+    except ValueError:
+        elements = list(string.split(" -> ")[:-1])
+    head = None
+    for i in reversed(range(len(elements))):
+        head = Node(elements[i], head)
+    return head
 
 
 testing = sorted_insert(build_one_two_three(), 0)
