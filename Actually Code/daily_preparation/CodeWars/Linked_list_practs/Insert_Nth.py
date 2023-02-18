@@ -26,18 +26,27 @@ class Node(object):
         self.data = data
         self.next = next
 
+def node_to_string(node):
+    result = []
+    while node:
+        result.append(str(node.data))
+        node = node.next
+    result.append("None")
+    return " -> ".join(result)
+
 
 def insert_nth(linked_list, index, data):
     head = current = linked_list
     counter = 0
     while current:
         if counter == index:
-            rest = counter
-            counter = data
-            counter.next = rest
+            current.next = Node(data,current.next)
             return head
         current = current.next
         counter += 1
     raise Exception("index out of range")
     # Your code goes here.
     # Return the head of the list.
+
+testing = insert_nth(Node(1,Node(2)),0,4)
+print(node_to_string(testing))
