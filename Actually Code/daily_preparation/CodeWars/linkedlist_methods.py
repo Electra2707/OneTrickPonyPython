@@ -75,6 +75,20 @@ def get_nth(node, index: int):
     raise Exception("index out of range")
 
 
+def insert_nth(linked_list, index, data):
+    if index == 0:
+        return Node(data, linked_list)
+    current = linked_list
+    counter = 0
+    while current:
+        if counter == index-1:
+            current.next = Node(data, current.next)
+            return linked_list
+        current = current.next
+        counter += 1
+    raise Exception("index out of range")
+
+
 def loop_size(node):
     tortoise = node.next
     hare = node.next.next
