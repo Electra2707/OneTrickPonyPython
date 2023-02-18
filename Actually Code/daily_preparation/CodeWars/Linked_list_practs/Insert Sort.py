@@ -1,4 +1,4 @@
-"""Linked Lists All Methods
+"""Insert Sort
 Write a SortedInsert() function which inserts a node 
 into the correct location of a pre-sorted linked list 
 which is sorted in ascending order. SortedInsert takes 
@@ -18,14 +18,18 @@ class Node(object):
         self.data = data
         self.next = next
 
+def insert_sort(head):
+    # Your code goes here.
+    # Remember to return the head of the list.
+    pass
 
 def sorted_insert(head, data):
     current = head
     if not current or data < current.data:
-        return Node(data,head)
+        return Node(data, head)
     while current.next and current.next.data < data:
         current = current.next
-    current.next = Node(data,current.next)
+    current.next = Node(data, current.next)
     return head
 
 
@@ -48,4 +52,3 @@ testing = sorted_insert(build_one_two_three(), 0)
 print(node_to_list(testing))
 testing = sorted_insert(build_one_two_three(), 4)
 print(node_to_list(testing))
-
