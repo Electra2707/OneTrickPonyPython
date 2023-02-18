@@ -1,6 +1,6 @@
-def its_sequential(number: int):
-    string_number = str(number)
-    return number % 10 == number and number //10 != 0
-
-
-print(its_sequential(101))
+text = """Nunca cambiaré
+Quizá la culpa es mía, por no seguir la norma
+Ya es demasiado tarde, para cambiar ahora
+Me mantendré, firme en mis convicciones
+Reforzare mis posiciones"""
+print(text.upper())
