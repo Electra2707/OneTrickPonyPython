@@ -103,6 +103,16 @@ def loop_size(node):
     return count
 
 
+def sorted_insert(head, data):
+    current = head
+    if not current or data < current.data:
+        return Node(data, head)
+    while current.next and current.next.data < data:
+        current = current.next
+    current.next = Node(data, current.next)
+    return head
+
+
 def mergeTwoLists(l1, l2):
     head = current = Node(0)
     while l1 and l2:
