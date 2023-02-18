@@ -54,13 +54,10 @@ def node_to_string(node):
     return " -> ".join(result)
 
 
-def string_to_node(string: str):
+def stringInt_to_node(string: str):
     if string == "None":
         return None
-    try:
-        elements = list(map(int, string.split(" -> ")[:-1]))
-    except ValueError:
-        elements = list(string.split(" -> ")[:-1])
+    elements = list(map(int, string.split(" -> ")[:-1]))
     head = None
     for i in reversed(range(len(elements))):
         head = Node(elements[i], head)
