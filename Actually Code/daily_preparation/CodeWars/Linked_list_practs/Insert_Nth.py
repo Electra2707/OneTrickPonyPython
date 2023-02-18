@@ -27,7 +27,17 @@ class Node(object):
         self.next = next
 
 
-def insert_nth(head, index, data):
-    pass
+def insert_nth(linked_list, index, data):
+    head = current = linked_list
+    counter = 0
+    while current:
+        if counter == index:
+            rest = counter
+            counter = data
+            counter.next = rest
+            return head
+        current = current.next
+        counter += 1
+    raise Exception("index out of range")
     # Your code goes here.
     # Return the head of the list.
