@@ -36,6 +36,8 @@ def count(node, data):
 
 
 def node_to_list(head):
+    if head is None:
+        return []
     result = []
     while head:
         result.append(head.data)

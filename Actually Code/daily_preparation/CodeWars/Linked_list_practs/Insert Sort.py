@@ -1,15 +1,15 @@
 """Insert Sort
-Write a SortedInsert() function which inserts a node 
-into the correct location of a pre-sorted linked list 
-which is sorted in ascending order. SortedInsert takes 
-the head of a linked list and data used to create a
-node as arguments. SortedInsert() should also return
-the head of the list.
+Write an InsertSort() function which rearranges nodes
+in a linked list so they are sorted in increasing order.
+You can use the SortedInsert() function that you created 
+in the "Linked Lists - Sorted Insert" kata below. The InsertSort()
 
-sortedInsert(1 -> 2 -> 3 -> null, 4) === 1 -> 2 -> 3 -> 4 -> null)
-sortedInsert(1 -> 7 -> 8 -> null, 5) === 1 -> 5 -> 7 -> 8 -> null)
-sortedInsert(3 -> 5 -> 9 -> null, 7) === 3 -> 5 -> 7 -> 9 -> null)
-
+var list = 4 -> 3 -> 1 -> 2 -> null
+insertSort(list) === 1 -> 2 -> 3 -> 4 -> null
+If the passed in head node is null or a single node,
+return null or the single node, respectively. You can 
+assume that the head node will always be either null, 
+a single node, or a linked list consisting of multiple nodes.
 """
 
 
