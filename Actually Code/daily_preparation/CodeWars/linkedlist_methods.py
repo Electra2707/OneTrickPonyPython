@@ -13,10 +13,22 @@ def build_one_two_three():
     return linked_list
 
 
-def push(head, data):
-    new_node = Node(data, head)
-    return new_node
+# def push(head, data):
+#     new_node = Node(data, head)
+#     return new_node
 
+# class Context(object):
+#     def __init__(self, source, dest):
+#         self.source = source
+#         self.dest = dest
+
+
+# def move_node(source, dest):
+#     if not source:
+#         raise Exception("Empty linked list")
+#     dest = Node(source.data,dest)
+#     source = source.next
+#     return Context(source, dest)
 
 def length(node):
     length_counter = 0
