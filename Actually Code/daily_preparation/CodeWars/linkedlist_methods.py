@@ -103,6 +103,23 @@ def string_to_node(string: str):
     return head
 
 
+def remove_duplicates(head):
+    current = set(node_to_list(head))
+    return list_to_node(sorted(list(current)))
+    # # efficient version
+    # if head is None:
+    #     return None
+
+    # current = head
+    # while current.next is not None:
+    #     if current.data == current.next.data:
+    #         current.next = current.next.next
+    #     else:
+    #         current = current.next
+
+    # return head
+
+
 def get_nth(node, index: int):
     counter = 0
     while node:
