@@ -8,14 +8,15 @@ class Node(object):
         self.next = next
 
 
-def build_one_two_three():
-    linked_list = Node(1, Node(2, Node(3)))
-    return linked_list
+# def build_one_two_three():
+#     linked_list = Node(1, Node(2, Node(3)))
+#     return linked_list
 
 
 # def push(head, data):
 #     new_node = Node(data, head)
 #     return new_node
+
 
 # class Context(object):
 #     def __init__(self, source, dest):
@@ -77,7 +78,7 @@ def node_to_string(node):
     return " -> ".join(result)
 
 
-def stringInt_to_node(string: str):
+def string_to_node(string: str):
     if string == "None":
         return None
     elements = list(map(int, string.split(" -> ")[:-1]))
