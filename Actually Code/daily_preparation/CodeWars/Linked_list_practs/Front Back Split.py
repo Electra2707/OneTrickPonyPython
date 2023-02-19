@@ -34,8 +34,8 @@ def front_back_split(source, front, back):
         front = source
         front.next = None
         back = source.next
-        return front,back
-    elif source_length <=1:
+        return front, back
+    elif source_length <= 1:
         raise Exception("source too short")
     source_length = source_length // 2
     counter = 0
@@ -66,3 +66,41 @@ def slicer(node, data):
         new_node.next = node
         node = node.next
         new_node = new_node.next
+
+# The class Node implementation it's stupid
+
+# def front_back_split(source, front, back):
+#     # Check for null arguments
+#     if not source or not front or not back:
+#         raise ValueError("Arguments cannot be null")
+    
+#     # Count the number of nodes in the source list
+#     count = 0
+#     node = source
+#     while node:
+#         count += 1
+#         node = node.next
+    
+#     # Check for lists of length < 2
+#     if count < 2:
+#         raise ValueError("Source list must have at least 2 nodes")
+    
+#     # Calculate the length of the front and back lists
+#     front_len = (count + 1) // 2
+#     back_len = count - front_len
+    
+#     # Split the source list into the front and back lists
+#     node = source
+#     for i in range(front_len):
+#         front.data = node.data
+#         node = node.next
+#         if i < front_len - 1:
+#             front.next = Node()
+#             front = front.next
+    
+#     for i in range(back_len):
+#         back.data = node.data
+#         node = node.next
+#         if i < back_len - 1:
+#             back.next = Node()
+#             back = back.next
