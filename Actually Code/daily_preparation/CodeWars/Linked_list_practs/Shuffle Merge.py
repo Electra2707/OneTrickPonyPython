@@ -16,10 +16,26 @@ shuffleMerge(first, second) === 3 -> 5 -> 2 -> 6 -> 8 -> 1 -> 9 -> 11 -> null
 If one of the argument lists is null, the returned list 
 should be the other linked list (even if it is also null).
 No errors need to be thrown in ShuffleMerge()."""
+
+
 class Node(object):
     def __init__(self, data, next=None):
         self.data = data
         self.next = next
 
+
 def shuffle_merge(first, second):
-    pass
+    head = current = Node(0)
+    counter = 0
+    while first and second:
+        if counter % 2 == 0:
+            current.next = first
+            first = first.next
+        else:
+            current.next = second
+            second = second.next
+        counter += 1
+        current = current.next
+    current.next = first or second
+    return head
+
