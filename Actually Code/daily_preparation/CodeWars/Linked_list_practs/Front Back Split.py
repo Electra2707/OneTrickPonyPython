@@ -73,22 +73,22 @@ def slicer(node, data):
 #     # Check for null arguments
 #     if not source or not front or not back:
 #         raise ValueError("Arguments cannot be null")
-    
+
 #     # Count the number of nodes in the source list
 #     count = 0
 #     node = source
 #     while node:
 #         count += 1
 #         node = node.next
-    
+
 #     # Check for lists of length < 2
 #     if count < 2:
 #         raise ValueError("Source list must have at least 2 nodes")
-    
+
 #     # Calculate the length of the front and back lists
 #     front_len = (count + 1) // 2
 #     back_len = count - front_len
-    
+
 #     # Split the source list into the front and back lists
 #     node = source
 #     for i in range(front_len):
@@ -97,7 +97,7 @@ def slicer(node, data):
 #         if i < front_len - 1:
 #             front.next = Node()
 #             front = front.next
-    
+
 #     for i in range(back_len):
 #         back.data = node.data
 #         node = node.next

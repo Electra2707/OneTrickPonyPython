@@ -63,6 +63,17 @@ def count(node, data):
     return counter
 
 
+def slicer(node, data):
+    head = new_node = Node(0)
+    while node:
+        if node.data == data:
+            new_node.next = node
+            return head.next
+        new_node.next = node
+        node = node.next
+        new_node = new_node.next
+
+
 def list_to_node(lst: list):
     if not lst:
         return None
@@ -222,6 +233,27 @@ def sorted_merge(l1, l2):
         current = current.next
     current.next = l1 or l2
     return head.next
+
+
+def front_back_split(source, front, back):
+    source_length = length(source)
+    if source_length == 2:
+        front = source
+        front.next = None
+        back = source.next
+        return front, back
+    elif source_length <= 1:
+        raise Exception("source too short")
+    source_length = source_length // 2
+    counter = 0
+    current = source
+    while current:
+        if counter == source_length:
+            front = slicer(source, current.data)
+            back = current.next
+            return front, back
+        current = current.next
+        counter += 1
 
 
 if __name__ == "__main__":
