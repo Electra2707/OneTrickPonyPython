@@ -22,3 +22,28 @@ be the other linked list (even if it is also null). No errors need
 to be thrown in SortedMerge().
 """
 
+
+class Node(object):
+    def __init__(self, data, next=None):
+        self.data = data
+        self.next = next
+
+
+def sorted_merge(l1, l2):
+    if not l1 and not l2:
+        return None
+    elif not l1:
+        return l2
+    elif not l2:
+        return l1
+    head = current = Node(0)
+    while l1 and l2:
+        if l1.data < l2.data:
+            current.next = l1
+            l1 = l1.next
+        else:
+            current.next = l2
+            l2 = l2.next
+        current = current.next
+    current.next = l1 or l2
+    return head.next
