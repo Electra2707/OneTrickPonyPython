@@ -204,7 +204,7 @@ def shuffle_merge(first, second):
     return head.next
 
 
-def merge_sorted(l1, l2):
+def sorted_merge(l1, l2):
     if not l1 and not l2:
         return None
     elif not l1:
