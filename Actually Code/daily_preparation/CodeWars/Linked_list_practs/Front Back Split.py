@@ -19,15 +19,7 @@ back === 11 -> 12 -> 14 -> null
 You should throw an error if any of the arguments to 
 FrontBackSplit are null or if the source list has < 2 nodes.
 
-Hint. Probably the simplest strategy is to compute the 
-length of the list, then use a for loop to hop over the 
-right number of nodes to find the last node of the front
-half, and then cut the list at that point. There is a trick 
-technique that uses two pointers to traverse the list. A "
-slow" pointer advances one nodes at a time, while the "fast"
-pointer goes two nodes at a time. When the fast pointer reaches
-the end, the slow pointer will be about half way. For either strategy,
-care is required to split the list at the right point."""
+"""
 
 
 class Node(object):
@@ -37,4 +29,35 @@ class Node(object):
 
 
 def front_back_split(source, front, back):
-    # Your code goes here.
+    source_length = length(source)
+    if source_length <= 2:
+        raise Exception("source list to short")
+    source_length = source_length // 2
+    counter = 0
+    current = source
+    while current:
+        if counter == source_length:
+            front = slicer(source, current.data)
+            back = current.next
+            return front, back
+        current = current.next
+        counter += 1
+
+
+def length(node):
+    length_counter = 0
+    while node:
+        length_counter += 1
+        node = node.next
+    return length_counter
+
+
+def slicer(node, data):
+    head = new_node = Node(0)
+    while node:
+        if node.data == data:
+            new_node.next = node
+            return head.next
+        new_node.next = node
+        node = node.next
+        new_node = new_node.next
