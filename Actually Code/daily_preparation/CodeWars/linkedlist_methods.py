@@ -182,7 +182,35 @@ def insert_sort(head):
     # return new_head.next
 
 
-def mergeTwoLists(l1, l2):
+def shuffle_merge(first, second):
+    if not first and not second:
+        return None
+    elif not first:
+        return second
+    elif not second:
+        return first
+    head = current = Node(0)
+    counter = 0
+    while first and second:
+        if counter % 2 == 0:
+            current.next = first
+            first = first.next
+        else:
+            current.next = second
+            second = second.next
+        counter += 1
+        current = current.next
+    current.next = first or second
+    return head.next
+
+
+def merge_sorted(l1, l2):
+    if not l1 and not l2:
+        return None
+    elif not l1:
+        return l2
+    elif not l2:
+        return l1
     head = current = Node(0)
     while l1 and l2:
         if l1.data < l2.data:

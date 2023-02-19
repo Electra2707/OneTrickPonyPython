@@ -25,14 +25,14 @@ class Node(object):
 
 
 def shuffle_merge(first, second):
-    head = current = Node(0)
-    counter = 0
     if not first and not second:
         return None
     elif not first:
         return second
     elif not second:
         return first
+    head = current = Node(0)
+    counter = 0
     while first and second:
         if counter % 2 == 0:
             current.next = first
@@ -44,4 +44,3 @@ def shuffle_merge(first, second):
         current = current.next
     current.next = first or second
     return head.next
-
