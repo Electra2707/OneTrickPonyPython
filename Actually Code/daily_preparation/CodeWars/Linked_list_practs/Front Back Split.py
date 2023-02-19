@@ -30,8 +30,13 @@ class Node(object):
 
 def front_back_split(source, front, back):
     source_length = length(source)
-    if source_length <= 2:
-        raise Exception("source list to short")
+    if source_length == 2:
+        front = source
+        front.next = None
+        back = source.next
+        return front,back
+    elif source_length <=1:
+        raise Exception("source too short")
     source_length = source_length // 2
     counter = 0
     current = source
