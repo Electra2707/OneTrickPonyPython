@@ -17,15 +17,48 @@ class Node(object):
 
 
 def sorted_intersect(first, second):
-    New_Node = Node(0)
-    while True:
-        if not first and not second:
-            break
-        if first.data == second.data:
-            New_Node.next = first
-            New_Node = New_Node.next
-            if not first.data == first.next.data:
-                first = first.next
-        if not second.data == second.next.data:
-            second = second.next
-    return New_Node.next
+    new_node = Node(0)
+    pointer_1 = first
+    pointer_2 = second
+    seen = set()
+    check = []
+    counter = 1
+    while pointer_1 and pointer_2:
+        check.append(pointer_1.data)
+        check.append(pointer_2.data)
+        if check[0] == check[1] and check[0] not in seen:
+            new_node.next = Node(check[0])
+            new_node = new_node.next
+            seen.add(check[0])
+        check.clear()
+        if pointer_1.next is None:
+            pointer_1 = pointer_1.next
+            continue
+        elif pointer_2.next is None:
+            pointer_2 = pointer_2.next
+            continue
+        if pointer_1.data == pointer_1.next.data:
+            pointer_1 == pointer_1.next
+            continue
+        elif pointer_2.data == pointer_2.next.data:
+            pointer_2 == pointer_2.next
+            continue
+        if counter % 2 == 0:
+            pointer_1 = pointer_1.next
+        else:
+            pointer_2 = pointer_2.next
+        counter += 1
+    return new_node.next
+
+
+# def sorted_intersect(first, second):
+#     New_Node = Node(0)
+#     while first and second:
+#         if first.data == second.data:
+#             New_Node.next = first
+#             New_Node = New_Node.next
+#             if not first.data == first.next.data:
+#                 first = first.next
+#         if not second.data == second.next.data:
+#             second = second.next
+#     return New_Node.next
