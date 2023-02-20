@@ -17,4 +17,15 @@ class Node(object):
 
 
 def sorted_intersect(first, second):
-    pass
+    New_Node = Node(0)
+    while True:
+        if not first and not second:
+            break
+        if first.data == second.data:
+            New_Node.next = first
+            New_Node = New_Node.next
+            if not first.data == first.next.data:
+                first = first.next
+        if not second.data == second.next.data:
+            second = second.next
+    return New_Node.next
