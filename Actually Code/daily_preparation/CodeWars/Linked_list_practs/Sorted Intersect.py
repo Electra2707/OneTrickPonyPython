@@ -17,38 +17,66 @@ class Node(object):
 
 
 def sorted_intersect(first, second):
-    new_node = Node(0)
-    pointer_1 = first
-    pointer_2 = second
-    seen = set()
-    check = []
-    counter = 1
-    while pointer_1 and pointer_2:
-        check.append(pointer_1.data)
-        check.append(pointer_2.data)
-        if check[0] == check[1] and check[0] not in seen:
-            new_node.next = Node(check[0])
-            new_node = new_node.next
-            seen.add(check[0])
-        check.clear()
-        if pointer_1.next is None:
-            pointer_1 = pointer_1.next
-            continue
-        elif pointer_2.next is None:
-            pointer_2 = pointer_2.next
-            continue
-        if pointer_1.data == pointer_1.next.data:
-            pointer_1 == pointer_1.next
-            continue
-        elif pointer_2.data == pointer_2.next.data:
-            pointer_2 == pointer_2.next
-            continue
-        if counter % 2 == 0:
-            pointer_1 = pointer_1.next
-        else:
-            pointer_2 = pointer_2.next
-        counter += 1
-    return new_node.next
+    first = node_to_set(first)
+    second = node_to_set(second)
+    third = first & second
+    return list_to_node(sorted(list(third)))
+
+
+def node_to_set(head):
+    if not head:
+        return set()
+    new_set = set()
+    while head:
+        new_set.add(head.data)
+        head = head.next
+    return new_set
+
+
+def list_to_node(lst: list):
+    if not lst:
+        return None
+    head = Node(lst[0])
+    current = head
+    for element in lst[1:]:
+        current.next = Node(element)
+        current = current.next
+    return head
+
+
+# def sorted_intersect(first, second):
+#     new_node = Node(0)
+#     pointer_1 = first
+#     pointer_2 = second
+#     seen = set()
+#     check = []
+#     counter = 1
+#     while pointer_1 and pointer_2:
+#         check.append(pointer_1.data)
+#         check.append(pointer_2.data)
+#         if check[0] == check[1] and check[0] not in seen:
+#             new_node.next = Node(check[0])
+#             new_node = new_node.next
+#             seen.add(check[0])
+#         check.clear()
+#         if pointer_1.next is None:
+#             pointer_1 = pointer_1.next
+#             continue
+#         elif pointer_2.next is None:
+#             pointer_2 = pointer_2.next
+#             continue
+#         if pointer_1.data == pointer_1.next.data:
+#             pointer_1 == pointer_1.next
+#             continue
+#         elif pointer_2.data == pointer_2.next.data:
+#             pointer_2 == pointer_2.next
+#             continue
+#         if counter % 2 == 0:
+#             pointer_1 = pointer_1.next
+#         else:
+#             pointer_2 = pointer_2.next
+#         counter += 1
+#     return new_node.next
 
 
 # def sorted_intersect(first, second):
