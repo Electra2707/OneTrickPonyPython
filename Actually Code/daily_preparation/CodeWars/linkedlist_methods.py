@@ -155,6 +155,11 @@ def insert_nth(linked_list, index, data):
     raise Exception("index out of range")
 
 
+def merge_sort(list):
+    list = node_to_list(list)
+    return list_to_node(sorted(list))
+
+
 def loop_size(node):
     tortoise = node.next
     hare = node.next.next
