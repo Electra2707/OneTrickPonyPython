@@ -45,48 +45,26 @@ def list_to_node(lst: list):
 
 
 # def sorted_intersect(first, second):
-#     new_node = Node(0)
-#     pointer_1 = first
-#     pointer_2 = second
-#     seen = set()
-#     check = []
-#     counter = 1
-#     while pointer_1 and pointer_2:
-#         check.append(pointer_1.data)
-#         check.append(pointer_2.data)
-#         if check[0] == check[1] and check[0] not in seen:
-#             new_node.next = Node(check[0])
-#             new_node = new_node.next
-#             seen.add(check[0])
-#         check.clear()
-#         if pointer_1.next is None:
-#             pointer_1 = pointer_1.next
-#             continue
-#         elif pointer_2.next is None:
-#             pointer_2 = pointer_2.next
-#             continue
-#         if pointer_1.data == pointer_1.next.data:
-#             pointer_1 == pointer_1.next
-#             continue
-#         elif pointer_2.data == pointer_2.next.data:
-#             pointer_2 == pointer_2.next
-#             continue
-#         if counter % 2 == 0:
-#             pointer_1 = pointer_1.next
+#     intersection = []
+#     current_first = first
+#     current_second = second
+
+#     while current_first is not None and current_second is not None:
+#         if current_first.data == current_second.data:
+#             if not intersection or current_first.data != intersection[-1]:
+#                 intersection.append(current_first.data)
+#             current_first = current_first.next
+#             current_second = current_second.next
+#         elif current_first.data < current_second.data:
+#             current_first = current_first.next
 #         else:
-#             pointer_2 = pointer_2.next
-#         counter += 1
-#     return new_node.next
+#             current_second = current_second.next
+
+#     return create_linked_list(intersection)
 
 
-# def sorted_intersect(first, second):
-#     New_Node = Node(0)
-#     while first and second:
-#         if first.data == second.data:
-#             New_Node.next = first
-#             New_Node = New_Node.next
-#             if not first.data == first.next.data:
-#                 first = first.next
-#         if not second.data == second.next.data:
-#             second = second.next
-#     return New_Node.next
+# def create_linked_list(lst):
+#     head = None
+#     for value in reversed(lst):
+#         head = Node(value, head)
+#     return head

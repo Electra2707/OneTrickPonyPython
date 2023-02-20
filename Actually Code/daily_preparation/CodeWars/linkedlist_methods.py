@@ -114,9 +114,18 @@ def string_to_node(string: str):
     return head
 
 
+def node_to_set(head):
+    if not head:
+        return set()
+    new_set = set()
+    while head:
+        new_set.add(head.data)
+        head = head.next
+    return new_set
+
+
 def remove_duplicates(head):
-    current = set(node_to_list(head))
-    return list_to_node(sorted(list(current)))
+    return list_to_node(sorted(list(node_to_set(head))))
     # # efficient version
     # if head is None:
     #     return None
@@ -196,6 +205,13 @@ def insert_sort(head):
     #     new_head = sorted_insert(new_head, current.data)
     #     current = current.next
     # return new_head.next
+
+
+def sorted_intersect(first, second):
+    first = node_to_set(first)
+    second = node_to_set(second)
+    third = first & second
+    return list_to_node(sorted(list(third)))
 
 
 def shuffle_merge(first, second):
