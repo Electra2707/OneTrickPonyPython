@@ -14,4 +14,26 @@ class Node(object):
 
 
 def merge_sort(list):
-    # Your code goes here.
+    list = node_to_list(list)
+    return list_to_node(sorted(list))
+
+
+def node_to_list(head):
+    if head is None:
+        return []
+    result = []
+    while head:
+        result.append(head.data)
+        head = head.next
+    return result
+
+
+def list_to_node(lst: list):
+    if not lst:
+        return None
+    head = Node(lst[0])
+    current = head
+    for element in lst[1:]:
+        current.next = Node(element)
+        current = current.next
+    return head
