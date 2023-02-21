@@ -86,6 +86,8 @@ def reverse(head):
     
     head.data, head.next = prev.data, prev.next
     return head
+# def reverse(head, tail=None):
+#     return reverse(head.next, Node(head.data, tail)) if head else tail
 
 
 def list_to_node(lst: list):
