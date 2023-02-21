@@ -84,3 +84,41 @@ def reverse(head):
 
 # testing = string_to_node("3 -> 1 -> None")
 # print(node_to_string(reverse(testing)))
+
+#  2 -> 1 -> 3 -> 6 -> 5 -> null
+#  curr = 2 -> 1 -> 3 -> 6 -> 5 -> null 
+#  prev = None 
+#  new_node = None
+
+#  First iteration: 
+#      new_node = Node(2) 
+#      new_node.next = None
+#      prev = 2 -> null 
+#      curr = 1 -> 3 -> 6 -> 5 -> null
+
+# Second iteration: 
+#     new_node = Node(1) 
+#     new_node.next = 2 -> null 
+#     prev = 1 -> 2 -> null 
+#     curr = 3 -> 6 -> 5 -> null
+
+# Third iteration: 
+#     new_node = Node(3) 
+#     new_node.next = 1 -> 2-> null 
+#     prev = 3->1->2->null 
+#     curr=6->5->null
+
+# Fourth iteration: 
+#     new_node=Node(6) 
+#     new_node.next=3->1->2->null 
+#     prev=6->3->1->2->null 
+#     curr=5->null
+
+# Fifth iteration: 
+#     new_node=Node(5) 
+#     new_node.next=6->3->1->2-null 
+#     prev=5-6-3-1-2-null 
+#     curr=null
+
+# After exiting loop: 
+#     head.data=head.next=prev.data=prev.next (swap operation) head=5-6-3-1-2-null (result)
