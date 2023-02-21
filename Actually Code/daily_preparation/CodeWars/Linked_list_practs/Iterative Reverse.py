@@ -8,3 +8,16 @@ list === 5 -> 6 -> 3 -> 1 -> 2 -> null
 """
 
 
+class Node(object):
+    def __init__(self, data, next=None):
+        self.data = data
+        self.next = next
+
+
+def reverse(head):
+    new_node = Node(0)
+    while head:
+        new_node = head
+        new_node = new_node.next
+        head = head.next
+        return new_node
