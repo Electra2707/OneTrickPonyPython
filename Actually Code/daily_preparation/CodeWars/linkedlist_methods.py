@@ -75,14 +75,16 @@ def slicer(node, data):
 
 
 def reverse(head):
-    previous = None
-    current = head
-    while current:
-        next = current.next  # save next node
-        current.next = previous  # reverse link
-        previous = current  # update previous node
-        current = next  # update current node
-    head = previous  # update head pointer
+    if head is None: return None
+    curr = head
+    prev = None
+    while curr:
+        new_node = Node(curr.data)
+        new_node.next = prev
+        prev = new_node
+        curr = curr.next
+    
+    head.data, head.next = prev.data, prev.next
     return head
 
 
