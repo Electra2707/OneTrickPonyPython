@@ -74,6 +74,18 @@ def slicer(node, data):
         new_node = new_node.next
 
 
+def reverse(head):
+    previous = None
+    current = head
+    while current:
+        next = current.next  # save next node
+        current.next = previous  # reverse link
+        previous = current  # update previous node
+        current = next  # update current node
+    head = previous  # update head pointer
+    return head
+
+
 def list_to_node(lst: list):
     if not lst:
         return None

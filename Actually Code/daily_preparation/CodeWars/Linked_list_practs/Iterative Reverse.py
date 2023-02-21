@@ -15,9 +15,12 @@ class Node(object):
 
 
 def reverse(head):
-    new_node = Node(0)
-    while head:
-        new_node = head
-        new_node = new_node.next
-        head = head.next
-        return new_node
+    previous = None
+    current = head
+    while current:
+        next = current.next  # save next node
+        current.next = previous  # reverse link
+        previous = current  # update previous node
+        current = next  # update current node
+    head = previous  # update head pointer
+    return head
