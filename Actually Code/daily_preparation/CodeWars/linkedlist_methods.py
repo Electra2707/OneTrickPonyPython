@@ -316,7 +316,7 @@ def alternating_split(head):
     # Terminate each sublist with None
     first_tail.next = None
     second_tail.next = None
-    return Context(first_dummy.next, second_dummy.next)
+    return first_dummy.next, second_dummy.next
 
 
 if __name__ == "__main__":
