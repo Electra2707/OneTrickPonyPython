@@ -75,7 +75,8 @@ def slicer(node, data):
 
 
 def reverse(head):
-    if head is None: return None
+    if head is None:
+        return None
     curr = head
     prev = None
     while curr:
@@ -83,7 +84,7 @@ def reverse(head):
         new_node.next = prev
         prev = new_node
         curr = curr.next
-    
+
     head.data, head.next = prev.data, prev.next
     return head
 # def reverse(head, tail=None):
@@ -291,6 +292,31 @@ def front_back_split(source, front, back):
             return front, back
         current = current.next
         counter += 1
+
+
+def alternating_split(head):
+    if not head:
+        raise Exception("Empty head")
+    first_dummy = Node(0)
+    second_dummy = Node(0)
+    first_tail = first_dummy
+    second_tail = second_dummy
+    counter = 0
+    while head:
+        if counter % 2 == 0:
+            first_tail.next = head
+            first_tail = head
+        else:
+            second_tail.next = head
+            second_tail = head
+        counter += 1
+        head = head.next
+    if counter <= 1:
+        raise Exception("Linked List too short")
+    # Terminate each sublist with None
+    first_tail.next = None
+    second_tail.next = None
+    return Context(first_dummy.next, second_dummy.next)
 
 
 if __name__ == "__main__":

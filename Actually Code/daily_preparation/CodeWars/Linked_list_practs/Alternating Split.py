@@ -67,6 +67,7 @@ def node_to_string(node):
 print(node_to_string(testing.first))  # expected 1 -> 3 -> 5
 print(node_to_string(testing.second))  # expected 2 -> 4 -> 6
 
+
 # def alternating_split(head):
 #     if not head:
 #         raise Exception("Empty head")
@@ -82,6 +83,6 @@ print(node_to_string(testing.second))  # expected 2 -> 4 -> 6
 #             second = second.next
 #         counter += 1
 #         head = head.next
-#     if counter <=1:
+#     if counter <= 1:
 #         raise Exception("Linked List too short")
 #     return Context(first.next, second.next)
