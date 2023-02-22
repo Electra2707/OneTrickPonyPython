@@ -34,28 +34,12 @@ class Solution:
             return nums.index(target)
         elif target < nums[0]:
             return 0
-
-        if target > nums[-1]:
-            num = nums[-1]
-            fake_index = nums.index(num)
-            while target > num:
-                num += 1
-                fake_index += 1
-        else:
-            fake_index = 0
-            prev = nums[0]
-            for i, number in enumerate(nums):
-                fake_index = i
-                prev = number
-                if number - 1 == target:
-                    return fake_index
-                elif number > target:
-                    break
-            while prev != target:
-                prev += 1
-                fake_index += 1
-        return fake_index 
+        elif target > nums[-1]:
+            return nums.index(nums[-1])+1
+        for i, num in enumerate(nums):
+            if num > target:
+                return i - 1
 
 
-print(Solution().searchInsert([3, 6, 7, 8, 10], 5))
-print(Solution().searchInsert([1,3,5,6], 2))
+
+print(Solution().searchInsert([3, 4, 9, 10], 11))
