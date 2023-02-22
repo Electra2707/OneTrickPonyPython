@@ -30,4 +30,18 @@ from typing import List
 
 class Solution:
     def searchInsert(self, nums: List[int], target: int) -> int:
-        pass
+        if target in nums:
+            return nums.index(target)
+        # if target < min(nums):
+        #     temp = nums[0]
+        #     while (temp) - 1 !
+        if target > nums[-1]:
+            num = nums[-1]
+            fake_index = nums.index(num)
+            while target > num:
+                num += 1
+                fake_index += 1
+            return fake_index
+
+
+print(Solution().searchInsert([1, 2, 3, 4, 5], 6))
