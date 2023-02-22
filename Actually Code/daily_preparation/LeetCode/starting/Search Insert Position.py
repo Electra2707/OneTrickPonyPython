@@ -32,9 +32,6 @@ class Solution:
     def searchInsert(self, nums: List[int], target: int) -> int:
         if target in nums:
             return nums.index(target)
-        # if target < min(nums):
-        #     temp = nums[0]
-        #     while (temp) - 1 !
         if target > nums[-1]:
             num = nums[-1]
             fake_index = nums.index(num)
@@ -42,6 +39,14 @@ class Solution:
                 num += 1
                 fake_index += 1
             return fake_index
+        if target < nums[0]:
+            num = nums[0]
+            fake_index = 0
+            while target < num:
+                num -= 1
+                fake_index -= 1
+            return fake_index
 
 
-print(Solution().searchInsert([1, 2, 3, 4, 5], 6))
+
+print(Solution().searchInsert([1, 2, 4, 5], 0))
