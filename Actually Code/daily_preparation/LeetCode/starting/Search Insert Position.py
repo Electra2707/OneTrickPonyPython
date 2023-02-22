@@ -29,17 +29,32 @@ from typing import List
 
 
 class Solution:
-    def searchInsert(self, nums: List[int], target: int) -> int:
-        if target in nums:
-            return nums.index(target)
-        elif target < nums[0]:
-            return 0
-        elif target > nums[-1]:
-            return nums.index(nums[-1])+1
-        for i, num in enumerate(nums):
-            if num > target:
-                return i - 1
+    def searchInsert(self, nums, target):
+        # Use binary search to find the target or the insertion position
+        low = 0
+        high = len(nums) - 1
+        while low <= high:
+            mid = (low + high) // 2
+            if nums[mid] == target:
+                return mid  # Target found
+            elif nums[mid] < target:
+                low = mid + 1  # Target is in the right half
+            else:
+                high = mid - 1  # Target is in the left half
+        return low  # Target not found, return the insertion position
 
 
+# class Solution:
+#     def searchInsert(self, nums: List[int], target: int) -> int:
+#         if target in nums:
+#             return nums.index(target)
+#         elif target < nums[0]:
+#             return 0
+#         elif target > nums[-1]:
+#             return nums.index(nums[-1])+1
+#         for i, num in enumerate(nums):
+#             if num > target:
+#                 return i
 
-print(Solution().searchInsert([3, 4, 9, 10], 11))
+
+print(Solution().searchInsert([1, 3, 5, 6], 2))
