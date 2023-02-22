@@ -32,31 +32,30 @@ class Solution:
     def searchInsert(self, nums: List[int], target: int) -> int:
         if target in nums:
             return nums.index(target)
+        elif target < nums[0]:
+            return 0
+
         if target > nums[-1]:
             num = nums[-1]
             fake_index = nums.index(num)
             while target > num:
                 num += 1
                 fake_index += 1
-        elif target < nums[0]:
-            num = nums[0]
-            fake_index = 0
-            while target < num:
-                num -= 1
-                fake_index -= 1
         else:
             fake_index = 0
             prev = nums[0]
-            for i, number in enumerate(nums, 1):
-                if number > target:
-                    break
+            for i, number in enumerate(nums):
                 fake_index = i
                 prev = number
+                if number - 1 == target:
+                    return fake_index
+                elif number > target:
+                    break
             while prev != target:
                 prev += 1
                 fake_index += 1
-        return fake_index-1
-        
+        return fake_index 
 
 
-print(Solution().searchInsert([1, 2, 4, 5], 3))
+print(Solution().searchInsert([3, 6, 7, 8, 10], 5))
+print(Solution().searchInsert([1,3,5,6], 2))
