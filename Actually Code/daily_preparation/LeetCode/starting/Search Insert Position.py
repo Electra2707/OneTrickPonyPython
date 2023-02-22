@@ -38,15 +38,25 @@ class Solution:
             while target > num:
                 num += 1
                 fake_index += 1
-            return fake_index
-        if target < nums[0]:
+        elif target < nums[0]:
             num = nums[0]
             fake_index = 0
             while target < num:
                 num -= 1
                 fake_index -= 1
-            return fake_index
+        else:
+            fake_index = 0
+            prev = nums[0]
+            for i, number in enumerate(nums, 1):
+                if number > target:
+                    break
+                fake_index = i
+                prev = number
+            while prev != target:
+                prev += 1
+                fake_index += 1
+        return fake_index-1
+        
 
 
-
-print(Solution().searchInsert([1, 2, 4, 5], 0))
+print(Solution().searchInsert([1, 2, 4, 5], 3))
