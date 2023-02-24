@@ -35,11 +35,23 @@ from typing import List
 
 class Solution:
     def plusOne(self, digits: List[int]) -> List[int]:
-        if not digits:
-            return 1
+        if not digits: return 1
         digits = "".join(map(str, digits))
         digits = str(int(digits) + 1)
         return list(map(int, digits))
 
 
-print(Solution().plusOne([9, 9]))
+# class Solution:
+#     def plusOne(self, digits: List[int]) -> List[int]:
+#         i = len(digits) - 1 # start from the last digit
+#         while i >= 0:
+#             if digits[i] < 9: # no carry over
+#                 digits[i] += 1 # add one
+#                 return digits # return the result
+#             else: # carry over
+#                 digits[i] = 0 # set the digit to zero
+#                 i -= 1 # move to the next digit
+#         # if we reach here, it means all digits are nine
+#         return [1] + digits # add one at the front and return
+
+print(Solution().plusOne([]))
