@@ -35,6 +35,13 @@ from typing import List
 
 class Solution:
     def plusOne(self, digits: List[int]) -> List[int]:
+        if set(digits) == {9}:
+            number = ""
+            for i in digits:
+                number += str(i)
+            number = int(number) + 1
+            number = list(str(number))
+            return number
         number = digits.pop(-1)
         number = str(number + 1)
         for i in number:
@@ -42,4 +49,4 @@ class Solution:
         return digits
 
 
-print(Solution().plusOne([1, 2, 3]))
+print(Solution().plusOne([9, 9]))
