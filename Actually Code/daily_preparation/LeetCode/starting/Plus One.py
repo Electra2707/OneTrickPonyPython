@@ -35,10 +35,11 @@ from typing import List
 
 class Solution:
     def plusOne(self, digits: List[int]) -> List[int]:
-        number = ""
-        for i in digits:
-            number += str(i)
-        return list(int(number) + 1)
+        number = digits.pop(-1)
+        number = str(number + 1)
+        for i in number:
+            digits.append(int(i))
+        return digits
 
 
 print(Solution().plusOne([1, 2, 3]))
