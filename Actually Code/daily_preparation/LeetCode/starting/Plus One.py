@@ -35,7 +35,7 @@ from typing import List
 
 class Solution:
     def plusOne(self, digits: List[int]) -> List[int]:
-        if not digits: return 1
+        if not digits: return [1]
         digits = "".join(map(str, digits))
         digits = str(int(digits) + 1)
         return list(map(int, digits))
