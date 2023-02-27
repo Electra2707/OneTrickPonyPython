@@ -24,3 +24,27 @@ Constraints:
 
 class Solution:
     def mySqrt(self, x: int) -> int:
+        if not x:
+            return 0
+        prev = 0
+        for i in range(x):
+            if (i * i) < x:
+                prev = i
+            else:
+                break
+        return prev
+print(Solution().mySqrt(1))
+print(Solution().mySqrt(2))
+print(Solution().mySqrt(3))
+print(Solution().mySqrt(4))
+print(Solution().mySqrt(5))
+print(Solution().mySqrt(6))
+print(Solution().mySqrt(7))
+print(Solution().mySqrt(8))
+print(Solution().mySqrt(9))
+print(Solution().mySqrt(10))
+print(Solution().mySqrt(11))
+print(Solution().mySqrt(12))
+print(Solution().mySqrt(13))
+print(Solution().mySqrt(14))
+print(Solution().mySqrt(15))
