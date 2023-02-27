@@ -24,10 +24,8 @@ Constraints:
 
 class Solution:
     def mySqrt(self, x: int) -> int:
-        if not x:
-            return 0
-        elif x == 1:
-            return 1
+        if not x or x == 1:
+            return x
         prev = 0
         for i in range(1, x):
             if (i * i) <= x:
@@ -37,18 +35,50 @@ class Solution:
         return prev
 
 
-print(Solution().mySqrt(1), "1,1")
-print(Solution().mySqrt(2), "2")
-print(Solution().mySqrt(3), "3")
-print(Solution().mySqrt(4), "4,2")
-print(Solution().mySqrt(5), "5")
-print(Solution().mySqrt(6), "6")
-print(Solution().mySqrt(7), "7")
-print(Solution().mySqrt(8), "8")
-print(Solution().mySqrt(9), "9,3")
-print(Solution().mySqrt(10), "10")
-print(Solution().mySqrt(11), "11")
-print(Solution().mySqrt(12), "12")
-print(Solution().mySqrt(13), "13")
-print(Solution().mySqrt(14), "14")
-print(Solution().mySqrt(15), "15")
+def mySqrt(x: int) -> int:
+    if x == 0 or x == 1:
+        return x
+    start = 0
+    end = x
+    while start <= end:
+        mid = (start + end) // 2
+        if mid * mid == x:
+            return mid
+        elif mid * mid < x:
+            start = mid + 1
+            ans = mid  # keep track of the floor value
+        else:
+            end = mid - 1
+    return ans  # return the floor value when no exact match is found
+
+
+def mySqrt(x: int) -> int:
+    if x == 0 or x == 1:
+        return x
+    r = x  # initial guess
+    while r * r > x:  # loop until r * r <= x
+        r = (r + x // r) // 2  # update r using Newton's formula
+    return r  # return r as the floor value
+
+
+# print(Solution().mySqrt(1))
+# print(Solution().mySqrt(2))
+# print(Solution().mySqrt(3))
+# print(Solution().mySqrt(4))
+# print(Solution().mySqrt(5))
+# print(Solution().mySqrt(6))
+# print(Solution().mySqrt(7))
+# print(Solution().mySqrt(8))
+# print(Solution().mySqrt(9))
+# print(Solution().mySqrt(10))
+# print(Solution().mySqrt(11))
+# print(Solution().mySqrt(12))
+# print(Solution().mySqrt(13))
+# print(Solution().mySqrt(14))
+# print(Solution().mySqrt(15))
+
+
+print(mySqrt(1))
+print(mySqrt(4))
+print(mySqrt(9))
+print(mySqrt(16))
