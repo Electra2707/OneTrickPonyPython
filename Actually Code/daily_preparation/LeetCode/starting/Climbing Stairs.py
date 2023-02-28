@@ -28,17 +28,16 @@ Constraints:
 
 class Solution:
     def climbStairs(self, n):
-        n = n + 1
-        a, b = 0, 1
+        n, prev, curr = n + 1, 0, 1
         for _ in range(2, n+1):
-            a, b = b, b + a
-        return b
+            prev, curr = curr, curr + prev
+        return curr
 
 
 # test the function with some examples
 print(Solution().climbStairs(11))  # prints 55
 print(Solution().climbStairs(6))  # prints 5
-print(Solution().climbStairs(46))  # prints 1134903170
+print(Solution().climbStairs(9999))  # prints 1134903170
 
 # def climbStairs(self, n: int) -> int:
 #     if n <= 3:
