@@ -27,21 +27,33 @@ Constraints:
 
 
 class Solution:
-    def climbStairs(self, n: int) -> int:
-        low = 1
-        high = 45
-        while low <= high:
-            mid = (low + high) // 2
-            if mid == n:
-                return mid
-            elif mid < n:
-                low = mid + 1
-            else:
-                high = mid -1
-        return low
+    def climbStairs(self, n):
+        n = n + 1
+        a, b = 0, 1
+        for _ in range(2, n+1):
+            a, b = b, b + a
+        return b
 
-print(Solution().climbStairs(2))
-print(Solution().climbStairs(5))
-print(Solution().climbStairs(10))
-print(Solution().climbStairs(15))
-print(Solution().climbStairs(20))
+
+# test the function with some examples
+print(Solution().climbStairs(11))  # prints 55
+print(Solution().climbStairs(6))  # prints 5
+print(Solution().climbStairs(46))  # prints 1134903170
+
+# def climbStairs(self, n: int) -> int:
+#     if n <= 3:
+#         return n
+#     num1 = Solution().Fib(n-1)
+#     num2 = Solution().Fib(n-2)
+#     return num1 + num2
+
+# def Fib(self, target: int):
+#     a, b = 0, 1
+#     while a*b < target:
+#         a, b = b, b+a
+
+# print(Solution().climbStairs(2))
+# print(Solution().climbStairs(5))
+# print(Solution().climbStairs(10))
+# print(Solution().climbStairs(15))
+# print(Solution().climbStairs(20))
