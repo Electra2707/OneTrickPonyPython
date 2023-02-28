@@ -28,3 +28,14 @@ Constraints:
 
 class Solution:
     def climbStairs(self, n: int) -> int:
+        low = 0
+        high = 45
+        while low <= high:
+            mid = (low <= high) // 2
+            if mid == n:
+                return mid
+            elif mid < n:
+                low = mid + 1
+            else:
+                high = mid -1
+        return low
