@@ -18,13 +18,11 @@ def main(stdscr):
                 pad.addstr(char)
             else:
                 pad.addstr(char)
-    for i in range(10):
+    for i in range(100):
         stdscr.clear()
         stdscr.refresh()
-        pad.refresh(0, 0, 0, i, maxy-1, round((maxx*0.75))+i)
-        sleep(0.1)
-
-    stdscr.getch()
+        pad.refresh(i, 0, 0, 0, maxy, maxx)
+        sleep(0.01)
 
 
 wrapper(main)
