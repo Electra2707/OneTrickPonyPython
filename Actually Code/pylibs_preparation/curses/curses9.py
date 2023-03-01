@@ -11,6 +11,9 @@ def main(stdscr):
     BLUE_AND_YELLOW = curses.color_pair(1)
     MANGENTA_AND_WHITE = curses.color_pair(2)
     x, y = 0, 0
+    counter = 0
+    stdscr.addstr(y, x, "~_~")  # ,{y,x},{maxy,maxx}")
+    stdscr.refresh()
     while True:
         key = stdscr.getkey()
         if key == "KEY_UP":
