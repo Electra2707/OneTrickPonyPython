@@ -36,19 +36,17 @@ def main(stdscr):
                 break
             except Exception:
                 raise SystemExit
-        try:
-            if y >= maxy:
-                y = 0
-            elif y <= -1:
-                y = maxy
-            elif x+3 >= maxx:
-                x = 0
-            elif x <= 0:
-                x = maxx
-            stdscr.clear()
-            stdscr.addstr(y, x, f"{key},{y,x},{maxy,maxx}")
-            stdscr.refresh()
-        except curses.error:
-            pass
+        if y == -1:
+            y = maxy
+        elif y > maxy:
+            y = 0
+        if x == -1:
+            x = maxx - 2
+        elif x + 1 == maxx:
+            x = 0
+        stdscr.clear()
+        stdscr.addstr(y, x, f"{key}")  # ,{y,x},{maxy,maxx}")
+        stdscr.refresh()
+
 
 wrapper(main)
