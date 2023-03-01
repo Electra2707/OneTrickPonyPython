@@ -18,10 +18,25 @@ def main(stdscr):
                 pad.addstr(char, BLUE_AND_YELLOW)
             else:
                 pad.addstr(char, MANGENTA_AND_WHITE)
-    print(round((maxx/0.25)))
-    pad.refresh(0, 0, maxy//2, maxx//4, maxy, round((maxx*0.75)))
+    pad.refresh(0, 0, 1, maxx//4, maxy-1, round((maxx*0.75)))
 
     stdscr.getch()
 
 
+    #     # calculate the arguments for pad.refresh
+    #     prows = 100
+    #     pcols = 100
+    #     srows = maxy + 1
+    #     scols = maxx + 1
+    #     pminrow = max(0, (prows - srows) // 2)
+    #     pmincol = max(0, (pcols - scols) // 2)
+    #     sminrow = max(0, (srows - prows) // 2)
+    #     smincol = max(0, (scols - pcols) // 2)
+    #     smaxrow = min(srows - sminrow -1 , prows + sminrow -1 )
+    #     smaxcol = min(scols - smincol -1 , pcols + smincol -1 )
+
+        
+    # pad.refresh(pminrow,pmincol,sminrow,smincol,smaxrow,smaxcol)
+
+    # stdscr.getch()
 wrapper(main)

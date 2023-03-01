@@ -9,7 +9,7 @@ def main(stdscr):
     BLUE_AND_YELLOW = curses.color_pair(1)
     MANGENTA_AND_WHITE = curses.color_pair(2)
 
-    counter_win = curses.newwin(1, 20, 10, 10)
+    counter_win = curses.newwin(1, 20, 5, 10)
     stdscr.addstr("Hello World")
     stdscr.refresh()
     for i in range(101):
