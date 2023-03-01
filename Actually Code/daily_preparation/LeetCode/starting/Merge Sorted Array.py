@@ -45,3 +45,30 @@ from typing import List
 
 class Solution:
     def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+        if not m and n:
+            nums1 = nums2[:n]
+            return
+        elif not n and m:
+            nums1 = nums1[:m]
+            return
+        elif not n and not m:
+            nums1 = []
+            return
+
+        prev = nums1.copy()
+        nums1.clear()
+        while m and n:
+            if prev[m] > nums2[n]:
+                nums1.append(prev[m])
+                m -= 1
+            elif nums2[n] > prev[m]:
+                nums1.append(nums2[n])
+                n -= 1
+            elif prev[m] == nums2[n]:
+                nums1.append(prev[m])
+                m -= 1
+                n -= 1
+        nums1.append(prev or nums2)
+        nums1 = sorted(nums1)
+
+print(Solution().merge("11", "1"))
