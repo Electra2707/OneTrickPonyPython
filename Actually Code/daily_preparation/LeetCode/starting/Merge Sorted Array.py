@@ -45,45 +45,64 @@ from typing import List
 
 class Solution:
     def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
-        if not m and n:
-            nums1 = nums2[:n]
-            return
-        elif not n and m:
-            nums1 = nums1[:m]
-            return
-        elif not n and not m:
-            nums1 = []
-            return
-        if len(nums1)-1 < m:
-            m = len(nums1)
-        if len(nums2)-1 < n:
-            n = len(nums2)-1
-        prev = nums1.copy()
-        nums1.clear()
-        while m != -1 and n != -1:
-            if prev[m] > nums2[n]:
-                nums1.append(prev[m])
-                m -= 1
-            elif nums2[n] > prev[m]:
-                nums1.append(nums2[n])
-                n -= 1
-            elif prev[m] == nums2[n]:
-                nums1.append(prev[m])
-                m -= 1
-                n -= 1
-        if m == -1:
-            o = n
-        elif n == -1:
-            o = m
-        for i in prev or nums2:
-            if o == 0:
-                break
-            o -= 1
-            nums1.append(i)
-        prev = sorted(nums1).copy()
-        nums1.clear()
-        nums1 = prev
+        p = m + n - 1
+        p1 = m - 1
+        p2 = n - 1
+        while p1 >= 0 and p2 >= 0:
+            if nums1[p1] > nums2[p2]:
+                nums1[p] = nums1[p1]
+                p -= 1
+                p1 -= 1
+            else:
+                nums1[p] = nums2[p2]
+                p -= 1
+                p2 -= 1
+        if p2 >= 0:
+            nums1[:p+1] = nums2[:p+1]
         print(nums1)
 
 
-print(Solution().merge([1, 2, 3, 0, 0, 0], 3, [2, 5, 6], 3))
+# class Solution:
+#     def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+#         if not m and n:
+#             nums1 = nums2[:n]
+#             return
+#         elif not n and m:
+#             nums1 = nums1[:m]
+#             return
+#         elif not n and not m:
+#             nums1 = []
+#             return
+#         if len(nums1)-1 < m:
+#             m = len(nums1)
+#         if len(nums2)-1 < n:
+#             n = len(nums2)-1
+#         prev = nums1.copy()
+#         nums1.clear()
+#         while m != -1 and n != -1:
+#             if prev[m] > nums2[n]:
+#                 nums1.append(prev[m])
+#                 m -= 1
+#             elif nums2[n] > prev[m]:
+#                 nums1.append(nums2[n])
+#                 n -= 1
+#             elif prev[m] == nums2[n]:
+#                 nums1.append(prev[m])
+#                 m -= 1
+#                 n -= 1
+#         if m == -1:
+#             o = n
+#         elif n == -1:
+#             o = m
+#         for i in prev or nums2:
+#             if o == 0:
+#                 break
+#             o -= 1
+#             nums1.append(i)
+#         prev = sorted(nums1).copy()
+#         nums1.clear()
+#         nums1 = prev
+#         print(nums1)
+
+
+Solution().merge([1, 2, 3, 0, 0, 0], 3, [2, 5, 6], 3)
