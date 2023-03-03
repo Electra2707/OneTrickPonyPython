@@ -16,6 +16,7 @@ Output: [1]
 """
 from typing import List, Optional
 import turtle
+from turtle import clearscreen
 
 
 class TreeNode:
@@ -88,31 +89,41 @@ def draw_node(node, t):
 
 # Create a turtle object with some settings
 t = turtle.Turtle()
-t.speed(1)  # Set the speed of drawing
+t.speed(5)  # Set the speed of drawing
 t.penup()  # Lift up the pen so it doesn't leave a trail
 t.backward(200)  # Move backward by 200 units to make space for the tree
 t.pendown()  # Put down the pen
 
 # Create an example tree with values [1,null,2,3]
 root = TreeNode(1, None, TreeNode(2, TreeNode(3)))
-node1 = TreeNode(1)
+node1 = TreeNode(1, TreeNode(2, TreeNode(3), TreeNode(4)),
+                 TreeNode(5, TreeNode(6), TreeNode(7)))
 node2 = TreeNode(2, TreeNode(3))
 node3 = TreeNode(4, TreeNode(5), TreeNode(6))
 
 # Call the draw_node function on the root node and the turtle object
 draw_node(root, t)
-turtle.exitonclick()
+root = Solution().inorderTraversal(root)
+print(root)
 
+Nothing = input()
 t.clear()
 draw_node(node1, t)
-turtle.exitonclick()
+node1 = Solution().inorderTraversal(node1)
+print(node1)
 
+Nothing = input()
 t.clear()
 draw_node(node2, t)
-turtle.exitonclick()
+node2 = Solution().inorderTraversal(node2)
+print(node2)
 
+Nothing = input()
 t.clear()
 draw_node(node3, t)
+node3 = Solution().inorderTraversal(node3)
+print
 turtle.exitonclick()
+
 
 # Exit when you click on turtle window
