@@ -26,3 +26,17 @@ class TreeNode:
 
 class Solution:
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        if not root:
+            return []
+        l1 = []
+        while root:
+            l1.append(root.val)
+            root = root.left
+        try:
+            l1.append(root.left.val)
+        except:
+            pass
+        return l1
+
+
+Tree = TreeNode(3, TreeNode(2, TreeNode(None, TreeNode(1))))
