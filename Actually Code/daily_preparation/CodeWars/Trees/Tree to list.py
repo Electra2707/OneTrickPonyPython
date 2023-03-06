@@ -23,3 +23,16 @@ class Node:
 
 
 def tree_to_list(tree_root):
+    l1 = [tree_root.data]
+    nodes = tree_root.child_nodes
+    while nodes:
+        curr = nodes.pop()
+        l1.append(curr.data)
+        if curr.child_nodes:
+            nodes.append(curr.child_nodes)
+    return l1
+
+
+#  [1, 2, 3, 3, 4, 5, 7])
+testing = Node(1, [Node(2, [Node(3), Node(4), Node(5)]), Node(3, [Node(7)])])
+print(tree_to_list(testing))
