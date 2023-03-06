@@ -23,6 +23,8 @@ class Node:
 
 
 def tree_to_list(tree_root):
+    if not tree_root:
+        return []
     l1 = [tree_root.data]
     nodes = tree_root.child_nodes
     while nodes:
@@ -31,8 +33,12 @@ def tree_to_list(tree_root):
         if curr.child_nodes:
             for element in curr.child_nodes:
                 nodes.append(element)
-    return sorted(l1)
+    return l1
 
 
-testing = Node(1, [Node(2, [Node(3), Node(4), Node(5)]), Node(3, [Node(7)])])
-print(tree_to_list(testing), "result \n[1, 2, 3, 3, 4, 5, 7] expected")
+hello = Node(
+    'H', [Node('e', [Node('l'), Node('o', [Node('w'), Node('!')])]), Node('l')])
+# testing = Node(1, [Node(2, [Node(3), Node(4), Node(5)]), Node(3, [Node(7)])])
+# print(tree_to_list(testing), "result \n[1, 2, 3, 3, 4, 5, 7] expected")
+print(tree_to_list(hello),
+      "result \n['H', 'e', 'l', 'l', 'o', 'w', '!'] expected")
