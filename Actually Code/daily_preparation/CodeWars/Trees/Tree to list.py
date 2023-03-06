@@ -29,10 +29,10 @@ def tree_to_list(tree_root):
         curr = nodes.pop()
         l1.append(curr.data)
         if curr.child_nodes:
-            nodes.append(curr.child_nodes)
-    return l1
+            for element in curr.child_nodes:
+                nodes.append(element)
+    return sorted(l1)
 
 
-#  [1, 2, 3, 3, 4, 5, 7])
 testing = Node(1, [Node(2, [Node(3), Node(4), Node(5)]), Node(3, [Node(7)])])
-print(tree_to_list(testing))
+print(tree_to_list(testing), "result \n[1, 2, 3, 3, 4, 5, 7] expected")
