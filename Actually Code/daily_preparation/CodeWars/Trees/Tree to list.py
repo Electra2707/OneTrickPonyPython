@@ -27,12 +27,15 @@ def tree_to_list(tree_root):
         return []
     l1 = [tree_root.data]
     nodes = tree_root.child_nodes
+    l2 = []
     while nodes:
-        curr = nodes.pop()
-        l1.append(curr.data)
-        if curr.child_nodes:
-            for element in curr.child_nodes:
-                nodes.append(element)
+        node = nodes.pop(0)
+        l1.append(node.data)
+        for element in node.child_nodes:
+            l2.append(element)
+        if not nodes:
+            nodes = l2.copy()
+            l2.clear()
     return l1
 
 
