@@ -14,6 +14,7 @@ Example:
        4 5 6   7
 
 """
+from collections import deque
 
 
 class Node:
@@ -22,26 +23,36 @@ class Node:
         self.child_nodes = [] if child_nodes is None else child_nodes
 
 
+# def tree_to_list(tree_root):
+#     if not tree_root: return []
+#     l1 = [tree_root.data]
+#     nodes = tree_root.child_nodes
+#     l2 = []
+#     while nodes:
+#         node = nodes.pop(0)
+#         l1.append(node.data)
+#         for element in node.child_nodes:
+#             l2.append(element)
+#         if not nodes:
+#             nodes = l2.copy()
+#             l2.clear()
+#     return l1
+
+
 def tree_to_list(tree_root):
-    if not tree_root:
-        return []
-    l1 = [tree_root.data]
-    nodes = tree_root.child_nodes
-    l2 = []
-    while nodes:
-        node = nodes.pop(0)
-        l1.append(node.data)
-        for element in node.child_nodes:
-            l2.append(element)
-        if not nodes:
-            nodes = l2.copy()
-            l2.clear()
-    return l1
+    if not tree_root: return []
+    result = [tree_root.data]
+    queue = deque(tree_root.child_nodes)
+    while queue:
+        node = queue.popleft()
+        result.append(node.data)
+        queue.extend(node.child_nodes)
+    return result
 
 
 hello = Node(
     'H', [Node('e', [Node('l'), Node('o', [Node('w'), Node('!')])]), Node('l')])
-# testing = Node(1, [Node(2, [Node(3), Node(4), Node(5)]), Node(3, [Node(7)])])
-# print(tree_to_list(testing), "result \n[1, 2, 3, 3, 4, 5, 7] expected")
+testing = Node(1, [Node(2, [Node(3), Node(4), Node(5)]), Node(3, [Node(7)])])
+print(tree_to_list(testing), "result \n[1, 2, 3, 3, 4, 5, 7] expected")
 print(tree_to_list(hello),
       "result \n['H', 'e', 'l', 'l', 'o', 'w', '!'] expected")
