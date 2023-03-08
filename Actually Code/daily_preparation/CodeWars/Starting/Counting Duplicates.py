@@ -18,11 +18,16 @@ Example
 def duplicate_count(text: str):
     if not text:
         return 0
+    text = text.casefold()
     counter = 0
+    seen = set()
     for i in text:
+        if i in seen:
+            continue
         num = text.count(i)
-        if num > counter+1:
-            counter = num
+        if num >= 2:
+            counter += 1
+            seen.add(i)
     return counter
 
 
