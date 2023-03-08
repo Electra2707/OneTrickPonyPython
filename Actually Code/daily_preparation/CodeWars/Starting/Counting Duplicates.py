@@ -15,3 +15,19 @@ Example
 """
 
 
+def duplicate_count(text: str):
+    if not text:
+        return 0
+    counter = 0
+    for i in text:
+        num = text.count(i)
+        if num > counter+1:
+            counter = num
+    return counter
+
+
+print(duplicate_count(""))
+print(duplicate_count("abcde"))
+print(duplicate_count("abcdeaa"))
+print(duplicate_count("abcdeaB"))
+print(duplicate_count("Indivisibilities"))
