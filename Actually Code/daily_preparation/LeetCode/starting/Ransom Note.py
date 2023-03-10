@@ -24,9 +24,15 @@ ransomNote and magazine consist of lowercase English letters.
 """
 from itertools import permutations
 
+
 class Solution:
     def canConstruct(self, ransomNote: str, magazine: str) -> bool:
-        perm_set = set(permutations(magazine))
-        return tuple(ransomNote) in perm_set
+        perm = permutations(magazine)
+        for p in perm:
+            p = "".join(p)
+            if ransomNote in p:
+                return True
+        return False
 
-print(Solution().canConstruct("aab","baa"))
+
+print(Solution().canConstruct("aa", "aab"))
