@@ -22,17 +22,16 @@ Constraints:
 1 <= ransomNote.length, magazine.length <= 105
 ransomNote and magazine consist of lowercase English letters.
 """
-from itertools import permutations
 
 
 class Solution:
     def canConstruct(self, ransomNote: str, magazine: str) -> bool:
-        perm = permutations(magazine)
-        for p in perm:
-            p = "".join(p)
-            if ransomNote in p:
-                return True
-        return False
+        for letter in ransomNote:
+            if not letter in magazine:
+                return False
+            magazine = magazine.replace(letter, "", 1)
+        return True
 
 
-print(Solution().canConstruct("aa", "aab"))
+print(Solution().canConstruct(
+    "bg", "efjbdfbdgfjhhaiigfhbaejahgfbbgbjagbddfgdiaigdadhcfcj"))
