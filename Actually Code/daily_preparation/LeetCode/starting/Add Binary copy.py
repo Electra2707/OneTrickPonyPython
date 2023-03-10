@@ -14,6 +14,22 @@ Constraints:
 The number of nodes in the linked list will be in the range [1, 104].
 -104 <= Node.val <= 104
 At most 104 calls will be made to getRandom.
+
+Input
+["Solution", "getRandom", "getRandom", "getRandom", "getRandom", "getRandom"]
+[[[1, 2, 3]], [], [], [], [], []]
+Output
+[null, 1, 3, 2, 2, 3]
+
+Explanation
+Solution solution = new Solution([1, 2, 3]);
+solution.getRandom(); // return 1
+solution.getRandom(); // return 3
+solution.getRandom(); // return 2
+solution.getRandom(); // return 2
+solution.getRandom(); // return 3
+// getRandom() should return either 1, 2, or 3 randomly.
+Each element should have equal probability of returning.
 """
 from random import randint
 from typing import Optional
@@ -26,27 +42,42 @@ class ListNode:
 
 
 class Solution:
-
-    def __init__(self, head: Optional[ListNode]):
+    def __init__(self, head: ListNode):
         self.head = head
-        self.length = 0
-        while head:
-            self.length += 1
-            head = head.next
 
     def getRandom(self) -> int:
-        if self.length == 0:
-            return 0
-        elif self.length == 1:
-            return self.head.val
-        random = randint(0, self.length)
-        counter = 0
-        head = self.head
-        while head:
-            counter += 1
-            if counter == random:
-                return head
-            head = head.next
-        # Your Solution object will be instantiated and called as such:
-        # obj = Solution(head)
-        # param_1 = obj.getRandom()
+        result = 0  # store the current node's value
+        curr = self.head
+        n = 1  # count of nodes seen so far
+        while curr:
+            if randint(0, n-1) == 0:  # with probability 1/n, update the result
+                result = curr.val
+            n += 1
+            curr = curr.next
+        return result  # return the final result
+
+# class Solution:
+
+#     def __init__(self, head: Optional[ListNode]):
+#         self.head = head
+#         self.length = 0
+#         while head:
+#             self.length += 1
+#             head = head.next
+
+#     def getRandom(self) -> int:
+#         if self.length == 0:
+#             return 0
+#         elif self.length == 1:
+#             return self.head.val
+#         random = randint(0, self.length)
+#         counter = 0
+#         head = self.head
+#         while head:
+#             counter += 1
+#             if counter == random:
+#                 return head
+#             head = head.next
+# Your Solution object will be instantiated and called as such:
+# obj = Solution(head)
+# param_1 = obj.getRandom()
