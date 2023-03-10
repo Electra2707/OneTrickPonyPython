@@ -15,22 +15,38 @@ The number of nodes in the linked list will be in the range [1, 104].
 -104 <= Node.val <= 104
 At most 104 calls will be made to getRandom.
 """
+from random import randint
+from typing import Optional
 
 
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+
 class Solution:
 
     def __init__(self, head: Optional[ListNode]):
-        
+        self.head = head
+        self.length = 0
+        while head:
+            self.length += 1
+            head = head.next
 
     def getRandom(self) -> int:
-        
-
-
-# Your Solution object will be instantiated and called as such:
-# obj = Solution(head)
-# param_1 = obj.getRandom()
+        if self.length == 0:
+            return 0
+        elif self.length == 1:
+            return self.head.val
+        random = randint(0, self.length)
+        counter = 0
+        head = self.head
+        while head:
+            counter += 1
+            if counter == random:
+                return head
+            head = head.next
+        # Your Solution object will be instantiated and called as such:
+        # obj = Solution(head)
+        # param_1 = obj.getRandom()
