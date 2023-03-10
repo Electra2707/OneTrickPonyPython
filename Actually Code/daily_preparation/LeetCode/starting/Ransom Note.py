@@ -32,6 +32,5 @@ class Solution:
             magazine = magazine.replace(letter, "", 1)
         return True
 
-
 print(Solution().canConstruct(
     "bg", "efjbdfbdgfjhhaiigfhbaejahgfbbgbjagbddfgdiaigdadhcfcj"))
