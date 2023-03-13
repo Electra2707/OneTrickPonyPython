@@ -23,6 +23,7 @@ def main(stdscr):
 
     stdscr.refresh()
     while True:
+        curses.beep()
         key = stdscr.getkey()
         if key == "q":
             break
