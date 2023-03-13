@@ -28,26 +28,63 @@ class ListNode:
         self.next = next
 
 
+# class Solution:
+#     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+#         num1 = []
+#         num2 = []
+#         while l1:
+#             num1.insert(0, l1.val)
+#             l1 = l1.next
+#         while l2:
+#             num2.insert(0, l2.val)
+#             l2 = l2.next
+#         l3 = int("".join([str(x) for x in num1])) + \
+#             int("".join([str(x) for x in num2]))
+#         head, tail = None, None
+#         for i in reversed(str(l3)):
+#             newnode = ListNode(i)
+#             if head is None:
+#                 head = newnode
+#             else:
+#                 tail.next = newnode
+#             tail = newnode
+#         return head
+
 class Solution:
-    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
-        num1 = []
-        num2 = []
-        while l1:
-            num1.insert(0, l1.val)
-            l1 = l1.next
-        while l2:
-            num2.insert(0, l2.val)
-            l2 = l2.next
-        l3 = int("".join([str(x) for x in num1])) + \
-            int("".join([str(x) for x in num2]))
-        head, tail = None, None
-        for i in reversed(str(l3)):
-            newnode = ListNode(i)
+    def addTwoNumbers(self, first: Optional[ListNode], second: Optional[ListNode]) -> Optional[ListNode]:
+        # Initialize head and tail as None
+        head = None
+        tail = None
+        # Initialize carry as 0
+        carry = 0
+        # Iterate over both linked lists until both are None
+        while first or second:
+            # Get the values of current nodes or 0 if None
+            x = first.val if first else 0
+            y = second.val if second else 0
+            # Calculate the sum of current digits and carry
+            sum = x + y + carry
+            # Update carry as quotient of sum divided by 10
+            carry = sum // 10
+            # Create a new node with remainder of sum modulo 10
+            node = ListNode(sum % 10)
+            # If head is None, set it as the new node
             if head is None:
-                head = newnode
+                head = node
+            # Else, set the next pointer of tail as the new node
             else:
-                tail.next = newnode
-            tail = newnode
+                tail.next = node
+            # Update tail as the new node
+            tail = node
+            # Move to next nodes if not None
+            if first:
+                first = first.next
+            if second:
+                second = second.next
+        # If carry is not zero, add one more node with carry value
+        if carry > 0:
+            tail.next = ListNode(carry)
+        # Return head as the linked list
         return head
 
 
