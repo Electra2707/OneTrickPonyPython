@@ -18,10 +18,17 @@ release_list = [
 
 cursor.executemany("insert into gta values (?,?,?)", release_list)
 
-# for row in cursor.execute("select * from gta"):
-#     print(row)
+for row in cursor.execute("select * from gta"):
+    print(row)
 
-cursor.execute("select * from gta where city=:c", {"c": "Liberty City"})
+cursor.execute("select * from gta where city=:c", {"c": "Los Santos"})
 gta_search = cursor.fetchall()
-print(gta_search)
+for i in gta_search:
+    ["New York" if value == "Los Santos" else value for value in i]
+
+cursor.execute("create table cities (gta_city text, real_city text)")
+cursor.execute("insert into cities values (?,?)", ("Liberty City", "New York"))
+cursor.execute("select * from cities where gta_city=:c", {"c": "Liberty City"})
+cities_search = cursor.fetchall()
+print(cities_search)
 connection.close()
