@@ -8,5 +8,4 @@ def is_leap(year: int):
         return True
     return False
 
-
 print(is_leap(1992))
